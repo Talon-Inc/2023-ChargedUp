@@ -22,7 +22,7 @@ public class DriveCommand_old extends CommandBase {
    * @param driveTrain The subsystem used by this command.
    * @param controller The controller.
    */
-  public DriveCommand(DriveTrain driveTrain, XboxController controller) {
+  public DriveCommand_old(DriveTrain driveTrain, XboxController controller) {
     this.driveTrain = driveTrain;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(driveTrain);
