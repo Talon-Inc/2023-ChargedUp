@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 
-public class DriveTrainExample {
+public class DriveTrain_example {
     private final PWMSparkMax m_leftDrive = new PWMSparkMax(0);
     private final PWMSparkMax m_rightDrive = new PWMSparkMax(1);
     private final DifferentialDrive m_RoboDrive = new DifferentialDrive(m_leftDrive, m_rightDrive);
