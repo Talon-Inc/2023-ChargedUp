@@ -6,5 +6,13 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 
 public class DriveTrain {
+    private final PWMSparkMax m_leftDrive = new PWMSparkMax(0);
+    private final PWMSparkMax m_rightDrive = new PWMSparkMax(1);
+    private final DifferentialDrive m_RoboDrive = new DifferentialDrive(m_leftDrive, m_rightDrive);
+    private final Timer m_Timer = new Timer();
+    /*
+     * The code above runs when the robot is first started up. 
+     * All the intialization code goes above.
+     */
     
 }
