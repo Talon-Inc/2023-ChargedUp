@@ -14,5 +14,12 @@ public class DriveTrain {
      * The code above runs when the robot is first started up. 
      * All the intialization code goes above.
      */
-    
+    @Override
+    public void RobotInit(){
+        m_rightDrive.setInverted(true);
+    /*
+     * According to FIRST, we have to "invert one side of the drivetrain so that
+     * "
+     */
+    }
 }
