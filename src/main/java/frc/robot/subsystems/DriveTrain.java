@@ -19,7 +19,9 @@ public class DriveTrain {
         m_rightDrive.setInverted(true);
     /*
      * According to FIRST, we have to "invert one side of the drivetrain so that
-     * "
+     * positive voltages result in both sides moving forward." However, depending 
+     * on how the gearbox's are set up, we might have to invert the other side
+     * meaning that we change "m_rightDrive" to "m_leftDrive" and leave everything the same.
      */
     }
 }
