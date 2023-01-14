@@ -16,7 +16,8 @@ public final class Autos {
   }
 
   public static CommandBase testAuto(DriveTrain driveTrain) {
-    return Commands.sequence(driveTrain.command1(), new DriveCommand(driveTrain));
+    // return Commands.sequence(driveTrain.command1(), new Drive(driveTrain));
+    return null;
   }
 
   private Autos() {
