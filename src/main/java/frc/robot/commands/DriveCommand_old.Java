@@ -4,7 +4,7 @@
 
 package frc.robot.commands;
 
-import static frc.robot.Constants.*;
+import static frc.robot.Constants.OperatorConstants.*;
 
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.XboxController;
