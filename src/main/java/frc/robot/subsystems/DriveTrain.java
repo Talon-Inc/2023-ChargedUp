@@ -33,7 +33,13 @@ public class DriveTrain extends SubsystemBase {
     m_rightFrontDrive.restoreFactoryDefaults();
     m_rightBackDrive.restoreFactoryDefaults();
 
-    m_rightFrontDrive.setInverted(true);
+    boolean reverse = true;
+
+    m_leftFrontDrive.setInverted(reverse);
+    m_leftBackDrive.setInverted(reverse);
+
+    m_rightFrontDrive.setInverted(!reverse);
+    m_rightBackDrive.setInverted(!reverse);
 
     m_leftBackDrive.follow(m_leftFrontDrive);
     m_rightBackDrive.follow(m_rightFrontDrive);
