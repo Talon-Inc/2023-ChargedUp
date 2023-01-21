@@ -26,7 +26,8 @@ public final class Constants {
     public static final int DRIVE_LEFT_BACK_MOTOR = 4;
     public static final int DRIVE_RIGHT_FRONT_MOTOR = 1;
     public static final int DRIVE_RIGHT_BACK_MOTOR = 3;
-    
+    public static final double SPEED = .5;
+
     public static final int LEFT_STICK_X = 0;
     public static final int LEFT_STICK_Y = 1;
     public static final double LEFT_TRIGGER = 2;
