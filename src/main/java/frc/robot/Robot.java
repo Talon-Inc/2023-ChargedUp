@@ -6,7 +6,6 @@ package frc.robot;
 
 import static frc.robot.Constants.OperatorConstants.*;
 import edu.wpi.first.wpilibj.Joystick;
-
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -14,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.DriveTrain_old;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import com.ctre.phoenix.sensors.PigeonIMU;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -92,15 +92,36 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+  double[] ypr_deg = new double[3];
+  PigeonIMU _pigeon = new PigeonIMU(0);
   @Override
   public void teleopPeriodic() {
     driveTrain.arcadeDrive(controller.getLeftY(), controller.getLeftX());
-    double angle = -gyro.getAngle();
-    if (angle > 2){
+
+   // int _loopcount = 0;
+   // if (_loopcount++ > 10){
+   // double[] ypr_deg = new double[3];
+   // PigeonIMU _pigeon = new PigeonIMU(0);
+    _pigeon.getYawPitchRoll(ypr_deg);
+    System.out.println("Pigeon Pitch is: " + ypr_deg[1]);
+    if (ypr_deg[0] > 2){
       driveTrain.arcadeDrive(0, -.4);
-
-
     }
+
+   // double angle = -gyro.getAngle();
+   // if (angle > 2){
+   //   driveTrain.arcadeDrive(0, -.4);
+
+
+    //}
+    //while (angle < 5){
+    //  double angle = -gyro.getAngle();
+    //  driveTrain.arcadeDrive(0, -.4);
+
+    //}
+
+
+
   }
 
   @Override
