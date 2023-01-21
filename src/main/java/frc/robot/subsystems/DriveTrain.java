@@ -34,12 +34,6 @@ public class DriveTrain extends SubsystemBase {
     m_rightFrontDrive.restoreFactoryDefaults();
     m_rightBackDrive.restoreFactoryDefaults();
 
-    // runs the motor at SPEED% power
-    m_leftFrontDrive.set(SPEED); 
-    m_leftBackDrive.set(SPEED);
-    m_rightFrontDrive.set(SPEED);
-    m_rightBackDrive.set(SPEED);
-
     // set left or right motors to be inverted/reversed
     boolean reverse = true;
     m_leftFrontDrive.setInverted(reverse);

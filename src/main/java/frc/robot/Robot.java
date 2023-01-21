@@ -91,7 +91,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    driveTrain.arcadeDrive(controller.getLeftY(), controller.getLeftX());
+    driveTrain.arcadeDrive(FACTOR*controller.getLeftY(), FACTOR*controller.getLeftX());
   }
 
   @Override
