@@ -55,6 +55,12 @@ public class DriveTrain extends SubsystemBase {
     // m_rightFrontDrive.setSecondaryCurrentLimit(CURRENT);
     // m_rightBackDrive.setSecondaryCurrentLimit(CURRENT);
 
+    // set idle behavior
+    m_leftFrontDrive.setIdleMode(IDLE);
+    m_leftBackDrive.setIdleMode(IDLE);
+    m_rightFrontDrive.setIdleMode(IDLE);
+    m_rightBackDrive.setIdleMode(IDLE);
+
     // save config to memory
     m_leftFrontDrive.burnFlash();
     m_leftBackDrive.burnFlash();

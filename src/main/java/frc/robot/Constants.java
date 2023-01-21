@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 /**
@@ -21,6 +22,7 @@ public final class Constants {
     public static final int CONTROLLER_PORT = 0;
 
     public static final MotorType MOTOR_TYPE = MotorType.kBrushless;
+    public static final IdleMode IDLE = IdleMode.kBrake;
     public static final double FACTOR = .5;
     public static final int CURRENT = 30;
 
