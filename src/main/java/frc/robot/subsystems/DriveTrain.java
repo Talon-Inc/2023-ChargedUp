@@ -47,8 +47,25 @@ public class DriveTrain extends SubsystemBase {
     m_rightFrontDrive.setInverted(!reverse);
     m_rightBackDrive.setInverted(!reverse);
 
-    m_leftBackDrive.follow(m_leftFrontDrive);
-    m_rightBackDrive.follow(m_rightFrontDrive);
+    // m_leftBackDrive.follow(m_leftFrontDrive);
+    // m_rightBackDrive.follow(m_rightFrontDrive);
+
+    // set current limits
+    m_leftFrontDrive.setSmartCurrentLimit(CURRENT);
+    m_leftBackDrive.setSmartCurrentLimit(CURRENT);
+    m_rightFrontDrive.setSmartCurrentLimit(CURRENT);
+    m_rightBackDrive.setSmartCurrentLimit(CURRENT);
+
+    // m_leftFrontDrive.setSecondaryCurrentLimit(CURRENT);
+    // m_leftBackDrive.setSecondaryCurrentLimit(CURRENT);
+    // m_rightFrontDrive.setSecondaryCurrentLimit(CURRENT);
+    // m_rightBackDrive.setSecondaryCurrentLimit(CURRENT);
+
+    // save config to memory
+    m_leftFrontDrive.burnFlash();
+    m_leftBackDrive.burnFlash();
+    m_rightFrontDrive.burnFlash();
+    m_rightBackDrive.burnFlash();
 
     m_roboDrive = new DifferentialDrive(m_leftDrive, m_rightDrive);
   }
