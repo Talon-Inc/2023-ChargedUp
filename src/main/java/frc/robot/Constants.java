@@ -23,7 +23,7 @@ public final class Constants {
 
     public static final MotorType MOTOR_TYPE = MotorType.kBrushless;
     public static final IdleMode IDLE = IdleMode.kBrake;
-    public static final double FACTOR = .5;
+    public static double FACTOR = .5;
     public static final int CURRENT = 30;
 
     public static final int DRIVE_LEFT_FRONT_MOTOR = 2;
