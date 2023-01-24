@@ -15,19 +15,22 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-  public static class OperatorConstants {
-    public static final int kDriverControllerPort = 0;
-    
+  public static class OperatorConstants {    
     public static final int CONTROLLER_PORT = 0;
 
-    public static final MotorType MOTOR_TYPE = MotorType.kBrushless;
-
+    // Drive motors
     public static final int DRIVE_LEFT_FRONT_MOTOR = 2;
     public static final int DRIVE_LEFT_BACK_MOTOR = 4;
     public static final int DRIVE_RIGHT_FRONT_MOTOR = 1;
     public static final int DRIVE_RIGHT_BACK_MOTOR = 3;
+    public static final MotorType DRIVE_MOTOR_TYPE = MotorType.kBrushless;
     public static final double SPEED = .5;
 
+    // Arm motors
+    public static final int ARM_MOTOR = 5;
+    public static final MotorType ARM_MOTOR_TYPE = MotorType.kBrushless;
+
+    // Controller inputs
     public static final int LEFT_STICK_X = 0;
     public static final int LEFT_STICK_Y = 1;
     public static final double LEFT_TRIGGER = 2;
