@@ -92,18 +92,18 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
   double[] ypr_deg = new double[3];
-  PigeonIMU _pigeon = new PigeonIMU(0);
+  PigeonIMU _pigeon = new PigeonIMU(8);
   @Override
   public void teleopPeriodic() {
     driveTrain.arcadeDrive(controller.getLeftY(), controller.getLeftX());
 
    // int _loopcount = 0;
    // if (_loopcount++ > 10){
-   // double[] ypr_deg = new double[3];
+   // double[] ypr_deg =
    // PigeonIMU _pigeon = new PigeonIMU(0);
     _pigeon.getYawPitchRoll(ypr_deg);
-    System.out.println("Pigeon Pitch is: " + ypr_deg[1]);
-    if (ypr_deg[0] > 2){
+    System.out.println("Pigeon Pitch is: " + ypr_deg[2]);
+    if (ypr_deg[2] > -30){
       driveTrain.arcadeDrive(0, -.4);
     }
 
