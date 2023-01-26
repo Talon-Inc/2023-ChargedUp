@@ -5,10 +5,14 @@
 package frc.robot;
 
 import static frc.robot.Constants.OperatorConstants.*;
+
+import com.revrobotics.CANSparkMax;
+
 import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.DriveTrain;
@@ -95,6 +99,15 @@ public class Robot extends TimedRobot {
     else { DRIVE_FACTOR = 0.5; }
     
     driveTrain.arcadeDrive(DRIVE_FACTOR*controller.getLeftY(), DRIVE_FACTOR*controller.getLeftX());
+
+    driveTrain.m_leftFrontDrive.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 
+                            SmartDashboard.getBoolean("Forward Soft Limit Enabled", true));
+    driveTrain.m_leftFrontDrive.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 
+                            SmartDashboard.getBoolean("Reverse Soft Limit Enabled", true));
+    driveTrain.m_leftFrontDrive.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 
+                         (float)SmartDashboard.getNumber("Forward Soft Limit", 15));
+    driveTrain.m_leftFrontDrive.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse,
+                         (float)SmartDashboard.getNumber("Reverse Soft Limit", 0));
   }
 
   @Override
