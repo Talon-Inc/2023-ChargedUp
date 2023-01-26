@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.Joystick;
 
 public class Pneumatics extends SubsystemBase {
   /** Creates a new Pneumatics. */
-  public Pneumatics() {
+  public Pneumatics() {  
     
   }
 
