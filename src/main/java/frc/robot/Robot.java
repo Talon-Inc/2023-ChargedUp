@@ -103,7 +103,7 @@ public class Robot extends TimedRobot {
    // PigeonIMU _pigeon = new PigeonIMU(0);
     _pigeon.getYawPitchRoll(ypr_deg);
     System.out.println("Pigeon Pitch is: " + ypr_deg[2]);
-    if (ypr_deg[2] > -30){
+    if (ypr_deg[0] > 100000){
       driveTrain.arcadeDrive(0, -.4);
     }
 
