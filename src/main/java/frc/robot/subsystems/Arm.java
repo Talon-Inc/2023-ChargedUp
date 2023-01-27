@@ -45,6 +45,14 @@ public class Arm extends SubsystemBase {
     m_armDrive.set(-.5);
   }
 
+  public void highExtend() {
+    Timer timer = new Timer();
+    timer.start();
+    while (timer.hasElapsed(9)) {
+      m_armDrive.set(.5);
+    }
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run  
