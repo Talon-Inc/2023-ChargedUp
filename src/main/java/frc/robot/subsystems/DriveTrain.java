@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
   public CANSparkMax m_leftFrontDrive = new CANSparkMax(DRIVE_LEFT_FRONT_MOTOR, DRIVE_MOTOR_TYPE);
-  private CANSparkMax m_leftBackDrive = new CANSparkMax(DRIVE_LEFT_BACK_MOTOR, DRIVE_MOTOR_TYPE);
+  public CANSparkMax m_leftBackDrive = new CANSparkMax(DRIVE_LEFT_BACK_MOTOR, DRIVE_MOTOR_TYPE);
   private MotorControllerGroup m_leftDrive = new MotorControllerGroup(m_leftFrontDrive, m_leftBackDrive);
 
   public CANSparkMax m_rightFrontDrive = new CANSparkMax(DRIVE_RIGHT_FRONT_MOTOR, DRIVE_MOTOR_TYPE);
@@ -42,8 +42,8 @@ public class DriveTrain extends SubsystemBase {
     m_rightFrontDrive.setInverted(!reverse);
     m_rightBackDrive.setInverted(!reverse);
 
-    // m_leftBackDrive.follow(m_leftFrontDrive);
-    // m_rightBackDrive.follow(m_rightFrontDrive);
+    m_leftBackDrive.follow(m_leftFrontDrive);
+    m_rightBackDrive.follow(m_rightFrontDrive);
 
     // set current limits
     m_leftFrontDrive.setSmartCurrentLimit(DRIVE_CURRENT);
@@ -67,16 +67,18 @@ public class DriveTrain extends SubsystemBase {
     m_leftBackDrive.burnFlash();
     m_rightFrontDrive.burnFlash();
     m_rightBackDrive.burnFlash();
-
+    
+    // Link: 
+    // soft limits
     m_leftFrontDrive.enableSoftLimit(SoftLimitDirection.kForward, true);
     m_leftFrontDrive.enableSoftLimit(SoftLimitDirection.kReverse, true);
-    m_rightFrontDrive.enableSoftLimit(SoftLimitDirection.kForward, false);
-    m_rightFrontDrive.enableSoftLimit(SoftLimitDirection.kReverse, false);
+    m_leftBackDrive.enableSoftLimit(SoftLimitDirection.kForward, true);
+    m_leftBackDrive.enableSoftLimit(SoftLimitDirection.kReverse, true);
 
-    m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kForward, 20);
-    m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kReverse, 0);
-    m_rightFrontDrive.setSoftLimit(SoftLimitDirection.kForward, 20);
-    m_rightFrontDrive.setSoftLimit(SoftLimitDirection.kReverse, 0);
+    m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kForward, 10);
+    m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kReverse, 1);
+    m_leftBackDrive.setSoftLimit(SoftLimitDirection.kForward, 10);
+    m_leftBackDrive.setSoftLimit(SoftLimitDirection.kReverse, 1);
 
     SmartDashboard.putBoolean("Left Forward Soft Limit Enabled",
                               m_leftFrontDrive.isSoftLimitEnabled(SoftLimitDirection.kForward));
@@ -97,7 +99,7 @@ public class DriveTrain extends SubsystemBase {
                               m_rightFrontDrive.getSoftLimit(SoftLimitDirection.kReverse));
 
 
-    m_roboDrive = new DifferentialDrive(m_leftDrive, m_rightDrive);
+    m_roboDrive = new DifferentialDrive(m_leftFrontDrive, m_rightFrontDrive);
   }
 
   public void arcadeDrive(double moveSpeed, double rotateSpeed) {

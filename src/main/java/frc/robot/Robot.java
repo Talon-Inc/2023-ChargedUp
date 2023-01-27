@@ -7,6 +7,7 @@ package frc.robot;
 import static frc.robot.Constants.OperatorConstants.*;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.SoftLimitDirection;
 
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -99,15 +100,18 @@ public class Robot extends TimedRobot {
     else { DRIVE_FACTOR = 0.5; }
     
     driveTrain.arcadeDrive(DRIVE_FACTOR*controller.getLeftY(), DRIVE_FACTOR*controller.getLeftX());
-
-    driveTrain.m_leftFrontDrive.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 
-                            SmartDashboard.getBoolean("Forward Soft Limit Enabled", true));
-    driveTrain.m_leftFrontDrive.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 
-                            SmartDashboard.getBoolean("Reverse Soft Limit Enabled", true));
-    driveTrain.m_leftFrontDrive.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 
-                         (float)SmartDashboard.getNumber("Forward Soft Limit", 15));
-    driveTrain.m_leftFrontDrive.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse,
-                         (float)SmartDashboard.getNumber("Reverse Soft Limit", 0));
+    // driveTrain.m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kForward, 50);
+    // driveTrain.m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kReverse, 0);
+    // driveTrain.m_leftBackDrive.setSoftLimit(SoftLimitDirection.kForward, 50);
+    // driveTrain.m_leftBackDrive.setSoftLimit(SoftLimitDirection.kReverse, 0);
+    // driveTrain.m_leftFrontDrive.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 
+    //                         SmartDashboard.getBoolean("Forward Soft Limit Enabled", true));
+    // driveTrain.m_leftFrontDrive.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 
+    //                         SmartDashboard.getBoolean("Reverse Soft Limit Enabled", true));
+    // driveTrain.m_leftFrontDrive.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 
+    //                      (float)SmartDashboard.getNumber("Forward Soft Limit", 15));
+    // driveTrain.m_leftFrontDrive.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse,
+    //                      (float)SmartDashboard.getNumber("Reverse Soft Limit", 0));
   }
 
   @Override
