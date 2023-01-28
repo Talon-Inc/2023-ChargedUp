@@ -55,14 +55,10 @@ public class DriveTrain extends SubsystemBase {
     // soft limits
     m_leftFrontDrive.enableSoftLimit(SoftLimitDirection.kForward, true);
     m_leftFrontDrive.enableSoftLimit(SoftLimitDirection.kReverse, true);
-    m_leftBackDrive.enableSoftLimit(SoftLimitDirection.kForward, true);
-    m_leftBackDrive.enableSoftLimit(SoftLimitDirection.kReverse, true);
-
-    m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kForward, 10);
-    m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kReverse, 1);
-    m_leftBackDrive.setSoftLimit(SoftLimitDirection.kForward, 10);
-    m_leftBackDrive.setSoftLimit(SoftLimitDirection.kReverse, 1);
-
+    
+    m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kForward, 50);
+    m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kReverse, 0);
+    
     SmartDashboard.putBoolean("Left Front Forward Soft Limit Enabled",
                               m_leftFrontDrive.isSoftLimitEnabled(SoftLimitDirection.kForward));
     SmartDashboard.putBoolean("Left Front Reverse Soft Limit Enabled",
@@ -70,15 +66,6 @@ public class DriveTrain extends SubsystemBase {
     SmartDashboard.putNumber("Left Front Forward Soft Limit",
                               m_leftFrontDrive.getSoftLimit(SoftLimitDirection.kForward));
     SmartDashboard.putNumber("Left Front Reverse Soft Limit",
-                              m_leftFrontDrive.getSoftLimit(SoftLimitDirection.kReverse));
-
-    SmartDashboard.putBoolean("Left Back Forward Soft Limit Enabled",
-                              m_leftFrontDrive.isSoftLimitEnabled(SoftLimitDirection.kForward));
-    SmartDashboard.putBoolean("Left Back Reverse Soft Limit Enabled",
-                              m_leftFrontDrive.isSoftLimitEnabled(SoftLimitDirection.kReverse));                          
-    SmartDashboard.putNumber("Left Back Forward Soft Limit",
-                              m_leftFrontDrive.getSoftLimit(SoftLimitDirection.kForward));
-    SmartDashboard.putNumber("Left Back Reverse Soft Limit",
                               m_leftFrontDrive.getSoftLimit(SoftLimitDirection.kReverse));
 
     m_roboDrive = new DifferentialDrive(m_leftFrontDrive, m_rightFrontDrive);
