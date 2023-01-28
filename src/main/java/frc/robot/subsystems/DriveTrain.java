@@ -38,9 +38,9 @@ public class DriveTrain extends SubsystemBase {
     // set left or right motors to be inverted/reversed
     boolean reverse = true;
     m_leftFrontDrive.setInverted(reverse);
-    m_leftBackDrive.setInverted(reverse);
+    // m_leftBackDrive.setInverted(reverse);
     m_rightFrontDrive.setInverted(!reverse);
-    m_rightBackDrive.setInverted(!reverse);
+    // m_rightBackDrive.setInverted(!reverse);
 
     m_leftBackDrive.follow(m_leftFrontDrive);
     m_rightBackDrive.follow(m_rightFrontDrive);
@@ -51,23 +51,6 @@ public class DriveTrain extends SubsystemBase {
     m_rightFrontDrive.setSmartCurrentLimit(DRIVE_CURRENT);
     m_rightBackDrive.setSmartCurrentLimit(DRIVE_CURRENT);
 
-    // m_leftFrontDrive.setSecondaryCurrentLimit(CURRENT);
-    // m_leftBackDrive.setSecondaryCurrentLimit(CURRENT);
-    // m_rightFrontDrive.setSecondaryCurrentLimit(CURRENT);
-    // m_rightBackDrive.setSecondaryCurrentLimit(CURRENT);
-
-    // set idle behavior
-    m_leftFrontDrive.setIdleMode(DRIVE_IDLE_TYPE);
-    m_leftBackDrive.setIdleMode(DRIVE_IDLE_TYPE);
-    m_rightFrontDrive.setIdleMode(DRIVE_IDLE_TYPE);
-    m_rightBackDrive.setIdleMode(DRIVE_IDLE_TYPE);
-
-    // save config to memory
-    m_leftFrontDrive.burnFlash();
-    m_leftBackDrive.burnFlash();
-    m_rightFrontDrive.burnFlash();
-    m_rightBackDrive.burnFlash();
-    
     // Link:https://github.com/REVrobotics/SPARK-MAX-Examples/blob/master/Java/Soft%20Limits/src/main/java/frc/robot/Robot.java
     // soft limits
     m_leftFrontDrive.enableSoftLimit(SoftLimitDirection.kForward, true);
@@ -80,24 +63,23 @@ public class DriveTrain extends SubsystemBase {
     m_leftBackDrive.setSoftLimit(SoftLimitDirection.kForward, 10);
     m_leftBackDrive.setSoftLimit(SoftLimitDirection.kReverse, 1);
 
-    SmartDashboard.putBoolean("Left Forward Soft Limit Enabled",
+    SmartDashboard.putBoolean("Left Front Forward Soft Limit Enabled",
                               m_leftFrontDrive.isSoftLimitEnabled(SoftLimitDirection.kForward));
-    SmartDashboard.putBoolean("Left Reverse Soft Limit Enabled",
+    SmartDashboard.putBoolean("Left Front Reverse Soft Limit Enabled",
                               m_leftFrontDrive.isSoftLimitEnabled(SoftLimitDirection.kReverse));                          
-    SmartDashboard.putNumber("Left Forward Soft Limit",
+    SmartDashboard.putNumber("Left Front Forward Soft Limit",
                               m_leftFrontDrive.getSoftLimit(SoftLimitDirection.kForward));
-    SmartDashboard.putNumber("Left Reverse Soft Limit",
+    SmartDashboard.putNumber("Left Front Reverse Soft Limit",
                               m_leftFrontDrive.getSoftLimit(SoftLimitDirection.kReverse));
 
-    SmartDashboard.putBoolean("Right Forward Soft Limit Enabled",
-                              m_rightFrontDrive.isSoftLimitEnabled(SoftLimitDirection.kForward));
-    SmartDashboard.putBoolean("Right Reverse Soft Limit Enabled",
-                              m_rightFrontDrive.isSoftLimitEnabled(SoftLimitDirection.kReverse));                          
-    SmartDashboard.putNumber("Right Forward Soft Limit",
-                              m_rightFrontDrive.getSoftLimit(SoftLimitDirection.kForward));
-    SmartDashboard.putNumber("Right Reverse Soft Limit",
-                              m_rightFrontDrive.getSoftLimit(SoftLimitDirection.kReverse));
-
+    SmartDashboard.putBoolean("Left Back Forward Soft Limit Enabled",
+                              m_leftFrontDrive.isSoftLimitEnabled(SoftLimitDirection.kForward));
+    SmartDashboard.putBoolean("Left Back Reverse Soft Limit Enabled",
+                              m_leftFrontDrive.isSoftLimitEnabled(SoftLimitDirection.kReverse));                          
+    SmartDashboard.putNumber("Left Back Forward Soft Limit",
+                              m_leftFrontDrive.getSoftLimit(SoftLimitDirection.kForward));
+    SmartDashboard.putNumber("Left Back Reverse Soft Limit",
+                              m_leftFrontDrive.getSoftLimit(SoftLimitDirection.kReverse));
 
     m_roboDrive = new DifferentialDrive(m_leftFrontDrive, m_rightFrontDrive);
   }
