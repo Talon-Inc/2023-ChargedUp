@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Sensor;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
@@ -28,6 +29,7 @@ public class Robot extends TimedRobot {
   // temp stuff
   private final XboxController controller = new XboxController(CONTROLLER_PORT);
   private final DriveTrain driveTrain = new DriveTrain();
+  private final Sensor sensor = new Sensor();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -90,25 +92,17 @@ public class Robot extends TimedRobot {
   }
 
   /** This function is called periodically during operator control. */
-  public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
-  double[] ypr_deg = new double[3];
-  PigeonIMU _pigeon = new PigeonIMU(8);
-  int _loopcount = 0;
   @Override
   public void teleopPeriodic() {
     //driveTrain.arcadeDrive(controller.getLeftY(), controller.getLeftX());
 
-
-
-   if (_loopcount++ < 1000){
-   //double[] ypr_deg = new double[3];
-   // PigeonIMU _pigeon = new PigeonIMU(0);
-    _pigeon.getYawPitchRoll(ypr_deg);
-    System.out.println("YPR deg " + ypr_deg[0]);
-    if (ypr_deg[0] > 0){
+   if (sensor._loopcount++ < 1000){
+    sensor._pigeon.getYawPitchRoll(sensor.ypr_deg[0]);
+    System.out.println("YPR deg " + sensor.ypr_deg[0]);
+    if (sensor.ypr_deg[0] > 0){
       driveTrain.arcadeDrive(0, -.4);
     }
-    _loopcount += 1;
+    sensor._loopcount += 1;
 
   }
 
