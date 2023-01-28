@@ -96,15 +96,13 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     //driveTrain.arcadeDrive(controller.getLeftY(), controller.getLeftX());
 
-   if (sensor._loopcount++ < 1000){
-    sensor._pigeon.getYawPitchRoll(sensor.ypr_deg[0]);
-    System.out.println("YPR deg " + sensor.ypr_deg[0]);
-    if (sensor.ypr_deg[0] > 0){
+    sensor._pigeon.getYawPitchRoll(sensor.ypr_deg);
+    System.out.println("Yaw deg " + sensor.ypr_deg[0]);
+    System.out.println("Pitch deg " + sensor.ypr_deg[1]);
+    System.out.println("Roll deg " + sensor.ypr_deg[2]);
+    if (sensor.ypr_deg[1] > 0){
       driveTrain.arcadeDrive(0, -.4);
     }
-    sensor._loopcount += 1;
-
-  }
 
    // double angle = -gyro.getAngle();
    // if (angle > 2){

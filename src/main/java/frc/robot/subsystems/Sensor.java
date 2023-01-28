@@ -10,10 +10,10 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Sensor extends SubsystemBase {
-  public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+  // public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
   public double[] ypr_deg = new double[3];
   public PigeonIMU _pigeon = new PigeonIMU(8);
-  public int _loopcount = 0;
+
   /** Creates a new Sensor. */
   public Sensor() {
     
