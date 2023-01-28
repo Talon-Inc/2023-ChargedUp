@@ -101,8 +101,14 @@ public class Robot extends TimedRobot {
     System.out.println("Yaw deg " + sensor.ypr_deg[0]);
     System.out.println("Pitch deg " + sensor.ypr_deg[1]);
     System.out.println("Roll deg " + sensor.ypr_deg[2]);
-    if (sensor.ypr_deg[1] > 0){
-      driveTrain.arcadeDrive(0, -.4);
+    if (sensor.ypr_deg[2] > 5){
+      driveTrain.arcadeDrive(-.4, 0);
+    }
+    else if (sensor.ypr_deg[2] < -5) {
+      driveTrain.arcadeDrive(.4, 0);
+    }
+    else {
+      driveTrain.arcadeDrive(0, 0);
     }
 
    // double angle = -gyro.getAngle();
