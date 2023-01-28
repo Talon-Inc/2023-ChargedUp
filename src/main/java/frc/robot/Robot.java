@@ -94,9 +94,10 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    //driveTrain.arcadeDrive(controller.getLeftY(), controller.getLeftX());
+    driveTrain.arcadeDrive(controller.getLeftY(), controller.getLeftX());
 
-    sensor._pigeon.getYawPitchRoll(sensor.ypr_deg);
+    // sensor._pigeon.getYawPitchRoll(sensor.ypr_deg);
+    sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
     System.out.println("Yaw deg " + sensor.ypr_deg[0]);
     System.out.println("Pitch deg " + sensor.ypr_deg[1]);
     System.out.println("Roll deg " + sensor.ypr_deg[2]);
