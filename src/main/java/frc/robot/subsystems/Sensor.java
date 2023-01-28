@@ -5,10 +5,8 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.sensors.PigeonIMU;
 import com.ctre.phoenix.sensors.WPI_PigeonIMU;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Sensor extends SubsystemBase {
@@ -16,12 +14,10 @@ public class Sensor extends SubsystemBase {
   public WPI_TalonSRX talon = new WPI_TalonSRX(8);
   public WPI_PigeonIMU pigeonIMU = new WPI_PigeonIMU(talon);
   public double[] ypr_deg = new double[3];
-  // public PigeonIMU _pigeon = new PigeonIMU(8);
 
   /** Creates a new Sensor. */
   public Sensor() {
     pigeonIMU.configFactoryDefault();
-    // _pigeon.configFactoryDefault();
   }
 
   @Override

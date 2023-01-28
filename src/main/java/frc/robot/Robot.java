@@ -96,19 +96,22 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     driveTrain.arcadeDrive(controller.getLeftY(), controller.getLeftX());
 
-    // sensor._pigeon.getYawPitchRoll(sensor.ypr_deg);
-    sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
-    System.out.println("Yaw deg " + sensor.ypr_deg[0]);
-    System.out.println("Pitch deg " + sensor.ypr_deg[1]);
-    System.out.println("Roll deg " + sensor.ypr_deg[2]);
-    if (sensor.ypr_deg[2] > 5){
-      driveTrain.arcadeDrive(-.4, 0);
-    }
-    else if (sensor.ypr_deg[2] < -5) {
-      driveTrain.arcadeDrive(.4, 0);
-    }
-    else {
-      driveTrain.arcadeDrive(0, 0);
+    if (controller.getAButton()) {
+      sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
+      System.out.println("Yaw deg " + sensor.ypr_deg[0]);
+      System.out.println("Roll deg " + sensor.ypr_deg[1]); 
+      //Documentation states that ypr_deg[1] is Pitch but for practical purposes it is our Roll
+      System.out.println("Pitch deg " + sensor.ypr_deg[2]);
+      //Documentation states that ypr_deg[2[ is Roll but for practical purposes it is our Pitch
+      if (sensor.ypr_deg[2] > 2){
+        driveTrain.arcadeDrive(-.4, 0);
+      }
+      else if (sensor.ypr_deg[2] < -2) {
+        driveTrain.arcadeDrive(.4, 0);
+      }
+      else {
+        driveTrain.arcadeDrive(0, 0);
+      }
     }
 
    // double angle = -gyro.getAngle();
