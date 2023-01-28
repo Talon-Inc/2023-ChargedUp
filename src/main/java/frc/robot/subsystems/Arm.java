@@ -59,7 +59,7 @@ public class Arm extends SubsystemBase {
     Timer timer = new Timer();
     timer.start();
     while (timer.hasElapsed(9)) {
-      m_armDrive.set(.5);
+      m_armMotor.set(.5);
     }
   }
 
