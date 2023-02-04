@@ -24,17 +24,17 @@ public class PneumaticsCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    pneumatics.sol1Close();
+    pneumatics.closeClaw();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     if (controller.getRawButton(BUTTON_A)){
-      pneumatics.sol1Open();
+      pneumatics.openClaw();
     }
     else if (controller.getRawButton(BUTTON_B)){
-      pneumatics.sol1Close();
+      pneumatics.closeClaw();
     }
   }
 

@@ -7,31 +7,35 @@ package frc.robot.subsystems;
 import static frc.robot.Constants.OperatorConstants.*;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.revrobotics.CANSparkMax;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PneumaticHub;
 
 public class Pneumatics extends SubsystemBase {
 
 //Variables
+  private PneumaticHub pneumaticHub = null;
   private Compressor comp = null;
-  private DoubleSolenoid sol1 = null;
+  private DoubleSolenoid claw = null;
 
   /** Creates a new Pneumatics. */
   public Pneumatics() {
-    comp = new Compressor(PNEUMATICS_MODULE_TYPE);
-    comp.enableDigital();
-    sol1 = new DoubleSolenoid(PNEUMATICS_MODULE_TYPE, FORWARD_CHANNEL, REVERSE_CHANNEL);
-    }
-    
-    public void sol1Open() {
-      sol1.set(DoubleSolenoid.Value.kForward);
-    }
+    pneumaticHub = new PneumaticHub();
+    pneumaticHub.enableCompressorDigital();
 
-    public void sol1Close() {
-      sol1.set(DoubleSolenoid.Value.kReverse);
-    }
+    // comp = new Compressor(PNEUMATICS_MODULE_TYPE);
+    // comp.enableDigital();
+
+    claw = pneumaticHub.makeDoubleSolenoid(FORWARD_CHANNEL, REVERSE_CHANNEL);
+  }
+  
+  public void openClaw() {
+    claw.set(DoubleSolenoid.Value.kForward);
+  }
+
+  public void closeClaw() {
+    claw.set(DoubleSolenoid.Value.kReverse);
+  }
   
   @Override
   public void periodic() {

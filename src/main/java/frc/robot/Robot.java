@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.DriveTrain_old;
+import frc.robot.subsystems.Pneumatics;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 /**
@@ -29,6 +30,7 @@ public class Robot extends TimedRobot {
   // temp stuff
   private final XboxController controller = new XboxController(CONTROLLER_PORT);
   private final DriveTrain driveTrain = new DriveTrain();
+  private final Pneumatics pneumatics = new Pneumatics();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -100,6 +102,13 @@ public class Robot extends TimedRobot {
       driveTrain.arcadeDrive(0, -.4);
 
 
+    }
+    
+    if (controller.getXButton()){
+      pneumatics.openClaw();
+    }
+    else if (controller.getBButton()) {
+      pneumatics.closeClaw();
     }
   }
 
