@@ -11,7 +11,6 @@ import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 public class Pneumatics extends SubsystemBase {
 
@@ -21,9 +20,9 @@ public class Pneumatics extends SubsystemBase {
 
   /** Creates a new Pneumatics. */
   public Pneumatics() {
-    comp = new Compressor(PneumaticsModuleType.valueOf("CTREPCM"));
+    comp = new Compressor(PNEUMATICS_MODULE_TYPE);
     comp.enableDigital();
-    sol1 = new DoubleSolenoid(PneumaticsModuleType.valueOf("CTREPCM"), 0, 1);
+    sol1 = new DoubleSolenoid(PNEUMATICS_MODULE_TYPE, FORWARD_CHANNEL, REVERSE_CHANNEL);
     }
     
     public void sol1Open() {
