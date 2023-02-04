@@ -26,17 +26,12 @@ public class Arm extends SubsystemBase {
     // Arm limits 
     // m_armDrive.setSmartCurrentLimit(60);
 
-    // Arm idle behavior
-    // m_armDrive.setIdleMode(IDLE);
-
     // enable soft limits
     m_armMotor.enableSoftLimit(SoftLimitDirection.kForward, true);
     m_armMotor.enableSoftLimit(SoftLimitDirection.kReverse, true);
 
-    m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 20);
+    m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 5);
     m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
-
-    
   }
 
   public void middleExtend() {
@@ -53,6 +48,10 @@ public class Arm extends SubsystemBase {
 
   public void retract() {
     m_armMotor.set(-.5);
+  }
+
+  public void stop() {
+    m_armMotor.set(0);
   }
 
   public void highExtend() {

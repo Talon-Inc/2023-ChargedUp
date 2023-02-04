@@ -5,12 +5,12 @@
 package frc.robot;
 
 import static frc.robot.Constants.OperatorConstants.*;
-import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
 
 /**
@@ -27,6 +27,7 @@ public class Robot extends TimedRobot {
   // temp stuff
   private final XboxController controller = new XboxController(CONTROLLER_PORT);
   private final DriveTrain driveTrain = new DriveTrain();
+  private final Arm arm = new Arm();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -92,6 +93,16 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     driveTrain.arcadeDrive(controller.getLeftY(), controller.getLeftX());
+
+    if (controller.getYButton()) {
+      arm.extend();
+    }
+    else if (controller.getAButton()) {
+      arm.retract();
+    }
+    else {
+      arm.stop();
+    }
   }
 
   @Override
