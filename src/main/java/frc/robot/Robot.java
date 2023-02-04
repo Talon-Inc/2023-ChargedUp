@@ -9,8 +9,6 @@ import static frc.robot.Constants.OperatorConstants.*;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
 
-import edu.wpi.first.wpilibj.Joystick;
-
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -99,18 +97,29 @@ public class Robot extends TimedRobot {
     if (controller.getRightBumper()) { DRIVE_FACTOR = 1; }
     else { DRIVE_FACTOR = 0.5; }
     
-    driveTrain.arcadeDrive(DRIVE_FACTOR*controller.getLeftY(), DRIVE_FACTOR*controller.getLeftX());
-    driveTrain.m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kForward, 50);
-    driveTrain.m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kReverse, 0);
+    driveTrain.arcadeDrive(DRIVE_FACTOR*-controller.getLeftY(), DRIVE_FACTOR*-controller.getLeftX());
     
-    driveTrain.m_leftFrontDrive.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 
-                            SmartDashboard.getBoolean("Left Front Forward Soft Limit Enabled", true));
-    driveTrain.m_leftFrontDrive.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 
-                            SmartDashboard.getBoolean("Left Front Reverse Soft Limit Enabled", true));
-    driveTrain.m_leftFrontDrive.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 
-                         (float)SmartDashboard.getNumber("Left Front Forward Soft Limit", 50));
-    driveTrain.m_leftFrontDrive.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse,
-                         (float)SmartDashboard.getNumber("Left Front Reverse Soft Limit", 0));
+    if (controller.getAButton()) {
+      driveTrain.middleLimit();
+      driveTrain.driveSet(.5);
+    }
+    else if (controller.getYButton()) {
+      driveTrain.highLimit();
+      driveTrain.driveSet(.5);
+    }
+    
+
+    // driveTrain.m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kForward, 50);
+    // driveTrain.m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kReverse, 0);
+    
+    // driveTrain.m_leftFrontDrive.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 
+    //                         SmartDashboard.getBoolean("Left Front Forward Soft Limit Enabled", true));
+    // driveTrain.m_leftFrontDrive.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 
+    //                         SmartDashboard.getBoolean("Left Front Reverse Soft Limit Enabled", true));
+    // driveTrain.m_leftFrontDrive.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 
+    //                      (float)SmartDashboard.getNumber("Left Front Forward Soft Limit", 50));
+    // driveTrain.m_leftFrontDrive.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse,
+    //                      (float)SmartDashboard.getNumber("Left Front Reverse Soft Limit", 0));
   }
 
   @Override

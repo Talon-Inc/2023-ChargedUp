@@ -37,9 +37,9 @@ public class DriveTrain extends SubsystemBase {
 
     // set left or right motors to be inverted/reversed
     boolean reverse = true;
-    m_leftFrontDrive.setInverted(reverse);
+    m_leftFrontDrive.setInverted(!reverse);
     // m_leftBackDrive.setInverted(reverse);
-    m_rightFrontDrive.setInverted(!reverse);
+    m_rightFrontDrive.setInverted(reverse);
     // m_rightBackDrive.setInverted(!reverse);
 
     m_leftBackDrive.follow(m_leftFrontDrive);
@@ -56,23 +56,37 @@ public class DriveTrain extends SubsystemBase {
     m_leftFrontDrive.enableSoftLimit(SoftLimitDirection.kForward, true);
     m_leftFrontDrive.enableSoftLimit(SoftLimitDirection.kReverse, true);
     
-    m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kForward, 50);
-    m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kReverse, 0);
+    m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kForward, 20);
+    m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kReverse, 10);
     
-    SmartDashboard.putBoolean("Left Front Forward Soft Limit Enabled",
-                              m_leftFrontDrive.isSoftLimitEnabled(SoftLimitDirection.kForward));
-    SmartDashboard.putBoolean("Left Front Reverse Soft Limit Enabled",
-                              m_leftFrontDrive.isSoftLimitEnabled(SoftLimitDirection.kReverse));                          
-    SmartDashboard.putNumber("Left Front Forward Soft Limit",
-                              m_leftFrontDrive.getSoftLimit(SoftLimitDirection.kForward));
-    SmartDashboard.putNumber("Left Front Reverse Soft Limit",
-                              m_leftFrontDrive.getSoftLimit(SoftLimitDirection.kReverse));
+    // SmartDashboard.putBoolean("Left Front Forward Soft Limit Enabled",
+    //                           m_leftFrontDrive.isSoftLimitEnabled(SoftLimitDirection.kForward));
+    // SmartDashboard.putBoolean("Left Front Reverse Soft Limit Enabled",
+    //                           m_leftFrontDrive.isSoftLimitEnabled(SoftLimitDirection.kReverse));                          
+    // SmartDashboard.putNumber("Left Front Forward Soft Limit",
+    //                           m_leftFrontDrive.getSoftLimit(SoftLimitDirection.kForward));
+    // SmartDashboard.putNumber("Left Front Reverse Soft Limit",
+    //                           m_leftFrontDrive.getSoftLimit(SoftLimitDirection.kReverse));
 
     m_roboDrive = new DifferentialDrive(m_leftFrontDrive, m_rightFrontDrive);
   }
 
   public void arcadeDrive(double moveSpeed, double rotateSpeed) {
     m_roboDrive.arcadeDrive(moveSpeed, rotateSpeed);
+  }
+  
+  public void driveSet(double speed) {
+    m_leftFrontDrive.set(speed);
+  }
+
+  public void middleLimit() {
+    m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kForward, 50);
+    m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kReverse, 0);
+  }
+
+  public void highLimit() {
+    m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kForward, 100);
+    m_leftFrontDrive.setSoftLimit(SoftLimitDirection.kReverse, 0);
   }
 
   @Override
