@@ -4,7 +4,7 @@
 
 package frc.robot;
 
-import static frc.robot.Constants.OperatorConstants.CONTROLLER_PORT;
+import static frc.robot.Constants.OperatorConstants.*;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -102,8 +102,6 @@ public class Robot extends TimedRobot {
     double angle = -gyro.getAngle();
     if (angle > 2){
       driveTrain.arcadeDrive(0, -.4);
-
-
     }
     
     if (controller.getXButton()){
