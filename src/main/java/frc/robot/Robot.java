@@ -91,10 +91,14 @@ public class Robot extends TimedRobot {
   }
 
   /** This function is called periodically during operator control. */
-  public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
   @Override
   public void teleopPeriodic() {
-    driveTrain.arcadeDrive(controller.getLeftY(), controller.getLeftX());
+
+    if (controller.getRightBumper()) { DRIVE_FACTOR = 1; }
+    else { DRIVE_FACTOR = 0.5; }
+    
+    driveTrain.arcadeDrive(DRIVE_FACTOR*controller.getLeftY(), DRIVE_FACTOR*controller.getLeftX());
+    
     double angle = -gyro.getAngle();
     if (angle > 2){
       driveTrain.arcadeDrive(0, -.4);
@@ -108,6 +112,7 @@ public class Robot extends TimedRobot {
     else if (controller.getBButton()) {
       pneumatics.closeClaw();
     }
+
   }
 
   @Override
