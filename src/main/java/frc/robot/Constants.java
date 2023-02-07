@@ -7,6 +7,8 @@ package frc.robot;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -18,6 +20,14 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public final class Constants {
   public static class OperatorConstants {    
     public static final int CONTROLLER_PORT = 0;
+
+
+    public static final MotorType MOTOR_TYPE = MotorType.kBrushless;
+
+    // pnuematics
+    public static final int FORWARD_CHANNEL = 0;
+    public static final int REVERSE_CHANNEL = 1;
+    public static final PneumaticsModuleType PNEUMATICS_MODULE_TYPE = PneumaticsModuleType.valueOf("REVPH");
 
     // Drive motors
     public static final int DRIVE_LEFT_FRONT_MOTOR = 2;
