@@ -12,8 +12,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.DriveTrain_old;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -91,16 +89,12 @@ public class Robot extends TimedRobot {
   }
 
   /** This function is called periodically during operator control. */
-  public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
   @Override
   public void teleopPeriodic() {
-    driveTrain.arcadeDrive(controller.getLeftY(), controller.getLeftX());
-    double angle = -gyro.getAngle();
-    if (angle > 2){
-      driveTrain.arcadeDrive(0, -.4);
-
-
-    }
+    if (controller.getRightBumper()) { DRIVE_FACTOR = 1; }
+    else { DRIVE_FACTOR = 0.5; }
+    
+    driveTrain.arcadeDrive(DRIVE_FACTOR*controller.getLeftY(), DRIVE_FACTOR*controller.getLeftX());
   }
 
   @Override
