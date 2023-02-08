@@ -5,6 +5,8 @@
 package frc.robot;
 
 import static frc.robot.Constants.OperatorConstants.*;
+
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
@@ -14,7 +16,9 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Sensor;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import com.ctre.phoenix.sensors.PigeonIMU;
+import com.ctre.phoenix.sensors.SensorVelocityMeasPeriod;
 
+import frc.robot.subsystems.Limelight;
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -30,6 +34,7 @@ public class Robot extends TimedRobot {
   private final XboxController controller = new XboxController(CONTROLLER_PORT);
   private final DriveTrain driveTrain = new DriveTrain();
   private final Sensor sensor = new Sensor();
+  private final Limelight limelight = new Limelight();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -92,26 +97,46 @@ public class Robot extends TimedRobot {
   }
 
   /** This function is called periodically during operator control. */
+  
   @Override
   public void teleopPeriodic() {
     driveTrain.arcadeDrive(controller.getLeftY(), controller.getLeftX());
+    
 
-    if (controller.getAButton()) {
+
+    
+    //System.out.println(limelight.getTable());
+    //System.out.println(sensor.pigeonIMU.getCompassHeading());
+
+    //System.out.println(sensor.compass);
+
+
+
+    if (controller.getBButton()) {
       sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
-      System.out.println("Yaw deg " + sensor.ypr_deg[0]);
-      System.out.println("Roll deg " + sensor.ypr_deg[1]); 
+      //System.out.println(sensor.pigeonIMU.getCompassHeading());
+
+      //System.out.println("Yaw deg " + sensor.ypr_deg[0]);
+      //System.out.println("Roll deg " + sensor.ypr_deg[1]); 
       //Documentation states that ypr_deg[1] is Pitch but for practical purposes it is our Roll
-      System.out.println("Pitch deg " + sensor.ypr_deg[2]);
-      //Documentation states that ypr_deg[2[ is Roll but for practical purposes it is our Pitch
-      if (sensor.ypr_deg[2] > 2){
-        driveTrain.arcadeDrive(-.4, 0);
+      //System.out.println("Pitch deg " + sensor.ypr_deg[2]);
+      System.out.println(sensor.ypr_deg[2]);
+      //Documentation states that ypr_deg[2] is Roll but for practical purposes it is our Pitch
+      //System.out.println(sensor.pigeonIMU.getAbsoluteCompassHeading());
+      double move_speed = Math.abs(sensor.ypr_deg[2])/40;
+      if (move_speed > .35){
+        move_speed = .35;
       }
-      else if (sensor.ypr_deg[2] < -2) {
-        driveTrain.arcadeDrive(.4, 0);
+      if (sensor.ypr_deg[2] < 2){
+        driveTrain.arcadeDrive((move_speed), 0);
       }
-      else {
+      else if (-2 < sensor.ypr_deg[2]) {
+        driveTrain.arcadeDrive(-(move_speed), 0);
+      }
+      else if ((-2 < sensor.ypr_deg[2]) || (sensor.ypr_deg[2] < 2)){
         driveTrain.arcadeDrive(0, 0);
       }
+      
     }
 
    // double angle = -gyro.getAngle();

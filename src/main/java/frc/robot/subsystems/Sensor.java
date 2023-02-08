@@ -14,6 +14,7 @@ public class Sensor extends SubsystemBase {
   public WPI_TalonSRX talon = new WPI_TalonSRX(8);
   public WPI_PigeonIMU pigeonIMU = new WPI_PigeonIMU(talon);
   public double[] ypr_deg = new double[3];
+  public double compass;
 
   /** Creates a new Sensor. */
   public Sensor() {
