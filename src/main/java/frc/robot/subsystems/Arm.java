@@ -34,6 +34,16 @@ public class Arm extends SubsystemBase {
     m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
   }
 
+  public void middleLimit() {
+    m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 50);
+    m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
+  }
+
+  public void highLimit() {
+    m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 100);
+    m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
+  }
+
   public void middleExtend() {
     Timer timer = new Timer();
     timer.start();
