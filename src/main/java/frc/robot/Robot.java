@@ -105,7 +105,7 @@ public class Robot extends TimedRobot {
 
 
     
-    //System.out.println(limelight.getTable());
+    System.out.println(limelight.getTable());
     //System.out.println(sensor.pigeonIMU.getCompassHeading());
 
     //System.out.println(sensor.compass);
