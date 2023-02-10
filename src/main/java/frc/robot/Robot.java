@@ -95,10 +95,15 @@ public class Robot extends TimedRobot {
     driveTrain.arcadeDrive(controller.getLeftY(), controller.getLeftX());
 
     if (controller.getYButton()) {
-      arm.extend();
+      arm.highLimit();
+      arm.extend(.5);
+    }
+    else if (controller.getXButton()) {
+      arm.middleLimit();
+      arm.extend(.5);
     }
     else if (controller.getAButton()) {
-      arm.retract();
+      arm.retract(.5);
     }
     else {
       arm.stop();

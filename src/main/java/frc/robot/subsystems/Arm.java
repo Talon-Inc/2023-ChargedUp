@@ -44,33 +44,30 @@ public class Arm extends SubsystemBase {
     m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
   }
 
-  public void middleExtend() {
-    Timer timer = new Timer();
-    timer.start();
-    while (timer.hasElapsed(5)) {
-      m_armMotor.set(.5);
-    }
-  }
-
+  // default extend speed
   public void extend() {
     m_armMotor.set(.5);
   }
 
+  // custom extend speed
+  public void extend(double speed) {
+    m_armMotor.set(speed);
+  }
+
+  // default retract speed
   public void retract() {
     m_armMotor.set(-.5);
+  }
+
+  // custom retract speed
+  public void retract(double speed) {
+    m_armMotor.set(-speed);
   }
 
   public void stop() {
     m_armMotor.set(0);
   }
 
-  public void highExtend() {
-    Timer timer = new Timer();
-    timer.start();
-    while (timer.hasElapsed(9)) {
-      m_armMotor.set(.5);
-    }
-  }
 
   @Override
   public void periodic() {
