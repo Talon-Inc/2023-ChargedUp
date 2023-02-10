@@ -11,7 +11,6 @@ import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
@@ -34,12 +33,6 @@ public class DriveTrain extends SubsystemBase {
     m_rightFrontDrive.restoreFactoryDefaults();
     m_rightBackDrive.restoreFactoryDefaults();
 
-    // runs the motor at SPEED% power
-    m_leftFrontDrive.set(SPEED); 
-    m_leftBackDrive.set(SPEED);
-    m_rightFrontDrive.set(SPEED);
-    m_rightBackDrive.set(SPEED);
-
     // set left or right motors to be inverted/reversed
     boolean reverse = true;
     m_leftFrontDrive.setInverted(reverse);
@@ -47,38 +40,37 @@ public class DriveTrain extends SubsystemBase {
     m_rightFrontDrive.setInverted(!reverse);
     m_rightBackDrive.setInverted(!reverse);
 
-    m_leftBackDrive.follow(m_leftFrontDrive);
-    m_rightBackDrive.follow(m_rightFrontDrive);
+    // m_leftBackDrive.follow(m_leftFrontDrive);
+    // m_rightBackDrive.follow(m_rightFrontDrive);
+
+    // set current limits
+    m_leftFrontDrive.setSmartCurrentLimit(DRIVE_CURRENT);
+    m_leftBackDrive.setSmartCurrentLimit(DRIVE_CURRENT);
+    m_rightFrontDrive.setSmartCurrentLimit(DRIVE_CURRENT);
+    m_rightBackDrive.setSmartCurrentLimit(DRIVE_CURRENT);
+
+    // m_leftFrontDrive.setSecondaryCurrentLimit(CURRENT);
+    // m_leftBackDrive.setSecondaryCurrentLimit(CURRENT);
+    // m_rightFrontDrive.setSecondaryCurrentLimit(CURRENT);
+    // m_rightBackDrive.setSecondaryCurrentLimit(CURRENT);
+
+    // set idle behavior
+    m_leftFrontDrive.setIdleMode(DRIVE_IDLE_TYPE);
+    m_leftBackDrive.setIdleMode(DRIVE_IDLE_TYPE);
+    m_rightFrontDrive.setIdleMode(DRIVE_IDLE_TYPE);
+    m_rightBackDrive.setIdleMode(DRIVE_IDLE_TYPE);
+
+    // save config to memory
+    m_leftFrontDrive.burnFlash();
+    m_leftBackDrive.burnFlash();
+    m_rightFrontDrive.burnFlash();
+    m_rightBackDrive.burnFlash();
 
     m_roboDrive = new DifferentialDrive(m_leftDrive, m_rightDrive);
   }
 
   public void arcadeDrive(double moveSpeed, double rotateSpeed) {
     m_roboDrive.arcadeDrive(moveSpeed, rotateSpeed);
-  }
-
-  /**
-   * Example command factory method.
-   *
-   * @return a command
-   */
-  public CommandBase command1() {
-    // Inline construction of command goes here.
-    // Subsystem::RunOnce implicitly requires `this` subsystem.
-    return runOnce(
-        () -> {
-          /* one-time action goes here */
-        });
-  }
-
-  /**
-   * An example method querying a boolean state of the subsystem (for example, a digital sensor).
-   *
-   * @return value of some boolean subsystem state, such as a digital sensor.
-   */
-  public boolean exampleCondition() {
-    // Query some boolean state, such as a digital sensor.
-    return false;
   }
 
   @Override

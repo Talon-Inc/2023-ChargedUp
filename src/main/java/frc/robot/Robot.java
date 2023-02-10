@@ -6,12 +6,14 @@ package frc.robot;
 
 import static frc.robot.Constants.OperatorConstants.*;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Pneumatics;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -28,6 +30,7 @@ public class Robot extends TimedRobot {
   private final XboxController controller = new XboxController(CONTROLLER_PORT);
   private final DriveTrain driveTrain = new DriveTrain();
   private final Arm arm = new Arm();
+  private final Pneumatics pneumatics = new Pneumatics();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -92,8 +95,23 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    driveTrain.arcadeDrive(controller.getLeftY(), controller.getLeftX());
-
+    if (controller.getRightBumper()) { DRIVE_FACTOR = 1; }
+    else { DRIVE_FACTOR = 0.5; }
+    
+    driveTrain.arcadeDrive(DRIVE_FACTOR*controller.getLeftY(), DRIVE_FACTOR*controller.getLeftX());
+    
+    double angle = -gyro.getAngle();
+    if (angle > 2){
+      driveTrain.arcadeDrive(0, -.4);
+    }
+    
+    if (controller.getXButton()){
+      pneumatics.openClaw();
+    }
+    else if (controller.getBButton()) {
+      pneumatics.closeClaw();
+    }
+    
     if (controller.getYButton()) {
       arm.highLimit();
       arm.extend(.5);
