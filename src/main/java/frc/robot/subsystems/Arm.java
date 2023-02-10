@@ -4,18 +4,14 @@
 
 package frc.robot.subsystems;
 
-import static frc.robot.Constants.OperatorConstants.*;
+import static frc.robot.Constants.OperatorConstants.ARM_MOTOR;
+import static frc.robot.Constants.OperatorConstants.ARM_MOTOR_TYPE;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer;
 
 public class Arm extends SubsystemBase {
-  private final Joystick m_Joystick = new Joystick(CONTROLLER_PORT);
   private final CANSparkMax m_armMotor = new CANSparkMax(ARM_MOTOR, ARM_MOTOR_TYPE);
 
   /** Creates a new Arm. */
@@ -30,7 +26,8 @@ public class Arm extends SubsystemBase {
     m_armMotor.enableSoftLimit(SoftLimitDirection.kForward, true);
     m_armMotor.enableSoftLimit(SoftLimitDirection.kReverse, true);
 
-    m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 5);
+    // default soft limits
+    m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 50);
     m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
   }
 

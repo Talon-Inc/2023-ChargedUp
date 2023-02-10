@@ -19,13 +19,7 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
  */
 public final class Constants {
   public static class OperatorConstants {    
-    public static final int CONTROLLER_PORT = 0;
-
-    // pnuematics
-    public static final int FORWARD_CHANNEL = 0;
-    public static final int REVERSE_CHANNEL = 1;
-    public static final PneumaticsModuleType PNEUMATICS_MODULE_TYPE = PneumaticsModuleType.valueOf("REVPH");
-
+    
     // Drive motors
     public static final int DRIVE_LEFT_FRONT_MOTOR = 2;
     public static final int DRIVE_LEFT_BACK_MOTOR = 4;
@@ -33,16 +27,21 @@ public final class Constants {
     public static final int DRIVE_RIGHT_BACK_MOTOR = 3;
     public static final MotorType DRIVE_MOTOR_TYPE = MotorType.kBrushless;
     public static final double SPEED = .5;
-
     public static final IdleMode DRIVE_IDLE_TYPE = IdleMode.kBrake;
     public static final int DRIVE_CURRENT = 30;
-    public static double DRIVE_FACTOR = .5;
+    public static double DRIVE_FACTOR = .5; // changed for turbo
 
     // Arm motors
     public static final int ARM_MOTOR = 5;
     public static final MotorType ARM_MOTOR_TYPE = MotorType.kBrushless;
 
+    // pnuematics
+    public static final int FORWARD_CHANNEL = 0;
+    public static final int REVERSE_CHANNEL = 1;
+    public static final PneumaticsModuleType PNEUMATICS_MODULE_TYPE = PneumaticsModuleType.valueOf("REVPH");
+
     // Controller inputs
+    public static final int CONTROLLER_PORT = 0;
     public static final int LEFT_STICK_X = 0;
     public static final int LEFT_STICK_Y = 1;
     public static final double LEFT_TRIGGER = 2;
