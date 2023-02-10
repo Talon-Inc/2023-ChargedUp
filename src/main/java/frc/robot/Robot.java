@@ -105,6 +105,7 @@ public class Robot extends TimedRobot {
 
 
     
+    //System.out.println(limelight.getTable());
     System.out.println(limelight.getTable());
     //System.out.println(sensor.pigeonIMU.getCompassHeading());
 
@@ -115,12 +116,12 @@ public class Robot extends TimedRobot {
     if (controller.getBButton()) {
       sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
       //System.out.println(sensor.pigeonIMU.getCompassHeading());
-
+      
       //System.out.println("Yaw deg " + sensor.ypr_deg[0]);
       //System.out.println("Roll deg " + sensor.ypr_deg[1]); 
       //Documentation states that ypr_deg[1] is Pitch but for practical purposes it is our Roll
       //System.out.println("Pitch deg " + sensor.ypr_deg[2]);
-      System.out.println(sensor.ypr_deg[2]);
+      //System.out.println(sensor.ypr_deg[2]);
       //Documentation states that ypr_deg[2] is Roll but for practical purposes it is our Pitch
       //System.out.println(sensor.pigeonIMU.getAbsoluteCompassHeading());
       double move_speed = Math.abs(sensor.ypr_deg[2])/40;
