@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Pneumatics;
 
@@ -28,6 +29,7 @@ public class Robot extends TimedRobot {
   // temp stuff
   private final XboxController controller = new XboxController(CONTROLLER_PORT);
   private final DriveTrain driveTrain = new DriveTrain();
+  private final Arm arm = new Arm();
   private final Pneumatics pneumatics = new Pneumatics();
 
   /**
@@ -93,7 +95,6 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-
     if (controller.getRightBumper()) { DRIVE_FACTOR = 1; }
     else { DRIVE_FACTOR = 0.5; }
     
@@ -110,30 +111,21 @@ public class Robot extends TimedRobot {
     else if (controller.getBButton()) {
       pneumatics.closeClaw();
     }
-    if (controller.getBButton()) {
-      sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
-      //System.out.println(sensor.pigeonIMU.getCompassHeading());
-
-      //System.out.println("Yaw deg " + sensor.ypr_deg[0]);
-      //System.out.println("Roll deg " + sensor.ypr_deg[1]); 
-      //Documentation states that ypr_deg[1] is Pitch but for practical purposes it is our Roll
-      //System.out.println("Pitch deg " + sensor.ypr_deg[2]);
-      System.out.println(sensor.ypr_deg[2]);
-      //Documentation states that ypr_deg[2] is Roll but for practical purposes it is our Pitch
-      //System.out.println(sensor.pigeonIMU.getAbsoluteCompassHeading());
-      double move_speed = Math.abs(sensor.ypr_deg[2])/40;
-      if (move_speed > .35){
-        move_speed = .35;
-      }
-      if (sensor.ypr_deg[2] < 2){
-        driveTrain.arcadeDrive((move_speed), 0);
-      }
-      else if (-2 < sensor.ypr_deg[2]) {
-        driveTrain.arcadeDrive(-(move_speed), 0);
-      }
-      else if ((-2 < sensor.ypr_deg[2]) || (sensor.ypr_deg[2] < 2)){
-        driveTrain.arcadeDrive(0, 0);
-      }
+    
+    if (controller.getYButton()) {
+      arm.highLimit();
+      arm.extend(.5);
+    }
+    else if (controller.getXButton()) {
+      arm.middleLimit();
+      arm.extend(.5);
+    }
+    else if (controller.getAButton()) {
+      arm.retract(.5);
+    }
+    else {
+      arm.stop();
+    }
   }
 
   @Override
