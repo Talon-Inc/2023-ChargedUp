@@ -135,8 +135,8 @@ public class Robot extends TimedRobot {
 
       //System.out.println("Roll deg " + sensor.ypr_deg[1]); 
       //Documentation states that ypr_deg[1] is Pitch but for practical purposes it is our Roll
-      //System.out.println("Pitch deg " + sensor.ypr_deg[2]);
 
+      //System.out.println("Pitch deg " + sensor.ypr_deg[2]);
       //System.out.println(sensor.ypr_deg[2]);
       //Documentation states that ypr_deg[2] is Roll but for practical purposes it is our Pitch
        
