@@ -6,15 +6,17 @@ package frc.robot;
 
 import static frc.robot.Constants.OperatorConstants.*;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Sensor;
+import com.ctre.phoenix.sensors.PigeonIMU;
+import com.ctre.phoenix.sensors.SensorVelocityMeasPeriod;
 import frc.robot.subsystems.Pneumatics;
-
+import frc.robot.subsystems.Limelight;
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -29,6 +31,9 @@ public class Robot extends TimedRobot {
   // temp stuff
   private final XboxController controller = new XboxController(CONTROLLER_PORT);
   private final DriveTrain driveTrain = new DriveTrain();
+  private final Sensor sensor = new Sensor();
+  private final Limelight limelight = new Limelight();
+
   private final Arm arm = new Arm();
   private final Pneumatics pneumatics = new Pneumatics();
 
@@ -126,6 +131,45 @@ public class Robot extends TimedRobot {
     else {
       arm.stop();
     }
+    
+    System.out.println(limelight.getID());
+
+    if (controller.getBButton()) {
+      //Retrieves current yaw, pitch, and roll in spots 0, 1, 2 respectivley <--Note*
+      sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
+      
+      //Note*//
+      //System.out.println("Yaw deg " + sensor.ypr_deg[0]);
+      //This works as intended
+
+      //System.out.println("Roll deg " + sensor.ypr_deg[1]); 
+      //Documentation states that ypr_deg[1] is Pitch but for practical purposes it is our Roll
+      //System.out.println("Pitch deg " + sensor.ypr_deg[2]);
+
+      //System.out.println(sensor.ypr_deg[2]);
+      //Documentation states that ypr_deg[2] is Roll but for practical purposes it is our Pitch
+       
+
+      ////This code activates the auto-balance////
+
+      //This eases the movespeed according to the pitch's magnitude
+      double move_speed = Math.abs(sensor.ypr_deg[2])/40;
+      //This code limits the speed of the auto-balance
+      if (move_speed > .35){
+        move_speed = .35;
+      }
+      if (sensor.ypr_deg[2] < 2){
+        driveTrain.arcadeDrive((move_speed), 0);
+      }
+      else if (-2 < sensor.ypr_deg[2]) {
+        driveTrain.arcadeDrive(-(move_speed), 0);
+      }
+      else if ((-2 < sensor.ypr_deg[2]) || (sensor.ypr_deg[2] < 2)){
+        driveTrain.arcadeDrive(0, 0);
+      }
+      if (controller.getLeftBumperReleased()) {
+        limelight.togglelight();
+      }
   }
 
   @Override
