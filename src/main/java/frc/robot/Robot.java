@@ -110,11 +110,11 @@ public class Robot extends TimedRobot {
     
     if (controller.getYButton()) {
       arm.highLimit();
-      arm.extend(.5);
+      arm.extend();
     }
     else if (controller.getXButton()) {
       arm.middleLimit();
-      arm.extend(.5);
+      arm.extend();
     }
     else if (controller.getAButton()) {
       arm.retract(.5);

@@ -21,5 +21,6 @@ public class High extends InstantCommand {
   @Override
   public void initialize() {
     arm.highLimit();
+    arm.extend();
   }
 }
