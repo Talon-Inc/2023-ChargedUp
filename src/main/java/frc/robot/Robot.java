@@ -101,10 +101,10 @@ public class Robot extends TimedRobot {
     
     driveTrain.arcadeDrive(DRIVE_FACTOR*controller.getLeftY(), DRIVE_FACTOR*controller.getLeftX());
     
-    if (controller.getXButton()){
+    if (controller.getBackButton()){
       pneumatics.openClaw();
     }
-    else if (controller.getBButton()) {
+    else if (controller.getStartButton()) {
       pneumatics.closeClaw();
     }
     
