@@ -15,7 +15,7 @@ public class Drive extends CommandBase {
   private DriveTrain driveTrain = null;
   private XboxController controller = null;
   /** 
-   * Creates a new DriveCommand. 
+   * Creates a new DriveCommand.
    */
   public Drive(DriveTrain driveTrain, XboxController controller) {
     this.driveTrain = driveTrain;
