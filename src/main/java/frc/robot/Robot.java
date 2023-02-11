@@ -97,34 +97,34 @@ public class Robot extends TimedRobot {
   }
 
   /** This function is called periodically during operator control. */
-  
+
   @Override
   public void teleopPeriodic() {
     driveTrain.arcadeDrive(controller.getLeftY(), controller.getLeftX());
     
-
-
-    
-    //System.out.println(limelight.getTable());
-    System.out.println(limelight.getTable());
-    //System.out.println(sensor.pigeonIMU.getCompassHeading());
-
-    //System.out.println(sensor.compass);
-
-
+    System.out.println(limelight.getID());
 
     if (controller.getBButton()) {
+      //Retrieves current yaw, pitch, and roll in spots 0, 1, 2 respectivley <--Note*
       sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
-      //System.out.println(sensor.pigeonIMU.getCompassHeading());
       
+      //Note*//
       //System.out.println("Yaw deg " + sensor.ypr_deg[0]);
+      //This works as intended
+
       //System.out.println("Roll deg " + sensor.ypr_deg[1]); 
       //Documentation states that ypr_deg[1] is Pitch but for practical purposes it is our Roll
       //System.out.println("Pitch deg " + sensor.ypr_deg[2]);
+
       //System.out.println(sensor.ypr_deg[2]);
       //Documentation states that ypr_deg[2] is Roll but for practical purposes it is our Pitch
-      //System.out.println(sensor.pigeonIMU.getAbsoluteCompassHeading());
+       
+
+      ////This code activates the auto-balance////
+
+      //This eases the movespeed according to the pitch's magnitude
       double move_speed = Math.abs(sensor.ypr_deg[2])/40;
+      //This code limits the speed of the auto-balance
       if (move_speed > .35){
         move_speed = .35;
       }
@@ -139,21 +139,10 @@ public class Robot extends TimedRobot {
       }
       
     }
-
-   // double angle = -gyro.getAngle();
-   // if (angle > 2){
-   //   driveTrain.arcadeDrive(0, -.4);
-
-
-    //}
-    //while (angle < 5){
-    //  double angle = -gyro.getAngle();
-    //  driveTrain.arcadeDrive(0, -.4);
-
-    //}
-
-
-
+    
+    if (controller.getLeftBumperReleased()) {
+      limelight.togglelight();
+    }
   }
 
   @Override
