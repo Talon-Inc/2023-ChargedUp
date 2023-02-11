@@ -25,16 +25,16 @@ public class RobotContainer {
   private XboxController controller = new XboxController(CONTROLLER_PORT);
   // Subsystems
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final Arm arm = new Arm();
-  private final DriveTrain driveTrain = new DriveTrain();
-  private final Pneumatics pneumatics = new Pneumatics();
+  // private final Arm arm = new Arm();
+  // private final DriveTrain driveTrain = new DriveTrain();
+  // private final Pneumatics pneumatics = new Pneumatics();
 
   // Commands
-  private final CloseClaw closeClaw = new CloseClaw(pneumatics);
-  private final OpenClaw openClaw = new OpenClaw(pneumatics);
-  private final High highExtend = new High(arm);
-  private final Middle middleExtend = new Middle(arm);
-  private final Turbo turbo = new Turbo(controller);
+  // private final CloseClaw closeClaw = new CloseClaw(pneumatics);
+  // private final OpenClaw openClaw = new OpenClaw(pneumatics);
+  // private final High highExtend = new High(arm);
+  // private final Middle middleExtend = new Middle(arm);
+  // private final Turbo turbo = new Turbo(controller);
   // private final Drive drive = new Drive(driveTrain, controller);
 
   // private final Drive drive = new Drive();

@@ -27,12 +27,12 @@ public class Pneumatics extends SubsystemBase {
 
   // Opens claw by piston extention powered by solenoid
   public void openClaw() {
-    claw.set(DoubleSolenoid.Value.kForward);
+    claw.set(DoubleSolenoid.Value.kReverse);
   }
 
   //Closes claw by piston retraction powered by solenoid
   public void closeClaw() {
-    claw.set(DoubleSolenoid.Value.kReverse);
+    claw.set(DoubleSolenoid.Value.kForward);
   }
   
   @Override
