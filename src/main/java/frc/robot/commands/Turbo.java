@@ -4,23 +4,25 @@
 
 package frc.robot.commands;
 
+import static frc.robot.Constants.OperatorConstants.*;
+
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.subsystems.Arm;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Middle extends InstantCommand {
-  private Arm arm = null;
-  public Middle(Arm arm) {
+public class Turbo extends InstantCommand {
+  private XboxController controller = null;
+  public Turbo(XboxController controller) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.arm = arm;
+    this.controller = controller;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    arm.middleLimit();
-    arm.extend();
+    if (controller.getRightBumper()) { DRIVE_FACTOR = 1; }
+    else { DRIVE_FACTOR = 0.5; }
   }
 }

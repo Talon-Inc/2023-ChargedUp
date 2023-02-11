@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
-  // private XboxController controller = new XboxController(CONTROLLER_PORT);
+  private XboxController controller = new XboxController(CONTROLLER_PORT);
   // Subsystems
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Arm arm = new Arm();
@@ -34,6 +34,7 @@ public class RobotContainer {
   private final OpenClaw openClaw = new OpenClaw(pneumatics);
   private final High highExtend = new High(arm);
   private final Middle middleExtend = new Middle(arm);
+  private final Turbo turbo = new Turbo(controller);
   // private final Drive drive = new Drive(driveTrain, controller);
 
   // private final Drive drive = new Drive();
@@ -62,10 +63,14 @@ public class RobotContainer {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     new Trigger(m_exampleSubsystem::exampleCondition)
         .onTrue(new ExampleCommand(m_exampleSubsystem));
-
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
-    m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+    // m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+    // m_driverController.x().whileTrue(middleExtend);
+    // m_driverController.y().whileTrue(highExtend);
+    // m_driverController.back().whileTrue(openClaw);
+    // m_driverController.start().whileTrue(closeClaw);
+    // m_driverController.rightBumper().whileTrue(turbo);
   }
 
   /**
