@@ -109,11 +109,11 @@ public class Robot extends TimedRobot {
     }
     
     if (controller.getYButton()) {
-      arm.highLimit();
+      // arm.highLimit(); /* UNCOMMENT LATER */
       arm.extend(.5);
     }
     else if (controller.getXButton()) {
-      arm.middleLimit();
+      // arm.middleLimit(); /* UNCOMMENT LATER */
       arm.extend(.5);
     }
     else if (controller.getAButton()) {

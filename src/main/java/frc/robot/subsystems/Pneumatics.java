@@ -11,8 +11,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticHub;
 
 public class Pneumatics extends SubsystemBase {
-
-//Variables
   private PneumaticHub pneumaticHub = null;
   private DoubleSolenoid claw = null;
 

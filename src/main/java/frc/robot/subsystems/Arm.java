@@ -22,13 +22,14 @@ public class Arm extends SubsystemBase {
     // Arm limits 
     // m_armDrive.setSmartCurrentLimit(60);
 
+    /* UNCOMMENT LATER */
     // enable soft limits
-    m_armMotor.enableSoftLimit(SoftLimitDirection.kForward, true);
-    m_armMotor.enableSoftLimit(SoftLimitDirection.kReverse, true);
+    // m_armMotor.enableSoftLimit(SoftLimitDirection.kForward, true);
+    // m_armMotor.enableSoftLimit(SoftLimitDirection.kReverse, true);
 
     // default soft limits
-    m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 50);
-    m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
+    // m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 50);
+    // m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
   }
 
   // extend arm to middle height

@@ -35,10 +35,13 @@ public final class Constants {
     public static final int ARM_MOTOR = 5;
     public static final MotorType ARM_MOTOR_TYPE = MotorType.kBrushless;
 
-    // pnuematics
+    // Pnuematics
     public static final int FORWARD_CHANNEL = 0;
     public static final int REVERSE_CHANNEL = 1;
     public static final PneumaticsModuleType PNEUMATICS_MODULE_TYPE = PneumaticsModuleType.valueOf("REVPH");
+
+    // Sensor things
+    public static final int TALON_CHANNEL = 8;
 
     // Controller inputs
     public static final int CONTROLLER_PORT = 0;
