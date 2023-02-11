@@ -51,6 +51,10 @@ public class DriveTrain extends SubsystemBase {
     m_roboDrive.arcadeDrive(moveSpeed, rotateSpeed);
   }
 
+  public void resetDriveEncoder() {
+    m_leftFrontDrive.resetDriveEncoder();
+  }
+
   /**
    * Example command factory method.
    *
