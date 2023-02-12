@@ -159,7 +159,7 @@ public class Robot extends TimedRobot {
         driveTrain.arcadeDrive(0, 0);
       }
 
-      if (controller.getLeftBumperReleased()) {
+      if (controller.getLeftBumperPressed()) {
         limelight.togglelight();
       }
     }
