@@ -109,11 +109,11 @@ public class Robot extends TimedRobot {
     }
     
     if (controller.getYButton()) {
-      // arm.highLimit(); /* UNCOMMENT LATER */
+      arm.highLimit();
       arm.extend(.5);
     }
     else if (controller.getXButton()) {
-      // arm.middleLimit(); /* UNCOMMENT LATER */
+      arm.middleLimit();
       arm.extend(.5);
     }
     else if (controller.getAButton()) {
@@ -126,7 +126,7 @@ public class Robot extends TimedRobot {
     System.out.println(limelight.getID());
 
     if (controller.getBButton()) {
-      //Retrieves current yaw, pitch, and roll in spots 0, 1, 2 respectivley <--Note*
+      // Retrieves current yaw, pitch, and roll in spots 0, 1, 2 respectively
       sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
       
       //Note*//
@@ -139,25 +139,26 @@ public class Robot extends TimedRobot {
       //System.out.println("Pitch deg " + sensor.ypr_deg[2]);
       //System.out.println(sensor.ypr_deg[2]);
       //Documentation states that ypr_deg[2] is Roll but for practical purposes it is our Pitch
-       
 
-      ////This code activates the auto-balance////
+      /* This code activates the auto-balance */
 
       //This eases the movespeed according to the pitch's magnitude
-      double move_speed = Math.abs(sensor.ypr_deg[2])/40;
+      double moveSpeed = Math.abs(sensor.ypr_deg[2])/40;
       //This code limits the speed of the auto-balance
-      if (move_speed > .35){
-        move_speed = .35;
+      if (moveSpeed > .35){
+        moveSpeed = .35;
       }
+
       if (sensor.ypr_deg[2] < 2){
-        driveTrain.arcadeDrive((move_speed), 0);
+        driveTrain.arcadeDrive(moveSpeed, 0);
       }
       else if (-2 < sensor.ypr_deg[2]) {
-        driveTrain.arcadeDrive(-(move_speed), 0);
+        driveTrain.arcadeDrive(-moveSpeed, 0);
       }
-      else if ((-2 < sensor.ypr_deg[2]) || (sensor.ypr_deg[2] < 2)){
+      else {
         driveTrain.arcadeDrive(0, 0);
       }
+
       if (controller.getLeftBumperReleased()) {
         limelight.togglelight();
       }

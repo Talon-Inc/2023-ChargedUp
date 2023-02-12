@@ -9,6 +9,7 @@ import static frc.robot.Constants.OperatorConstants.ARM_MOTOR_TYPE;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Arm extends SubsystemBase {
@@ -19,10 +20,9 @@ public class Arm extends SubsystemBase {
     m_armMotor.restoreFactoryDefaults();
     // m_armMotor.setInverted(true);
 
-    // Arm limits 
+    // Arm limits
     // m_armDrive.setSmartCurrentLimit(60);
 
-    /* UNCOMMENT LATER */
     // enable soft limits
     m_armMotor.enableSoftLimit(SoftLimitDirection.kForward, true);
     m_armMotor.enableSoftLimit(SoftLimitDirection.kReverse, true);

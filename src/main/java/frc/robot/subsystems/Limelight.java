@@ -4,15 +4,13 @@
 
 package frc.robot.subsystems;
 
-// import org.w3c.dom.views.DocumentView;
-
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Limelight extends SubsystemBase{
-  //Creates a "Network Table" which contains data  from limelight(Check: https://docs.limelightvision.io/en/latest/networktables_api.html)
+public class Limelight extends SubsystemBase {
+  // Creates a "Network Table" which contains data  from limelight(Check: https://docs.limelightvision.io/en/latest/networktables_api.html)
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
   public NetworkTableEntry tid = table.getEntry("tid");
   public NetworkTableEntry tx = table.getEntry("tx");
@@ -21,28 +19,24 @@ public class Limelight extends SubsystemBase{
   public NetworkTableEntry led = table.getEntry("ledMode");
   public NetworkTableEntry cam = table.getEntry("camMode");
   
-  //retrieves id of AprilTag
+  // retrieves ID of AprilTag
   public double getID() {
-    double id = tid.getDouble(0.0);
-    return id;
+    return tid.getDouble(0.0);
   }
 
-  //retrives horizontal position of AprilTag relative to crosshair
+  // retrives horizontal position of AprilTag relative to crosshair
   public double getXPosition() {
-    double x = tx.getDouble(0.0);
-    return x;
+    return tx.getDouble(0.0);
   }
 
-  //retrieves vertical position of AprilTag relative to crosshair
+  // retrieves vertical position of AprilTag relative to crosshair
   public double getYPosition() {
-    double y = ty.getDouble(0.0);
-    return y;
+    return ty.getDouble(0.0);
   }
 
-  //retrieves area AprilTag fills in limelight screen
+  // retrieves area AprilTag fills in limelight screen
   public double getArea() {
-    double a = ta.getDouble(0.0);
-    return a;
+    return ta.getDouble(0.0);
   }
 
   public void togglelight() {
@@ -66,6 +60,7 @@ public class Limelight extends SubsystemBase{
   }
 
   @Override
-  public void periodic(){}
-
+  public void periodic(){
+    // This method will be called once per scheduler run
+  }
 }

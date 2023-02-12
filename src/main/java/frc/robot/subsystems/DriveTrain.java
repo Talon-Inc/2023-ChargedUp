@@ -33,10 +33,12 @@ public class DriveTrain extends SubsystemBase {
 
     // set left or right motors to be inverted/reversed
     boolean reverse = true;
-    m_leftFrontDrive.setInverted(reverse);
-    m_leftBackDrive.setInverted(reverse);
-    m_rightFrontDrive.setInverted(!reverse);
-    m_rightBackDrive.setInverted(!reverse);
+    m_leftDrive.setInverted(reverse);
+    m_rightDrive.setInverted(!reverse);
+    // m_leftFrontDrive.setInverted(reverse);
+    // m_leftBackDrive.setInverted(reverse);
+    // m_rightFrontDrive.setInverted(!reverse);
+    // m_rightBackDrive.setInverted(!reverse);
 
     // m_leftBackDrive.follow(m_leftFrontDrive);
     // m_rightBackDrive.follow(m_rightFrontDrive);

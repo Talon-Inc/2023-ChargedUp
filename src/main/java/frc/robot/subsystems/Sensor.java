@@ -12,11 +12,11 @@ import com.ctre.phoenix.sensors.WPI_PigeonIMU;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Sensor extends SubsystemBase {
-  ////Sets up communication with TalonSRX which allows communication to PigeonIMU////
+  // Sets up communication with TalonSRX which allows communication to PigeonIMU
   public WPI_TalonSRX talon = new WPI_TalonSRX(TALON_CHANNEL);
   public WPI_PigeonIMU pigeonIMU = new WPI_PigeonIMU(talon);
 
-  //Creates a double array (A big list of spots to be filled with data). Contains exactly 3 spots.
+  // Creates a double array with 3 spots.
   public double[] ypr_deg = new double[3];
 
   /** Creates a new Sensor. */
