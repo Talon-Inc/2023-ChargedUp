@@ -44,6 +44,9 @@ public class DriveDistance extends CommandBase {
     double leftMove = driveTrain.getDriveEncoder()[0];
     double rightMove = driveTrain.getDriveEncoder()[1];
 
+    (controller.getXButton()){
+      driveTrain.moveLeftMotors(rightMove);();
+
     if (endLeftPosition > leftMove) {
       driveTrain.moveLeftMotors(.4);
     }
