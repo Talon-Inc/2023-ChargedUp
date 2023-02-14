@@ -4,16 +4,14 @@
 
 package frc.robot;
 
-import static frc.robot.Constants.OperatorConstants.*;
-import edu.wpi.first.wpilibj.Joystick;
+import static frc.robot.Constants.OperatorConstants.CONTROLLER_PORT;
+import static frc.robot.Constants.OperatorConstants.DRIVE_FACTOR;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.DriveTrain_old;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import frc.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -29,6 +27,11 @@ public class Robot extends TimedRobot {
   // temp stuff
   private final XboxController controller = new XboxController(CONTROLLER_PORT);
   private final DriveTrain driveTrain = new DriveTrain();
+  private final Sensor sensor = new Sensor();
+  private final Limelight limelight = new Limelight();
+
+  private final Arm arm = new Arm();
+  private final Pneumatics pneumatics = new Pneumatics();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -91,15 +94,74 @@ public class Robot extends TimedRobot {
   }
 
   /** This function is called periodically during operator control. */
-  public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
   @Override
   public void teleopPeriodic() {
-    driveTrain.arcadeDrive(controller.getLeftY(), controller.getLeftX());
-    double angle = -gyro.getAngle();
-    if (angle > 2){
-      driveTrain.arcadeDrive(0, -.4);
+    if (controller.getRightBumper()) { DRIVE_FACTOR = 1; }
+    else { DRIVE_FACTOR = 0.5; }
+    
+    driveTrain.arcadeDrive(DRIVE_FACTOR*controller.getLeftY(), DRIVE_FACTOR*controller.getLeftX());
+    
+    if (controller.getBackButton()){
+      pneumatics.openClaw();
+    }
+    else if (controller.getStartButton()) {
+      pneumatics.closeClaw();
+    }
+    
+    if (controller.getYButton()) {
+      arm.highLimit();
+      arm.extend(.5);
+    }
+    else if (controller.getXButton()) {
+      arm.middleLimit();
+      arm.extend(.5);
+    }
+    else if (controller.getAButton()) {
+      arm.retract(.5);
+    }
+    else {
+      arm.stop();
+    }
+    
+    System.out.println(limelight.getID());
 
+    if (controller.getBButton()) {
+      // Retrieves current yaw, pitch, and roll in spots 0, 1, 2 respectively
+      sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
+      
+      //Note*//
+      //System.out.println("Yaw deg " + sensor.ypr_deg[0]);
+      //This works as intended
 
+      //System.out.println("Roll deg " + sensor.ypr_deg[1]); 
+      //Documentation states that ypr_deg[1] is Pitch but for practical purposes it is our Roll
+
+      //System.out.println("Pitch deg " + sensor.ypr_deg[2]);
+      //System.out.println(sensor.ypr_deg[2]);
+      //Documentation states that ypr_deg[2] is Roll but for practical purposes it is our Pitch
+
+      /* This code activates the auto-balance */
+
+      //This eases the movespeed according to the pitch's magnitude
+      double moveSpeed = Math.abs(sensor.ypr_deg[2])/40;
+      //This code limits the speed of the auto-balance
+      if (moveSpeed > .35){
+        moveSpeed = .35;
+      }
+
+      if (sensor.ypr_deg[2] < 2){
+        driveTrain.arcadeDrive(moveSpeed, 0);
+      }
+      else if (-2 < sensor.ypr_deg[2]) {
+        driveTrain.arcadeDrive(-moveSpeed, 0);
+      }
+      else {
+        driveTrain.arcadeDrive(0, 0);
+      }
+
+      if (controller.getLeftBumperPressed()) {
+        limelight.togglelight();
+      }
     }
   }
 

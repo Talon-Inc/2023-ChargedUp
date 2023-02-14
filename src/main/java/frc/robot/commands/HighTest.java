@@ -4,24 +4,12 @@
 
 package frc.robot.commands;
 
-import static frc.robot.Constants.OperatorConstants.FACTOR;
-
-import frc.robot.subsystems.DriveTrain;
-
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class Drive extends CommandBase {
-  private DriveTrain driveTrain = null;
-  private XboxController controller = null;
-  /** 
-   * Creates a new DriveCommand.
-   */
-  public Drive(DriveTrain driveTrain, XboxController controller) {
-    this.driveTrain = driveTrain;
-    this.controller = controller;
+public class HighTest extends CommandBase {
+  /** Creates a new HighTest. */
+  public HighTest() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(driveTrain);
   }
 
   // Called when the command is initially scheduled.
@@ -30,13 +18,7 @@ public class Drive extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    if (controller.getRightBumper()) { FACTOR = 1; }
-    else { FACTOR = 0.5; }
-    double moveSpeed = FACTOR * controller.getLeftY();
-    double rotateSpeed = FACTOR * controller.getLeftX();
-    driveTrain.arcadeDrive(moveSpeed, rotateSpeed);
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override

@@ -5,13 +5,13 @@
 package frc.robot;
 
 import static frc.robot.Constants.OperatorConstants.CONTROLLER_PORT;
-import frc.robot.commands.Autos;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
+
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -22,10 +22,21 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
+  private XboxController controller = new XboxController(CONTROLLER_PORT);
   // Subsystems
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  // private final Arm arm = new Arm();
+  // private final DriveTrain driveTrain = new DriveTrain();
+  // private final Pneumatics pneumatics = new Pneumatics();
 
   // Commands
+  // private final CloseClaw closeClaw = new CloseClaw(pneumatics);
+  // private final OpenClaw openClaw = new OpenClaw(pneumatics);
+  // private final High highExtend = new High(arm);
+  // private final Middle middleExtend = new Middle(arm);
+  // private final Turbo turbo = new Turbo(controller);
+  // private final Drive drive = new Drive(driveTrain, controller);
+
   // private final Drive drive = new Drive();
   
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -52,10 +63,14 @@ public class RobotContainer {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     new Trigger(m_exampleSubsystem::exampleCondition)
         .onTrue(new ExampleCommand(m_exampleSubsystem));
-
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
-    m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+    // m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+    // m_driverController.x().whileTrue(middleExtend);
+    // m_driverController.y().whileTrue(highExtend);
+    // m_driverController.back().whileTrue(openClaw);
+    // m_driverController.start().whileTrue(closeClaw);
+    // m_driverController.rightBumper().whileTrue(turbo);
   }
 
   /**
