@@ -26,7 +26,7 @@ public class Robot extends TimedRobot {
 
   // temp stuff
   private final XboxController controller = new XboxController(CONTROLLER_PORT);
-  private final DriveTrain driveTrain = new DriveTrain();
+  // private final DriveTrain driveTrain = new DriveTrain();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -89,16 +89,9 @@ public class Robot extends TimedRobot {
   }
 
   /** This function is called periodically during operator control. */
-  public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
   @Override
   public void teleopPeriodic() {
-    driveTrain.arcadeDrive(controller.getLeftY(), controller.getLeftX());
-    double angle = -gyro.getAngle();
-    if (angle > 2){
-      driveTrain.arcadeDrive(0, -.4);
-
-
-    }
+    // driveTrain.arcadeDrive(.5*controller.getLeftY(), .5*controller.getLeftX());
   }
 
   @Override

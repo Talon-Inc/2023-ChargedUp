@@ -16,8 +16,10 @@ public final class Autos {
   }
 
   public static CommandBase testAuto(DriveTrain driveTrain) {
-    // return Commands.sequence(driveTrain.command1(), new Drive(driveTrain));
-    return null;
+    return Commands.sequence(
+      new DriveDistance(100, 100, driveTrain), 
+      new DriveDistance(50, 100, driveTrain)
+    );
   }
 
   private Autos() {

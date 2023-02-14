@@ -3,14 +3,13 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands;
-
+import static frc.robot.Constants.OperatorConstants.*;
 import org.ejml.dense.row.linsol.LinearSolver_FDRB_to_FDRM;
-
 import edu.wpi.first.math.filter.LinearFilter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.subsystems.DriveTrain;
-
+import edu.wpi.first.wpilibj.XboxController;
 
 public class DriveDistance extends CommandBase {
   private double endLeftPosition;
@@ -19,6 +18,7 @@ public class DriveDistance extends CommandBase {
   private double distance;
   private boolean leftFlag, rightFlag;
   private DriveTrain driveTrain;
+  // private final XboxController controller = new XboxController(CONTROLLER_PORT);
   /** Creates a new DriveDistance. */
   public DriveDistance(double leftRevs, double rightRevs, DriveTrain driveTrain) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -43,9 +43,6 @@ public class DriveDistance extends CommandBase {
   public void execute() {
     double leftMove = driveTrain.getDriveEncoder()[0];
     double rightMove = driveTrain.getDriveEncoder()[1];
-
-    (controller.getXButton()){
-      driveTrain.moveLeftMotors(rightMove);();
 
     if (endLeftPosition > leftMove) {
       driveTrain.moveLeftMotors(.4);
