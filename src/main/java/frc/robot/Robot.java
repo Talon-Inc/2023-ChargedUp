@@ -5,14 +5,12 @@
 package frc.robot;
 
 import static frc.robot.Constants.OperatorConstants.*;
-import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.DriveTrain_old;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 /**
