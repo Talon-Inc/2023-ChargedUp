@@ -4,8 +4,6 @@
 
 package frc.robot.commands;
 import static frc.robot.Constants.OperatorConstants.*;
-import org.ejml.dense.row.linsol.LinearSolver_FDRB_to_FDRM;
-import edu.wpi.first.math.filter.LinearFilter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.subsystems.DriveTrain;
@@ -16,7 +14,7 @@ public class DriveDistance extends CommandBase {
   private double endRightPosition;
   private double leftRevs, rightRevs;
   private double distance;
-  private boolean leftFlag, rightFlag;
+  private boolean leftFlag, rightFlag, left, right;
   private DriveTrain driveTrain;
   // private final XboxController controller = new XboxController(CONTROLLER_PORT);
   /** Creates a new DriveDistance. */
@@ -29,6 +27,8 @@ public class DriveDistance extends CommandBase {
     this.rightRevs = rightRevs;
     leftFlag = false;
     rightFlag = false;
+    left = false;
+    right = false;
   }
 
   // Called when the command is initially scheduled.
@@ -36,6 +36,12 @@ public class DriveDistance extends CommandBase {
   public void initialize() {
     endLeftPosition = driveTrain.getDriveEncoder()[0] + leftRevs;
     endRightPosition = driveTrain.getDriveEncoder()[1] + rightRevs;
+    
+    if (endLeftPosition > driveTrain.getDriveEncoder()[0])
+      left = true;
+
+    if (endRightPosition > driveTrain.getDriveEncoder()[1])
+      right = true;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -43,27 +49,45 @@ public class DriveDistance extends CommandBase {
   public void execute() {
     double leftMove = driveTrain.getDriveEncoder()[0];
     double rightMove = driveTrain.getDriveEncoder()[1];
-
-    if (endLeftPosition > leftMove) {
-      driveTrain.moveLeftMotors(.4);
-    }
-    else if (endLeftPosition < leftMove) {
-      driveTrain.moveLeftMotors(-.4);
-    }
-    else {
-      driveTrain.moveLeftMotors(0);
-      leftFlag = true;
-    }
-
-    if (endRightPosition > rightMove) {
-      driveTrain.moveRightMotors(.4);
-    }
-    else if (endRightPosition < rightMove) {
-      driveTrain.moveRightMotors(-.4);
+    double speed = .1;
+    System.out.println("Left: " + leftMove + "; Right: " + rightMove);
+    
+    if (left) {
+      if (endLeftPosition > leftMove) {
+        driveTrain.moveLeftMotors(speed);
+      }
+      else {
+        driveTrain.moveLeftMotors(0);
+        leftFlag = true;
+      }
     }
     else {
-      driveTrain.moveRightMotors(0);
-      rightFlag = true;
+      if (endLeftPosition < leftMove) {
+        driveTrain.moveLeftMotors(-speed);
+      }
+      else {
+        driveTrain.moveLeftMotors(0);
+        leftFlag = true;
+      }
+    }
+
+    if (right) {
+      if (endRightPosition > rightMove) {
+        driveTrain.moveRightMotors(speed);
+      }
+      else {
+        driveTrain.moveRightMotors(0);
+        rightFlag = true;
+      }
+    }
+    else {
+      if (endRightPosition < rightMove) {
+        driveTrain.moveRightMotors(-speed);
+      }
+      else {
+        driveTrain.moveRightMotors(0);
+        rightFlag = true;
+      }
     }
   }
 
