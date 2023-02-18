@@ -96,73 +96,74 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    if (controller.getRightBumper()) { DRIVE_FACTOR = 1; }
-    else { DRIVE_FACTOR = 0.5; }
     
-    driveTrain.arcadeDrive(DRIVE_FACTOR*controller.getLeftY(), DRIVE_FACTOR*controller.getLeftX());
+    // if (controller.getRightBumper()) { DRIVE_FACTOR = 1; }
+    // else { DRIVE_FACTOR = 0.5; }
     
-    if (controller.getBackButton()){
-      pneumatics.openClaw();
-    }
-    else if (controller.getStartButton()) {
-      pneumatics.closeClaw();
-    }
+    // driveTrain.arcadeDrive(DRIVE_FACTOR*controller.getLeftY(), DRIVE_FACTOR*controller.getLeftX());
     
-    if (controller.getYButton()) {
-      arm.highLimit();
-      arm.extend(.5);
-    }
-    else if (controller.getXButton()) {
-      arm.middleLimit();
-      arm.extend(.5);
-    }
-    else if (controller.getAButton()) {
-      arm.retract(.5);
-    }
-    else {
-      arm.stop();
-    }
+    // if (controller.getBackButton()){
+    //   pneumatics.openClaw();
+    // }
+    // else if (controller.getStartButton()) {
+    //   pneumatics.closeClaw();
+    // }
     
-    System.out.println(limelight.getID());
+    // if (controller.getYButton()) {
+    //   arm.highLimit();
+    //   arm.extend(.5);
+    // }
+    // else if (controller.getXButton()) {
+    //   arm.middleLimit();
+    //   arm.extend(.5);
+    // }
+    // else if (controller.getAButton()) {
+    //   arm.retract(.5);
+    // }
+    // else {
+    //   arm.stop();
+    // }
+    
+    // System.out.println(limelight.getID());
 
-    if (controller.getBButton()) {
-      // Retrieves current yaw, pitch, and roll in spots 0, 1, 2 respectively
-      sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
+    // if (controller.getBButton()) {
+    //   // Retrieves current yaw, pitch, and roll in spots 0, 1, 2 respectively
+    //   sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
       
-      //Note*//
-      //System.out.println("Yaw deg " + sensor.ypr_deg[0]);
-      //This works as intended
+    //   //Note*//
+    //   //System.out.println("Yaw deg " + sensor.ypr_deg[0]);
+    //   //This works as intended
 
-      //System.out.println("Roll deg " + sensor.ypr_deg[1]); 
-      //Documentation states that ypr_deg[1] is Pitch but for practical purposes it is our Roll
+    //   //System.out.println("Roll deg " + sensor.ypr_deg[1]); 
+    //   //Documentation states that ypr_deg[1] is Pitch but for practical purposes it is our Roll
 
-      //System.out.println("Pitch deg " + sensor.ypr_deg[2]);
-      //System.out.println(sensor.ypr_deg[2]);
-      //Documentation states that ypr_deg[2] is Roll but for practical purposes it is our Pitch
+    //   //System.out.println("Pitch deg " + sensor.ypr_deg[2]);
+    //   //System.out.println(sensor.ypr_deg[2]);
+    //   //Documentation states that ypr_deg[2] is Roll but for practical purposes it is our Pitch
 
-      /* This code activates the auto-balance */
+    //   /* This code activates the auto-balance */
 
-      //This eases the movespeed according to the pitch's magnitude
-      double moveSpeed = Math.abs(sensor.ypr_deg[2])/40;
-      //This code limits the speed of the auto-balance
-      if (moveSpeed > .35){
-        moveSpeed = .35;
-      }
+    //   //This eases the movespeed according to the pitch's magnitude
+    //   double moveSpeed = Math.abs(sensor.ypr_deg[2])/40;
+    //   //This code limits the speed of the auto-balance
+    //   if (moveSpeed > .35){
+    //     moveSpeed = .35;
+    //   }
 
-      if (sensor.ypr_deg[2] < 2){
-        driveTrain.arcadeDrive(moveSpeed, 0);
-      }
-      else if (-2 < sensor.ypr_deg[2]) {
-        driveTrain.arcadeDrive(-moveSpeed, 0);
-      }
-      else {
-        driveTrain.arcadeDrive(0, 0);
-      }
+    //   if (sensor.ypr_deg[2] < 2){
+    //     driveTrain.arcadeDrive(moveSpeed, 0);
+    //   }
+    //   else if (-2 < sensor.ypr_deg[2]) {
+    //     driveTrain.arcadeDrive(-moveSpeed, 0);
+    //   }
+    //   else {
+    //     driveTrain.arcadeDrive(0, 0);
+    //   }
 
-      if (controller.getLeftBumperPressed()) {
-        limelight.togglelight();
-      }
-    }
+    //   if (controller.getLeftBumperPressed()) {
+    //     limelight.togglelight();
+    //   }
+    // }
   }
 
   @Override

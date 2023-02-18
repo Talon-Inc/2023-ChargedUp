@@ -73,6 +73,14 @@ public class DriveTrain extends SubsystemBase {
     m_roboDrive.arcadeDrive(moveSpeed, rotateSpeed);
   }
 
+  public void turbo() {
+    DRIVE_FACTOR *= 2;
+  }
+
+  public void unturbo() {
+    DRIVE_FACTOR = .5;
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

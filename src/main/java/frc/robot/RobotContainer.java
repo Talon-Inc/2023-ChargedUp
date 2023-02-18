@@ -25,17 +25,17 @@ public class RobotContainer {
   private XboxController controller = new XboxController(CONTROLLER_PORT);
   // Subsystems
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  // private final Arm arm = new Arm();
-  // private final DriveTrain driveTrain = new DriveTrain();
-  // private final Pneumatics pneumatics = new Pneumatics();
+  private final Arm arm = new Arm();
+  private final DriveTrain driveTrain = new DriveTrain();
+  private final Pneumatics pneumatics = new Pneumatics();
 
   // Commands
-  // private final CloseClaw closeClaw = new CloseClaw(pneumatics);
-  // private final OpenClaw openClaw = new OpenClaw(pneumatics);
-  // private final High highExtend = new High(arm);
-  // private final Middle middleExtend = new Middle(arm);
-  // private final Turbo turbo = new Turbo(controller);
-  // private final Drive drive = new Drive(driveTrain, controller);
+  private final CloseClaw closeClaw = new CloseClaw(pneumatics);
+  private final OpenClaw openClaw = new OpenClaw(pneumatics);
+  private final High highExtend = new High(arm);
+  private final Middle middleExtend = new Middle(arm);
+  private final Turbo turbo = new Turbo(driveTrain);
+  private final Drive drive = new Drive(driveTrain, controller);
 
   // private final Drive drive = new Drive();
   
@@ -65,12 +65,12 @@ public class RobotContainer {
         .onTrue(new ExampleCommand(m_exampleSubsystem));
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
-    // m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
-    // m_driverController.x().whileTrue(middleExtend);
-    // m_driverController.y().whileTrue(highExtend);
-    // m_driverController.back().whileTrue(openClaw);
-    // m_driverController.start().whileTrue(closeClaw);
-    // m_driverController.rightBumper().whileTrue(turbo);
+    m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+    m_driverController.x().whileTrue(middleExtend);
+    m_driverController.y().whileTrue(highExtend);
+    m_driverController.back().whileTrue(openClaw);
+    m_driverController.start().whileTrue(closeClaw);
+    m_driverController.rightBumper().whileTrue(turbo);
   }
 
   /**
