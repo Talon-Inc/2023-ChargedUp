@@ -21,17 +21,18 @@ import frc.robot.subsystems.*;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
+  private Command m_drive;
   
   private RobotContainer m_robotContainer;
 
   // temp stuff
-  private final XboxController controller = new XboxController(CONTROLLER_PORT);
-  private final DriveTrain driveTrain = new DriveTrain();
-  private final Sensor sensor = new Sensor();
-  private final Limelight limelight = new Limelight();
+  // private final XboxController controller = new XboxController(CONTROLLER_PORT);
+  // private final DriveTrain driveTrain = new DriveTrain();
+  // private final Sensor sensor = new Sensor();
+  // private final Limelight limelight = new Limelight();
 
-  private final Arm arm = new Arm();
-  private final Pneumatics pneumatics = new Pneumatics();
+  // private final Arm arm = new Arm();
+  // private final Pneumatics pneumatics = new Pneumatics();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -90,6 +91,10 @@ public class Robot extends TimedRobot {
     // this line or comment it out.
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
+    }
+    m_drive = m_robotContainer.getDrive();
+    if (m_drive != null) {
+      m_drive.schedule();
     }
   }
 
