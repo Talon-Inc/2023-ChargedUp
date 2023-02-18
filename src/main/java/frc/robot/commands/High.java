@@ -13,6 +13,8 @@ public class High extends CommandBase {
   /** 
    * Creates a new High.
    * 
+   * @param arm
+   * 
    */
   public High( Arm arm) {
     // Use addRequirements() here to declare subsystem dependencies.
