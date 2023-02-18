@@ -9,7 +9,11 @@ import frc.robot.subsystems.Arm;
 
 public class High extends CommandBase {
   Arm arm = null;
-  /** Creates a new High. */
+  
+  /** 
+   * Creates a new High.
+   * 
+   */
   public High( Arm arm) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.arm = arm;

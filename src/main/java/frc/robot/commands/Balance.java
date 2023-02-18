@@ -37,15 +37,9 @@ public class Balance extends CommandBase {
     sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
     
     //Note*//
-    //System.out.println("Yaw deg " + sensor.ypr_deg[0]);
-    //This works as intended
-
-    //System.out.println("Roll deg " + sensor.ypr_deg[1]); 
-    //Documentation states that ypr_deg[1] is Pitch but for practical purposes it is our Roll
-
-    //System.out.println("Pitch deg " + sensor.ypr_deg[2]);
-    //System.out.println(sensor.ypr_deg[2]);
-    //Documentation states that ypr_deg[2] is Roll but for practical purposes it is our Pitch
+    //ypr_deg[0] is Yaw
+    //ypr_deg[1] is Pitch but for the robot it is our Roll
+    //ypr_deg[2] is Roll but for the robot it is our Pitch
 
     /* This code activates the auto-balance */
 
