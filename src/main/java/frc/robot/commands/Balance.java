@@ -4,19 +4,25 @@
 
 package frc.robot.commands;
 
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Sensor;
 
 public class Balance extends CommandBase { 
-  DriveTrain driveTrain = null; 
+  private DriveTrain driveTrain = null; 
   private Sensor sensor = null;
-  /** Creates a new Balance. */
-  public Balance(Sensor sensor, DriveTrain driveTrain) {
+
+  /**
+   * Creates a new Balance.
+   * 
+   * @param driveTrain Used to controller the drive train directly
+   * @param sensor Used to get sensor values
+   */
+  public Balance(DriveTrain driveTrain, Sensor sensor) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.sensor = sensor;
     this.driveTrain = driveTrain;
+    this.sensor = sensor;
+    addRequirements(driveTrain, sensor);
   }
 
   // Called when the command is initially scheduled.

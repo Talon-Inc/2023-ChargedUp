@@ -34,6 +34,7 @@ public final class Constants {
     // Arm motors
     public static final int ARM_MOTOR = 5;
     public static final MotorType ARM_MOTOR_TYPE = MotorType.kBrushless;
+    public static final IdleMode ARM_IDLE_TYPE = IdleMode.kBrake;
 
     // Pnuematics
     public static final int FORWARD_CHANNEL = 0;

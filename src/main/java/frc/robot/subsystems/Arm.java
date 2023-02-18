@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import static frc.robot.Constants.OperatorConstants.ARM_IDLE_TYPE;
 import static frc.robot.Constants.OperatorConstants.ARM_MOTOR;
 import static frc.robot.Constants.OperatorConstants.ARM_MOTOR_TYPE;
 
@@ -22,6 +23,7 @@ public class Arm extends SubsystemBase {
 
     // Arm limits
     // m_armDrive.setSmartCurrentLimit(60);
+    m_armMotor.setIdleMode(ARM_IDLE_TYPE);
 
     // enable soft limits
     m_armMotor.enableSoftLimit(SoftLimitDirection.kForward, true);
@@ -38,7 +40,7 @@ public class Arm extends SubsystemBase {
     m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
   }
 
-  //extend arm to highest height
+  // extend arm to highest height
   public void highLimit() {
     m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 100);
     m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
@@ -64,6 +66,7 @@ public class Arm extends SubsystemBase {
     m_armMotor.set(-speed);
   }
 
+  // stops the arm
   public void stop() {
     m_armMotor.set(0);
   }

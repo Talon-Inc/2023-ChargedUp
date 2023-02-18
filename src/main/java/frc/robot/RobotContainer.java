@@ -38,7 +38,7 @@ public class RobotContainer {
   private final Retract retract = new Retract(arm);
   private final Turbo turbo = new Turbo(driveTrain);
   private final Drive drive = new Drive(driveTrain, controller);
-  private final Balance balance = new Balance(sensor, driveTrain);
+  private final Balance balance = new Balance(driveTrain, sensor);
 
   // private final Drive drive = new Drive();
   
