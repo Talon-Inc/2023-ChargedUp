@@ -34,6 +34,7 @@ public class RobotContainer {
   private final OpenClaw openClaw = new OpenClaw(pneumatics);
   private final High highExtend = new High(arm);
   private final Middle middleExtend = new Middle(arm);
+  private final Retract retract = new Retract(arm);
   private final Turbo turbo = new Turbo(driveTrain);
   private final Drive drive = new Drive(driveTrain, controller);
 
@@ -65,12 +66,13 @@ public class RobotContainer {
         .onTrue(new ExampleCommand(m_exampleSubsystem));
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
-    m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+    m_driverController.a().whileTrue(retract);
     m_driverController.x().whileTrue(middleExtend);
     m_driverController.y().whileTrue(highExtend);
     m_driverController.back().whileTrue(openClaw);
     m_driverController.start().whileTrue(closeClaw);
     m_driverController.rightBumper().whileTrue(turbo);
+  
   }
 
   /**
