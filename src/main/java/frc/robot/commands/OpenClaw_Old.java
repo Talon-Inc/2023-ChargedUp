@@ -10,9 +10,9 @@ import frc.robot.subsystems.Pneumatics;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class OpenClaw extends InstantCommand {
+public class OpenClaw_Old extends InstantCommand {
   private Pneumatics p = null;
-  public OpenClaw(Pneumatics p) {
+  public OpenClaw_Old(Pneumatics p) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.p = p;
   }
