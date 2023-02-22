@@ -27,17 +27,18 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Arm arm = new Arm();
   private final DriveTrain driveTrain = new DriveTrain();
+  private final Limelight limelight = new Limelight();
   private final Pneumatics pneumatics = new Pneumatics();
   private final Sensor sensor = new Sensor();
 
   // Commands
+  private final Balance balance = new Balance(driveTrain, sensor);
   private final Claw claw = new Claw(pneumatics);
+  private final Drive drive = new Drive(driveTrain, controller);
   private final High highExtend = new High(arm);
   private final Middle middleExtend = new Middle(arm);
   private final Retract retract = new Retract(arm);
   private final Turbo turbo = new Turbo(driveTrain);
-  private final Drive drive = new Drive(driveTrain, controller);
-  private final Balance balance = new Balance(driveTrain, sensor);
 
   // private final Drive drive = new Drive();
   
@@ -67,13 +68,13 @@ public class RobotContainer {
         .onTrue(new ExampleCommand(m_exampleSubsystem));
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
-    m_driverController.leftBumper().whileTrue(balance);
     m_driverController.a().whileTrue(retract);
     m_driverController.x().whileTrue(middleExtend);
     m_driverController.y().whileTrue(highExtend);
     m_driverController.rightBumper().whileTrue(claw);
     m_driverController.rightTrigger().whileTrue(turbo);
-  
+    m_driverController.leftBumper().whileTrue(balance);
+    // m_driverController.leftTrigger().whileTrue(reverseDrive);
   }
 
   /**
