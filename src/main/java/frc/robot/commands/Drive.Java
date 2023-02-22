@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import static frc.robot.Constants.OperatorConstants.DRIVE_FACTOR;
+import static frc.robot.Constants.OperatorConstants.DRIVE_REVERSE;
 
 import frc.robot.subsystems.DriveTrain;
 
@@ -19,7 +20,6 @@ public class Drive extends CommandBase {
    * 
    * @param driveTrain 
    * @param controller 
-   * 
    */
   public Drive(DriveTrain driveTrain, XboxController controller) {
     this.driveTrain = driveTrain;
@@ -35,8 +35,8 @@ public class Drive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double moveSpeed = DRIVE_FACTOR * controller.getLeftY();
-    double rotateSpeed = DRIVE_FACTOR * controller.getLeftX();
+    double moveSpeed = DRIVE_REVERSE * DRIVE_FACTOR * controller.getLeftY();
+    double rotateSpeed = DRIVE_REVERSE * DRIVE_FACTOR * controller.getLeftX();
     driveTrain.arcadeDrive(moveSpeed, rotateSpeed);
   }
 

@@ -30,6 +30,7 @@ public final class Constants {
     public static final IdleMode DRIVE_IDLE_TYPE = IdleMode.kBrake;
     public static final int DRIVE_CURRENT = 30;
     public static double DRIVE_FACTOR = .5; // changed for turbo
+    public static int DRIVE_REVERSE = -1; // change for Reverse
 
     // Arm motors
     public static final int ARM_MOTOR = 5;

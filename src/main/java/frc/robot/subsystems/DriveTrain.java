@@ -56,8 +56,7 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void arcadeDrive(double moveSpeed, double rotateSpeed) {
-    // inverse input if necessary
-    m_roboDrive.arcadeDrive(-moveSpeed, -rotateSpeed);
+    m_roboDrive.arcadeDrive(moveSpeed, rotateSpeed);
   }
 
   public void turbo() {
@@ -69,13 +68,11 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void reverseDirection() {
-    m_leftDrive.setInverted(true);
-    m_rightDrive.setInverted(false);
+    DRIVE_REVERSE = 1;
   }
 
   public void normalDirection() {
-    m_leftDrive.setInverted(false);
-    m_rightDrive.setInverted(true);
+    DRIVE_REVERSE = -1;
   }
 
   @Override
