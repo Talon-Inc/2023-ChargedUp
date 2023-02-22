@@ -31,14 +31,9 @@ public class DriveTrain extends SubsystemBase {
     m_rightFrontDrive.restoreFactoryDefaults();
     m_rightBackDrive.restoreFactoryDefaults();
 
-    // set left or right motors to be inverted/reversed
-    boolean reverse = true;
-    m_leftDrive.setInverted(reverse);
-    m_rightDrive.setInverted(!reverse);
-    // m_leftFrontDrive.setInverted(reverse);
-    // m_leftBackDrive.setInverted(reverse);
-    // m_rightFrontDrive.setInverted(!reverse);
-    // m_rightBackDrive.setInverted(!reverse);
+    // set right motors to be inverted/reversed
+    m_leftDrive.setInverted(false);
+    m_rightDrive.setInverted(true);
 
     // m_leftBackDrive.follow(m_leftFrontDrive);
     // m_rightBackDrive.follow(m_rightFrontDrive);
@@ -64,11 +59,12 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void arcadeDrive(double moveSpeed, double rotateSpeed) {
-    m_roboDrive.arcadeDrive(moveSpeed, rotateSpeed);
+    // inverse input if necessary
+    m_roboDrive.arcadeDrive(-moveSpeed, rotateSpeed);
   }
 
   public void turbo() {
-    DRIVE_FACTOR *= 2;
+    DRIVE_FACTOR = 1;
   }
 
   public void unturbo() {
