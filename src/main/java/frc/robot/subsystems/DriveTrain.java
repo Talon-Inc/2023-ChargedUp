@@ -35,9 +35,6 @@ public class DriveTrain extends SubsystemBase {
     m_leftDrive.setInverted(false);
     m_rightDrive.setInverted(true);
 
-    // m_leftBackDrive.follow(m_leftFrontDrive);
-    // m_rightBackDrive.follow(m_rightFrontDrive);
-
     // set current limits
     m_leftFrontDrive.setSmartCurrentLimit(DRIVE_CURRENT);
     m_leftBackDrive.setSmartCurrentLimit(DRIVE_CURRENT);
@@ -55,6 +52,12 @@ public class DriveTrain extends SubsystemBase {
     m_rightFrontDrive.setIdleMode(DRIVE_IDLE_TYPE);
     m_rightBackDrive.setIdleMode(DRIVE_IDLE_TYPE);
 
+    // save config to memory
+    m_leftFrontDrive.burnFlash();
+    m_leftBackDrive.burnFlash();
+    m_rightFrontDrive.burnFlash();
+    m_rightBackDrive.burnFlash();
+
     m_roboDrive = new DifferentialDrive(m_leftDrive, m_rightDrive);
   }
 
@@ -70,6 +73,13 @@ public class DriveTrain extends SubsystemBase {
   public void unturbo() {
     DRIVE_FACTOR = .5;
   }
+
+  public void reverse() {
+    m_leftDrive.setInverted(true);
+    m_rightDrive.setInverted(false);
+  }
+
+
 
   @Override
   public void periodic() {
