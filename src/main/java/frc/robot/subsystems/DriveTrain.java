@@ -60,7 +60,7 @@ public class DriveTrain extends SubsystemBase {
 
   public void arcadeDrive(double moveSpeed, double rotateSpeed) {
     // inverse input if necessary
-    m_roboDrive.arcadeDrive(-moveSpeed, rotateSpeed);
+    m_roboDrive.arcadeDrive(-moveSpeed, -rotateSpeed);
   }
 
   public void turbo() {
