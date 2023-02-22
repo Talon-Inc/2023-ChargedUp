@@ -9,7 +9,7 @@ import frc.robot.subsystems.DriveTrain;
 
   public class Reverse extends CommandBase {
     private DriveTrain driveTrain = null;
-    
+
     /** Creates a new Reverse. */
     public Reverse(DriveTrain driveTrain) {
       this.driveTrain = driveTrain;
@@ -20,7 +20,7 @@ import frc.robot.subsystems.DriveTrain;
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
+    driveTrain.reverseDirection();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -32,7 +32,7 @@ import frc.robot.subsystems.DriveTrain;
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
+    driveTrain.normalDirection();
   }
 
   // Returns true when the command should end.

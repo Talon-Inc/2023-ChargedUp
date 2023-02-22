@@ -38,6 +38,7 @@ public class RobotContainer {
   private final High highExtend = new High(arm);
   private final Middle middleExtend = new Middle(arm);
   private final Retract retract = new Retract(arm);
+  private final Reverse reverseDrive = new Reverse(driveTrain);
   private final Turbo turbo = new Turbo(driveTrain);
 
   // private final Drive drive = new Drive();
@@ -74,7 +75,7 @@ public class RobotContainer {
     m_driverController.rightBumper().whileTrue(claw);
     m_driverController.rightTrigger().whileTrue(turbo);
     m_driverController.leftBumper().whileTrue(balance);
-    // m_driverController.leftTrigger().whileTrue(reverseDrive);
+    m_driverController.leftTrigger().whileTrue(reverseDrive);
   }
 
   /**

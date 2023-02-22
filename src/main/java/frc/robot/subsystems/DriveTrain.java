@@ -74,12 +74,15 @@ public class DriveTrain extends SubsystemBase {
     DRIVE_FACTOR = .5;
   }
 
-  public void reverse() {
+  public void reverseDirection() {
     m_leftDrive.setInverted(true);
     m_rightDrive.setInverted(false);
   }
 
-
+  public void normalDirection() {
+    m_leftDrive.setInverted(false);
+    m_rightDrive.setInverted(true);
+  }
 
   @Override
   public void periodic() {
