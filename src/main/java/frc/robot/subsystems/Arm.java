@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import static frc.robot.Constants.OperatorConstants.ARM_IDLE_TYPE;
 import static frc.robot.Constants.OperatorConstants.ARM_MOTOR;
 import static frc.robot.Constants.OperatorConstants.ARM_MOTOR_TYPE;
+import static frc.robot.Constants.OperatorConstants.ARM_SPEED;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
@@ -48,22 +49,22 @@ public class Arm extends SubsystemBase {
 
   // default extend speed
   public void extend() {
-    m_armMotor.set(.5);
+    m_armMotor.set(ARM_SPEED);
   }
 
   // custom extend speed
   public void extend(double speed) {
-    m_armMotor.set(speed);
+    m_armMotor.set(Math.abs(speed));
   }
 
   // default retract speed
   public void retract() {
-    m_armMotor.set(-.5);
+    m_armMotor.set(-ARM_SPEED);
   }
 
   // custom retract speed
   public void retract(double speed) {
-    m_armMotor.set(-speed);
+    m_armMotor.set(-Math.abs(speed));
   }
 
   // stops the arm
