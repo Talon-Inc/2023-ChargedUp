@@ -52,12 +52,6 @@ public class DriveTrain extends SubsystemBase {
     m_rightFrontDrive.setIdleMode(DRIVE_IDLE_TYPE);
     m_rightBackDrive.setIdleMode(DRIVE_IDLE_TYPE);
 
-    // save config to memory
-    m_leftFrontDrive.burnFlash();
-    m_leftBackDrive.burnFlash();
-    m_rightFrontDrive.burnFlash();
-    m_rightBackDrive.burnFlash();
-
     m_roboDrive = new DifferentialDrive(m_leftDrive, m_rightDrive);
   }
 
