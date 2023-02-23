@@ -11,7 +11,7 @@ public class Claw extends CommandBase {
   private Pneumatics pneumatics = null;
 
   /** 
-   * Creates a new Claw
+   * Creates a new Claw command.
    * 
    * @param pneumatics Gets the Pneumatics subsystem
    */

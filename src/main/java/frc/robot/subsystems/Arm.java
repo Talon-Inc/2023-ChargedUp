@@ -21,8 +21,8 @@ public class Arm extends SubsystemBase {
    * Creates a new Arm subsystem.
    * 
    * Uses the REV SparkMax controller.
-   * Has soft limits to stop at high and middle goal
-   * Has the claw attached to the end of it
+   * Has soft limits to stop at high and middle goal.
+   * Has the claw attached to the end of it.
    */
   public Arm() {
     m_armMotor.restoreFactoryDefaults();

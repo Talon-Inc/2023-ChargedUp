@@ -23,7 +23,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
   private XboxController controller = new XboxController(CONTROLLER_PORT);
-  
+
   // Subsystems
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Arm arm = new Arm();
@@ -41,8 +41,6 @@ public class RobotContainer {
   private final Retract retract = new Retract(arm);
   private final Reverse reverseDrive = new Reverse(drivetrain);
   private final Turbo turbo = new Turbo(drivetrain);
-
-  // private final Drive drive = new Drive();
   
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
@@ -77,7 +75,7 @@ public class RobotContainer {
     // claw button
     m_driverController.rightBumper().whileTrue(claw);
     
-    // drive buttons
+    // drive modifier buttons
     m_driverController.leftBumper().whileTrue(balance);
     m_driverController.leftTrigger().whileTrue(reverseDrive);
     m_driverController.rightTrigger().whileTrue(turbo);

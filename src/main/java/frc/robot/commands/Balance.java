@@ -36,16 +36,17 @@ public class Balance extends CommandBase {
     // Retrieves current yaw, pitch, and roll in spots 0, 1, 2 respectively
     sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
     
-    //Note*//
-    //ypr_deg[0] is Yaw
-    //ypr_deg[1] is Pitch but for the robot it is our Roll
-    //ypr_deg[2] is Roll but for the robot it is our Pitch
+    //* Notes about Pigeon YPR */
+    // ypr_deg[0] is Yaw
+    // ypr_deg[1] is Pitch but for the robot it is our Roll
+    // ypr_deg[2] is Roll but for the robot it is our Pitch
 
     /* This code activates the auto-balance */
 
-    //This eases the movespeed according to the pitch's magnitude
+    // This eases the movespeed according to the pitch's magnitude
     double moveSpeed = Math.abs(sensor.ypr_deg[2])/40;
-    //This code limits the speed of the auto-balance
+
+    // Limits the speed of the auto-balance
     if (moveSpeed > .35){
       moveSpeed = .35;
     }

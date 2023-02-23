@@ -43,7 +43,7 @@ public final class Constants {
     public static final int OPEN_CHANNEL = 1;
     public static final PneumaticsModuleType PNEUMATICS_MODULE_TYPE = PneumaticsModuleType.valueOf("REVPH");
 
-    // Sensor things
+    // Sensor subsystem constants
     public static final int TALON_CHANNEL = 8;
 
     // Controller inputs

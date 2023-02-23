@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-//creates motor objects
 public class Drivetrain extends SubsystemBase {
   private final CANSparkMax m_leftFrontDrive = new CANSparkMax(DRIVE_LEFT_FRONT_MOTOR, DRIVE_MOTOR_TYPE);
   private final CANSparkMax m_leftBackDrive = new CANSparkMax(DRIVE_LEFT_BACK_MOTOR, DRIVE_MOTOR_TYPE);
@@ -27,7 +26,7 @@ public class Drivetrain extends SubsystemBase {
   /** 
    * Creates a new Drivetrain subsystem.
    * 
-   * Arcade drive based drivetrain with REV SparkMax controllers
+   * Arcade drive based drivetrain with REV SparkMax controllers.
    */
   public Drivetrain() {
     m_leftFrontDrive.restoreFactoryDefaults();
@@ -72,11 +71,11 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void reverseDirection() {
-    DRIVE_REVERSE = 1;
+    DRIVE_REVERSE *= -1;
   }
 
   public void normalDirection() {
-    DRIVE_REVERSE = -1;
+    DRIVE_REVERSE *= -1;
   }
 
   @Override
