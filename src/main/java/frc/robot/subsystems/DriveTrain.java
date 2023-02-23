@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import static frc.robot.Constants.OperatorConstants.*;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.SparkMaxAbsoluteEncoder;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -61,6 +62,25 @@ public class Drivetrain extends SubsystemBase {
   public void arcadeDrive(double moveSpeed, double rotateSpeed) {
     m_roboDrive.arcadeDrive(moveSpeed, rotateSpeed);
   }
+  
+  public double[] getDriveEncoder() {
+    double[] arr = {0, 0};
+    arr[0] = m_leftFrontDrive.getEncoder().getPosition();
+    arr[1] = m_rightFrontDrive.getEncoder().getPosition();
+    return arr;
+  }
+
+  public void moveLeftMotors(double speed) {
+    m_leftDrive.set(speed);
+  }
+
+  public void moveRightMotors(double speed) {
+    m_rightDrive.set(speed);
+  }
+
+  public void stop() {
+    arcadeDrive(0, 0);
+  }
 
   public void turbo() {
     DRIVE_FACTOR = 1;
@@ -83,3 +103,4 @@ public class Drivetrain extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 }
+
