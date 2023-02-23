@@ -9,41 +9,52 @@ import static frc.robot.Constants.OperatorConstants.*;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkMaxAbsoluteEncoder;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class DriveTrain extends SubsystemBase {
-  private final CANSparkMax m_leftFrontDrive = new CANSparkMax(DRIVE_LEFT_FRONT_MOTOR, MOTOR_TYPE);
-  private final CANSparkMax m_leftBackDrive = new CANSparkMax(DRIVE_LEFT_BACK_MOTOR, MOTOR_TYPE);
+public class Drivetrain extends SubsystemBase {
+  private final CANSparkMax m_leftFrontDrive = new CANSparkMax(DRIVE_LEFT_FRONT_MOTOR, DRIVE_MOTOR_TYPE);
+  private final CANSparkMax m_leftBackDrive = new CANSparkMax(DRIVE_LEFT_BACK_MOTOR, DRIVE_MOTOR_TYPE);
   private final MotorControllerGroup m_leftDrive = new MotorControllerGroup(m_leftFrontDrive, m_leftBackDrive);
 
-  private final CANSparkMax m_rightFrontDrive = new CANSparkMax(DRIVE_RIGHT_FRONT_MOTOR, MOTOR_TYPE);
-  private final CANSparkMax m_rightBackDrive = new CANSparkMax(DRIVE_RIGHT_BACK_MOTOR, MOTOR_TYPE);
+  private final CANSparkMax m_rightFrontDrive = new CANSparkMax(DRIVE_RIGHT_FRONT_MOTOR, DRIVE_MOTOR_TYPE);
+  private final CANSparkMax m_rightBackDrive = new CANSparkMax(DRIVE_RIGHT_BACK_MOTOR, DRIVE_MOTOR_TYPE);
   private final MotorControllerGroup m_rightDrive = new MotorControllerGroup(m_rightFrontDrive, m_rightBackDrive);
 
-  private DifferentialDrive m_roboDrive;
-  private final Timer m_Timer = new Timer();
+  private DifferentialDrive m_roboDrive = null;
 
-  /** Creates a new DriveTrain. */
-  public DriveTrain() {
+  /** 
+   * Creates a new Drivetrain subsystem.
+   * 
+   * Arcade drive based drivetrain with REV SparkMax controllers.
+   */
+  public Drivetrain() {
     m_leftFrontDrive.restoreFactoryDefaults();
     m_leftBackDrive.restoreFactoryDefaults();
     m_rightFrontDrive.restoreFactoryDefaults();
     m_rightBackDrive.restoreFactoryDefaults();
 
-    boolean reverse = true;
+    // set right motors to be inverted/reversed
+    m_leftDrive.setInverted(false);
+    m_rightDrive.setInverted(true);
 
-    m_leftFrontDrive.setInverted(reverse);
-    m_leftBackDrive.setInverted(reverse);
+    // set current limits
+    m_leftFrontDrive.setSmartCurrentLimit(DRIVE_CURRENT);
+    m_leftBackDrive.setSmartCurrentLimit(DRIVE_CURRENT);
+    m_rightFrontDrive.setSmartCurrentLimit(DRIVE_CURRENT);
+    m_rightBackDrive.setSmartCurrentLimit(DRIVE_CURRENT);
 
-    m_rightFrontDrive.setInverted(!reverse);
-    m_rightBackDrive.setInverted(!reverse);
+    // m_leftFrontDrive.setSecondaryCurrentLimit(CURRENT);
+    // m_leftBackDrive.setSecondaryCurrentLimit(CURRENT);
+    // m_rightFrontDrive.setSecondaryCurrentLimit(CURRENT);
+    // m_rightBackDrive.setSecondaryCurrentLimit(CURRENT);
 
-    m_leftBackDrive.follow(m_leftFrontDrive);
-    m_rightBackDrive.follow(m_rightFrontDrive);
+    // set idle behavior
+    m_leftFrontDrive.setIdleMode(DRIVE_IDLE_TYPE);
+    m_leftBackDrive.setIdleMode(DRIVE_IDLE_TYPE);
+    m_rightFrontDrive.setIdleMode(DRIVE_IDLE_TYPE);
+    m_rightBackDrive.setIdleMode(DRIVE_IDLE_TYPE);
 
     m_roboDrive = new DifferentialDrive(m_leftDrive, m_rightDrive);
   }
@@ -71,28 +82,20 @@ public class DriveTrain extends SubsystemBase {
     arcadeDrive(0, 0);
   }
 
-  /**
-   * Example command factory method.
-   *
-   * @return a command
-   */
-  public CommandBase command1() {
-    // Inline construction of command goes here.
-    // Subsystem::RunOnce implicitly requires `this` subsystem.
-    return runOnce(
-        () -> {
-          /* one-time action goes here */
-        });
+  public void turbo() {
+    DRIVE_FACTOR = 1;
   }
 
-  /**
-   * An example method querying a boolean state of the subsystem (for example, a digital sensor).
-   *
-   * @return value of some boolean subsystem state, such as a digital sensor.
-   */
-  public boolean exampleCondition() {
-    // Query some boolean state, such as a digital sensor.
-    return false;
+  public void unturbo() {
+    DRIVE_FACTOR = .5;
+  }
+
+  public void reverseDirection() {
+    DRIVE_REVERSE *= -1;
+  }
+
+  public void normalDirection() {
+    DRIVE_REVERSE *= -1;
   }
 
   @Override
