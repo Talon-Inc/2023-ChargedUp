@@ -7,7 +7,6 @@ package frc.robot.subsystems;
 import static frc.robot.Constants.OperatorConstants.*;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.SparkMaxAbsoluteEncoder;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
