@@ -17,7 +17,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Arm extends SubsystemBase {
   private final CANSparkMax m_armMotor = new CANSparkMax(ARM_MOTOR, ARM_MOTOR_TYPE);
 
-  /** Creates a new Arm. */
+  /** 
+   * Creates a new Arm subsystem.
+   * 
+   * Uses the REV SparkMax controller.
+   * Has soft limits to stop at high and middle goal
+   * Has the claw attached to the end of it
+   */
   public Arm() {
     m_armMotor.restoreFactoryDefaults();
     // m_armMotor.setInverted(true);

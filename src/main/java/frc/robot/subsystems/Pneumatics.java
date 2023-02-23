@@ -15,13 +15,14 @@ public class Pneumatics extends SubsystemBase {
   private PneumaticHub pneumaticHub = null;
   private DoubleSolenoid claw = null;
 
-  /** Creates a new Pneumatics. */
+  /** 
+   * Creates a new Pneumatics subsystem.
+   * 
+   * Uses the REV PneumaticHub
+   */
   public Pneumatics() {
     pneumaticHub = new PneumaticHub();
     pneumaticHub.enableCompressorDigital();
-
-    // comp = new Compressor(PNEUMATICS_MODULE_TYPE);
-    // comp.enableDigital();
 
     claw = pneumaticHub.makeDoubleSolenoid(CLOSE_CHANNEL, OPEN_CHANNEL);
   }

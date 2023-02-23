@@ -16,7 +16,7 @@ public class Drive extends CommandBase {
   /** 
    * Creates a new Drive command.
    * 
-   * @param drivetrain Arcade drive based drivetrain
+   * @param drivetrain Gets Drivetrain subsystem; Arcade drive based drivetrain
    * @param mvSpeed Move speed: Left stick Y axis
    * @param rtSpeed Rotate speed: Left stick X axis
    */

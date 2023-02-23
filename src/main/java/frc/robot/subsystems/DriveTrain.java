@@ -25,8 +25,9 @@ public class Drivetrain extends SubsystemBase {
   private DifferentialDrive m_roboDrive = null;
 
   /** 
-   * Creates a new Drivetrain.
+   * Creates a new Drivetrain subsystem.
    * 
+   * Arcade drive based drivetrain with REV SparkMax controllers
    */
   public Drivetrain() {
     m_leftFrontDrive.restoreFactoryDefaults();
