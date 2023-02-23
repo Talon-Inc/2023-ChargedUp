@@ -23,6 +23,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
   private XboxController controller = new XboxController(CONTROLLER_PORT);
+  
   // Subsystems
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Arm arm = new Arm();
@@ -67,15 +68,19 @@ public class RobotContainer {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     new Trigger(m_exampleSubsystem::exampleCondition)
         .onTrue(new ExampleCommand(m_exampleSubsystem));
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
+
+    // Arm buttons
     m_driverController.a().whileTrue(retract);
     m_driverController.x().whileTrue(middleExtend);
     m_driverController.y().whileTrue(highExtend);
+
+    // claw button
     m_driverController.rightBumper().whileTrue(claw);
-    m_driverController.rightTrigger().whileTrue(turbo);
+    
+    // drive buttons
     m_driverController.leftBumper().whileTrue(balance);
     m_driverController.leftTrigger().whileTrue(reverseDrive);
+    m_driverController.rightTrigger().whileTrue(turbo);
   }
 
   /**
@@ -87,6 +92,12 @@ public class RobotContainer {
     // An example command will be run in autonomous
     return Autos.exampleAuto(m_exampleSubsystem);
   }
+
+  /**
+   * Use this to pass the drive command to the main {@link Robot} class.
+   *
+   * @return the drive command to run in teleop
+   */
   public Command getDrive() {
     return drive;
   }
