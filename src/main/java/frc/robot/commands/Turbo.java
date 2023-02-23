@@ -5,21 +5,21 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Drivetrain;
 
 public class Turbo extends CommandBase {
-  private DriveTrain driveTrain = null;
+  private Drivetrain drivetrain = null;
 
   /** Creates a new Turbo. */
-  public Turbo(DriveTrain driveTrain) {
+  public Turbo(Drivetrain drivetrain) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.driveTrain = driveTrain;
+    this.drivetrain = drivetrain;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    driveTrain.turbo();
+    drivetrain.turbo();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -29,7 +29,7 @@ public class Turbo extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    driveTrain.unturbo();
+    drivetrain.unturbo();
   }
 
   // Returns true when the command should end.

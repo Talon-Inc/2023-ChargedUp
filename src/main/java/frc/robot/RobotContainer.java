@@ -26,20 +26,20 @@ public class RobotContainer {
   // Subsystems
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Arm arm = new Arm();
-  private final DriveTrain driveTrain = new DriveTrain();
+  private final Drivetrain drivetrain = new Drivetrain();
   private final Limelight limelight = new Limelight();
   private final Pneumatics pneumatics = new Pneumatics();
   private final Sensor sensor = new Sensor();
 
   // Commands
-  private final Balance balance = new Balance(driveTrain, sensor);
+  private final Balance balance = new Balance(drivetrain, sensor);
   private final Claw claw = new Claw(pneumatics);
-  private final Drive drive = new Drive(driveTrain, controller.getLeftY(), controller.getLeftX());
+  private final Drive drive = new Drive(drivetrain, controller.getLeftY(), controller.getLeftX());
   private final High highExtend = new High(arm);
   private final Middle middleExtend = new Middle(arm);
   private final Retract retract = new Retract(arm);
-  private final Reverse reverseDrive = new Reverse(driveTrain);
-  private final Turbo turbo = new Turbo(driveTrain);
+  private final Reverse reverseDrive = new Reverse(drivetrain);
+  private final Turbo turbo = new Turbo(drivetrain);
 
   // private final Drive drive = new Drive();
   

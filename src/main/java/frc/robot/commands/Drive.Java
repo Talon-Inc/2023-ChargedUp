@@ -8,24 +8,24 @@ import static frc.robot.Constants.OperatorConstants.DRIVE_FACTOR;
 import static frc.robot.Constants.OperatorConstants.DRIVE_REVERSE;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Drivetrain;
 
 public class Drive extends CommandBase {
-  private DriveTrain driveTrain = null;
+  private Drivetrain drivetrain = null;
   private double mvSpeed = 0, rtSpeed = 0;
   /** 
    * Creates a new Drive command.
    * 
-   * @param driveTrain Arcade drive based drivetrain
+   * @param drivetrain Arcade drive based drivetrain
    * @param mvSpeed Move speed: Left stick Y axis
    * @param rtSpeed Rotate speed: Left stick X axis
    */
-  public Drive(DriveTrain driveTrain, double mvSpeed, double rtSpeed) {
-    this.driveTrain = driveTrain;
+  public Drive(Drivetrain drivetrain, double mvSpeed, double rtSpeed) {
+    this.drivetrain = drivetrain;
     this.mvSpeed = mvSpeed;
     this.rtSpeed = rtSpeed;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(driveTrain);
+    addRequirements(drivetrain);
   }
 
   // Called when the command is initially scheduled.
@@ -37,7 +37,7 @@ public class Drive extends CommandBase {
   public void execute() {
     double moveSpeed = DRIVE_REVERSE * DRIVE_FACTOR * mvSpeed;
     double rotateSpeed = DRIVE_REVERSE * DRIVE_FACTOR * rtSpeed;
-    driveTrain.arcadeDrive(moveSpeed, rotateSpeed);
+    drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
   }
 
   // Called once the command ends or is interrupted.
