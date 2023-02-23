@@ -4,7 +4,7 @@
 
 package frc.robot.commands;
 
-import static frc.robot.Constants.OperatorConstants.FACTOR;
+import static frc.robot.Constants.OperatorConstants.DRIVE_FACTOR;
 
 import frc.robot.subsystems.DriveTrain;
 
@@ -31,10 +31,10 @@ public class Drive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (controller.getRightBumper()) { FACTOR = 1; }
-    else { FACTOR = 0.5; }
-    double moveSpeed = FACTOR * controller.getLeftY();
-    double rotateSpeed = FACTOR * controller.getLeftX();
+    if (controller.getRightBumper()) { DRIVE_FACTOR = 1; }
+    else { DRIVE_FACTOR = 0.5; }
+    double moveSpeed = DRIVE_FACTOR * controller.getLeftY();
+    double rotateSpeed = DRIVE_FACTOR * controller.getLeftX();
     driveTrain.arcadeDrive(moveSpeed, rotateSpeed);
   }
 
