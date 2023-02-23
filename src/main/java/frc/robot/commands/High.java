@@ -8,17 +8,18 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Arm;
 
 public class High extends CommandBase {
-  Arm arm = null;
+  private Arm arm = null;
   
   /** 
-   * Creates a new High.
+   * Creates a new High command.
+   * Used to extend the arm to the high goal
    * 
-   * @param arm
-   * 
+   * @param arm Gets the Arm subsystem
    */
-  public High( Arm arm) {
-    // Use addRequirements() here to declare subsystem dependencies.
+  public High(Arm arm) {
     this.arm = arm;
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(arm);
   }
 
   // Called when the command is initially scheduled.

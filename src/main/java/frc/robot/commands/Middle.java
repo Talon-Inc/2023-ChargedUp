@@ -8,11 +8,18 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Arm;
 
 public class Middle extends CommandBase {
-  Arm arm = null;
-  /** Creates a new Middle. */
+  private Arm arm = null;
+
+  /** 
+   * Creates a new Middle command.
+   * Used to extend the arm to the middle goal
+   * 
+   * @param arm Gets the Arm subsystem
+   */
   public Middle(Arm arm) {
-    // Use addRequirements() here to declare subsystem dependencies.
     this.arm = arm;
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(arm);
   }
 
   // Called when the command is initially scheduled.

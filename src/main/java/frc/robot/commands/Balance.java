@@ -15,13 +15,13 @@ public class Balance extends CommandBase {
   /**
    * Creates a new Balance.
    * 
-   * @param drivetrain Used to controller the drive train directly
-   * @param sensor Used to get sensor values
+   * @param drivetrain Gets the Drivetrain subsystem; Used to control the drivetrain directly
+   * @param sensor Gets the Sensor subsystem; Used to get sensor values
    */
   public Balance(Drivetrain drivetrain, Sensor sensor) {
-    // Use addRequirements() here to declare subsystem dependencies.
     this.drivetrain = drivetrain;
     this.sensor = sensor;
+    // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(drivetrain, sensor);
   }
 

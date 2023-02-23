@@ -9,10 +9,16 @@ import frc.robot.subsystems.Pneumatics;
 
 public class Claw extends CommandBase {
   private Pneumatics pneumatics = null;
-  /** Creates a new Claw. */
+
+  /** 
+   * Creates a new Claw
+   * 
+   * @param pneumatics Gets the Pneumatics subsystem
+   */
   public Claw(Pneumatics pneumatics) {
-    // Use addRequirements() here to declare subsystem dependencies.
     this.pneumatics = pneumatics;
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(pneumatics);
   }
 
   // Called when the command is initially scheduled.

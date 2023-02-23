@@ -8,11 +8,17 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Arm;
 
 public class Retract extends CommandBase {
-  Arm arm = null;
-  /** Creates a new Retract. */
+  private Arm arm = null;
+
+  /** 
+   * Creates a new Retract command.
+   * 
+   * @param arm Gets the Arm subsystem
+   */
   public Retract(Arm arm) {
-    // Use addRequirements() here to declare subsystem dependencies.
     this.arm = arm;
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(arm);
   }
 
   // Called when the command is initially scheduled.

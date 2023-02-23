@@ -10,7 +10,11 @@ import frc.robot.subsystems.Drivetrain;
 public class Turbo extends CommandBase {
   private Drivetrain drivetrain = null;
 
-  /** Creates a new Turbo. */
+  /** 
+   * Creates a new Turbo command.
+   * 
+   * @param drivetrain Gets the Drivetrain subsystem
+   */
   public Turbo(Drivetrain drivetrain) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.drivetrain = drivetrain;
