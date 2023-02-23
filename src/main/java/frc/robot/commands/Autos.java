@@ -15,10 +15,10 @@ public final class Autos {
     return Commands.sequence(subsystem.exampleMethodCommand(), new ExampleCommand(subsystem));
   }
 
-  public static CommandBase testAuto(DriveTrain driveTrain) {
+  public static CommandBase testAuto(Drivetrain drivetrain) {
     return Commands.sequence(
-      new DriveDistance(50, 50, driveTrain),
-      new DriveDistance(-50, 50, driveTrain)
+      new DriveDistance(50, 50, drivetrain),
+      new DriveDistance(-50, 50, drivetrain)
     );
   }
 

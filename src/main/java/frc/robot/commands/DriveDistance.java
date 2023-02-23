@@ -3,11 +3,9 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands;
-import static frc.robot.Constants.OperatorConstants.*;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
-import frc.robot.subsystems.DriveTrain;
-import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.subsystems.Drivetrain;
 
 public class DriveDistance extends CommandBase {
   private double endLeftPosition;
@@ -15,13 +13,13 @@ public class DriveDistance extends CommandBase {
   private double leftRevs, rightRevs;
   private double distance;
   private boolean leftFlag, rightFlag, left, right;
-  private DriveTrain driveTrain;
+  private Drivetrain drivetrain;
   // private final XboxController controller = new XboxController(CONTROLLER_PORT);
   /** Creates a new DriveDistance. */
-  public DriveDistance(double leftRevs, double rightRevs, DriveTrain driveTrain) {
+  public DriveDistance(double leftRevs, double rightRevs, Drivetrain drivetrain) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.driveTrain = driveTrain;
-    addRequirements(driveTrain);
+    this.drivetrain = drivetrain;
+    addRequirements(drivetrain);
     // distance = inches;
     this.leftRevs = leftRevs;
     this.rightRevs = rightRevs;
@@ -34,58 +32,58 @@ public class DriveDistance extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    endLeftPosition = driveTrain.getDriveEncoder()[0] + leftRevs;
-    endRightPosition = driveTrain.getDriveEncoder()[1] + rightRevs;
+    endLeftPosition = drivetrain.getDriveEncoder()[0] + leftRevs;
+    endRightPosition = drivetrain.getDriveEncoder()[1] + rightRevs;
     
-    if (endLeftPosition > driveTrain.getDriveEncoder()[0])
+    if (endLeftPosition > drivetrain.getDriveEncoder()[0])
       left = true;
 
-    if (endRightPosition > driveTrain.getDriveEncoder()[1])
+    if (endRightPosition > drivetrain.getDriveEncoder()[1])
       right = true;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double leftMove = driveTrain.getDriveEncoder()[0];
-    double rightMove = driveTrain.getDriveEncoder()[1];
+    double leftMove = drivetrain.getDriveEncoder()[0];
+    double rightMove = drivetrain.getDriveEncoder()[1];
     double speed = .1;
     System.out.println("Left: " + leftMove + "; Right: " + rightMove);
     
     if (left) {
       if (endLeftPosition > leftMove) {
-        driveTrain.moveLeftMotors(speed);
+        drivetrain.moveLeftMotors(speed);
       }
       else {
-        driveTrain.moveLeftMotors(0);
+        drivetrain.moveLeftMotors(0);
         leftFlag = true;
       }
     }
     else {
       if (endLeftPosition < leftMove) {
-        driveTrain.moveLeftMotors(-speed);
+        drivetrain.moveLeftMotors(-speed);
       }
       else {
-        driveTrain.moveLeftMotors(0);
+        drivetrain.moveLeftMotors(0);
         leftFlag = true;
       }
     }
 
     if (right) {
       if (endRightPosition > rightMove) {
-        driveTrain.moveRightMotors(speed);
+        drivetrain.moveRightMotors(speed);
       }
       else {
-        driveTrain.moveRightMotors(0);
+        drivetrain.moveRightMotors(0);
         rightFlag = true;
       }
     }
     else {
       if (endRightPosition < rightMove) {
-        driveTrain.moveRightMotors(-speed);
+        drivetrain.moveRightMotors(-speed);
       }
       else {
-        driveTrain.moveRightMotors(0);
+        drivetrain.moveRightMotors(0);
         rightFlag = true;
       }
     }
@@ -94,7 +92,7 @@ public class DriveDistance extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    driveTrain.arcadeDrive(0,  0);
+    drivetrain.arcadeDrive(0,  0);
   }
 
   // Returns true when the command should end.
