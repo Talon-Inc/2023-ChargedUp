@@ -89,7 +89,7 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
     // return Autos.exampleAuto(m_exampleSubsystem);
-    return Autos.testAuto(driveTrain);
+    return Autos.testAuto(drivetrain);
   }
 
   /**
