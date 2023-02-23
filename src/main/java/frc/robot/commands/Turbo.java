@@ -4,25 +4,41 @@
 
 package frc.robot.commands;
 
-import static frc.robot.Constants.OperatorConstants.*;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Drivetrain;
 
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+public class Turbo extends CommandBase {
+  private Drivetrain drivetrain = null;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Turbo extends InstantCommand {
-  private XboxController controller = null;
-  public Turbo(XboxController controller) {
+  /** 
+   * Creates a new Turbo command.
+   * 
+   * @param drivetrain Gets the Drivetrain subsystem
+   */
+  public Turbo(Drivetrain drivetrain) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.controller = controller;
+    this.drivetrain = drivetrain;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (controller.getRightBumper()) { DRIVE_FACTOR = 1; }
-    else { DRIVE_FACTOR = 0.5; }
+    drivetrain.turbo();
+  }
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {}
+
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {
+    drivetrain.unturbo();
+  }
+
+  // Returns true when the command should end.
+  @Override
+  public boolean isFinished() {
+    return false;
   }
 }

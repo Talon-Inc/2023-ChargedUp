@@ -10,7 +10,8 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Limelight extends SubsystemBase {
-  // Creates a "Network Table" which contains data  from limelight(Check: https://docs.limelightvision.io/en/latest/networktables_api.html)
+  // Creates a "Network Table" which contains data from limelight
+  // Check: https://docs.limelightvision.io/en/latest/networktables_api.html
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
   public NetworkTableEntry tid = table.getEntry("tid");
   public NetworkTableEntry tx = table.getEntry("tx");

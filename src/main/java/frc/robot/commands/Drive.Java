@@ -5,23 +5,27 @@
 package frc.robot.commands;
 
 import static frc.robot.Constants.OperatorConstants.DRIVE_FACTOR;
+import static frc.robot.Constants.OperatorConstants.DRIVE_REVERSE;
 
-import frc.robot.subsystems.DriveTrain;
-
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Drivetrain;
 
 public class Drive extends CommandBase {
-  private DriveTrain driveTrain = null;
-  private XboxController controller = null;
+  private Drivetrain drivetrain = null;
+  private double mvSpeed = 0, rtSpeed = 0;
   /** 
-   * Creates a new DriveCommand.
+   * Creates a new Drive command.
+   * 
+   * @param drivetrain Gets Drivetrain subsystem; Arcade drive based drivetrain
+   * @param mvSpeed Move speed: Left stick Y axis
+   * @param rtSpeed Rotate speed: Left stick X axis
    */
-  public Drive(DriveTrain driveTrain, XboxController controller) {
-    this.driveTrain = driveTrain;
-    this.controller = controller;
+  public Drive(Drivetrain drivetrain, double mvSpeed, double rtSpeed) {
+    this.drivetrain = drivetrain;
+    this.mvSpeed = mvSpeed;
+    this.rtSpeed = rtSpeed;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(driveTrain);
+    addRequirements(drivetrain);
   }
 
   // Called when the command is initially scheduled.
@@ -31,11 +35,9 @@ public class Drive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (controller.getRightBumper()) { DRIVE_FACTOR = 1; }
-    else { DRIVE_FACTOR = 0.5; }
-    double moveSpeed = DRIVE_FACTOR * controller.getLeftY();
-    double rotateSpeed = DRIVE_FACTOR * controller.getLeftX();
-    driveTrain.arcadeDrive(moveSpeed, rotateSpeed);
+    double moveSpeed = DRIVE_REVERSE * DRIVE_FACTOR * mvSpeed;
+    double rotateSpeed = DRIVE_REVERSE * DRIVE_FACTOR * rtSpeed;
+    drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
   }
 
   // Called once the command ends or is interrupted.

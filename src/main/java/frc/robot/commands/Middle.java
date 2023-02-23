@@ -4,17 +4,22 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Arm;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Middle extends InstantCommand {
+public class Middle extends CommandBase {
   private Arm arm = null;
+
+  /** 
+   * Creates a new Middle command.
+   * Used to extend the arm to the middle goal
+   * 
+   * @param arm Gets the Arm subsystem
+   */
   public Middle(Arm arm) {
-    // Use addRequirements() here to declare subsystem dependencies.
     this.arm = arm;
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(arm);
   }
 
   // Called when the command is initially scheduled.
@@ -22,5 +27,21 @@ public class Middle extends InstantCommand {
   public void initialize() {
     arm.middleLimit();
     arm.extend();
+  }
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {}
+
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {
+    arm.stop();
+  }
+
+  // Returns true when the command should end.
+  @Override
+  public boolean isFinished() {
+    return false;
   }
 }

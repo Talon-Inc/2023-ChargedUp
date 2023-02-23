@@ -23,21 +23,24 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
   private XboxController controller = new XboxController(CONTROLLER_PORT);
+
   // Subsystems
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  // private final Arm arm = new Arm();
-  // private final DriveTrain driveTrain = new DriveTrain();
-  // private final Pneumatics pneumatics = new Pneumatics();
+  private final Arm arm = new Arm();
+  private final Drivetrain drivetrain = new Drivetrain();
+  private final Limelight limelight = new Limelight();
+  private final Pneumatics pneumatics = new Pneumatics();
+  private final Sensor sensor = new Sensor();
 
   // Commands
-  // private final CloseClaw closeClaw = new CloseClaw(pneumatics);
-  // private final OpenClaw openClaw = new OpenClaw(pneumatics);
-  // private final High highExtend = new High(arm);
-  // private final Middle middleExtend = new Middle(arm);
-  // private final Turbo turbo = new Turbo(controller);
-  // private final Drive drive = new Drive(driveTrain, controller);
-
-  // private final Drive drive = new Drive();
+  private final Balance balance = new Balance(drivetrain, sensor);
+  private final Claw claw = new Claw(pneumatics);
+  private final Drive drive = new Drive(drivetrain, controller.getLeftY(), controller.getLeftX());
+  private final High highExtend = new High(arm);
+  private final Middle middleExtend = new Middle(arm);
+  private final Retract retract = new Retract(arm);
+  private final Reverse reverseDrive = new Reverse(drivetrain);
+  private final Turbo turbo = new Turbo(drivetrain);
   
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
@@ -63,14 +66,19 @@ public class RobotContainer {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     new Trigger(m_exampleSubsystem::exampleCondition)
         .onTrue(new ExampleCommand(m_exampleSubsystem));
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
-    // m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
-    // m_driverController.x().whileTrue(middleExtend);
-    // m_driverController.y().whileTrue(highExtend);
-    // m_driverController.back().whileTrue(openClaw);
-    // m_driverController.start().whileTrue(closeClaw);
-    // m_driverController.rightBumper().whileTrue(turbo);
+
+    // Arm buttons
+    m_driverController.a().whileTrue(retract);
+    m_driverController.x().whileTrue(middleExtend);
+    m_driverController.y().whileTrue(highExtend);
+
+    // claw button
+    m_driverController.rightBumper().whileTrue(claw);
+    
+    // drive modifier buttons
+    m_driverController.leftBumper().whileTrue(balance);
+    m_driverController.leftTrigger().whileTrue(reverseDrive);
+    m_driverController.rightTrigger().whileTrue(turbo);
   }
 
   /**
@@ -81,5 +89,14 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
     return Autos.exampleAuto(m_exampleSubsystem);
+  }
+
+  /**
+   * Use this to pass the drive command to the main {@link Robot} class.
+   *
+   * @return the drive command to run in teleop
+   */
+  public Command getDrive() {
+    return drive;
   }
 }

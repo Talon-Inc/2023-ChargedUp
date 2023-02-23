@@ -4,25 +4,27 @@
 
 package frc.robot.subsystems;
 
-import static frc.robot.Constants.OperatorConstants.*;
+import static frc.robot.Constants.OperatorConstants.CLOSE_CHANNEL;
+import static frc.robot.Constants.OperatorConstants.OPEN_CHANNEL;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticHub;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Pneumatics extends SubsystemBase {
   private PneumaticHub pneumaticHub = null;
   private DoubleSolenoid claw = null;
 
-  /** Creates a new Pneumatics. */
+  /** 
+   * Creates a new Pneumatics subsystem.
+   * 
+   * Uses the REV PneumaticHub
+   */
   public Pneumatics() {
     pneumaticHub = new PneumaticHub();
     pneumaticHub.enableCompressorDigital();
 
-    // comp = new Compressor(PNEUMATICS_MODULE_TYPE);
-    // comp.enableDigital();
-
-    claw = pneumaticHub.makeDoubleSolenoid(FORWARD_CHANNEL, REVERSE_CHANNEL);
+    claw = pneumaticHub.makeDoubleSolenoid(CLOSE_CHANNEL, OPEN_CHANNEL);
   }
 
   // Opens claw by piston extention powered by solenoid

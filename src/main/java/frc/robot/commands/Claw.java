@@ -5,16 +5,27 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Pneumatics;
 
-public class HighTest extends CommandBase {
-  /** Creates a new HighTest. */
-  public HighTest() {
+public class Claw extends CommandBase {
+  private Pneumatics pneumatics = null;
+
+  /** 
+   * Creates a new Claw command.
+   * 
+   * @param pneumatics Gets the Pneumatics subsystem
+   */
+  public Claw(Pneumatics pneumatics) {
+    this.pneumatics = pneumatics;
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(pneumatics);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    pneumatics.openClaw();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -22,7 +33,9 @@ public class HighTest extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    pneumatics.closeClaw();
+  }
 
   // Returns true when the command should end.
   @Override

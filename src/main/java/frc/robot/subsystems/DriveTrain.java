@@ -12,8 +12,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-//creates motor objects
-public class DriveTrain extends SubsystemBase {
+public class Drivetrain extends SubsystemBase {
   private final CANSparkMax m_leftFrontDrive = new CANSparkMax(DRIVE_LEFT_FRONT_MOTOR, DRIVE_MOTOR_TYPE);
   private final CANSparkMax m_leftBackDrive = new CANSparkMax(DRIVE_LEFT_BACK_MOTOR, DRIVE_MOTOR_TYPE);
   private final MotorControllerGroup m_leftDrive = new MotorControllerGroup(m_leftFrontDrive, m_leftBackDrive);
@@ -24,24 +23,20 @@ public class DriveTrain extends SubsystemBase {
 
   private DifferentialDrive m_roboDrive = null;
 
-  /** Creates a new DriveTrain. */
-  public DriveTrain() {
+  /** 
+   * Creates a new Drivetrain subsystem.
+   * 
+   * Arcade drive based drivetrain with REV SparkMax controllers.
+   */
+  public Drivetrain() {
     m_leftFrontDrive.restoreFactoryDefaults();
     m_leftBackDrive.restoreFactoryDefaults();
     m_rightFrontDrive.restoreFactoryDefaults();
     m_rightBackDrive.restoreFactoryDefaults();
 
-    // set left or right motors to be inverted/reversed
-    boolean reverse = true;
-    m_leftDrive.setInverted(reverse);
-    m_rightDrive.setInverted(!reverse);
-    // m_leftFrontDrive.setInverted(reverse);
-    // m_leftBackDrive.setInverted(reverse);
-    // m_rightFrontDrive.setInverted(!reverse);
-    // m_rightBackDrive.setInverted(!reverse);
-
-    // m_leftBackDrive.follow(m_leftFrontDrive);
-    // m_rightBackDrive.follow(m_rightFrontDrive);
+    // set right motors to be inverted/reversed
+    m_leftDrive.setInverted(false);
+    m_rightDrive.setInverted(true);
 
     // set current limits
     m_leftFrontDrive.setSmartCurrentLimit(DRIVE_CURRENT);
@@ -60,17 +55,27 @@ public class DriveTrain extends SubsystemBase {
     m_rightFrontDrive.setIdleMode(DRIVE_IDLE_TYPE);
     m_rightBackDrive.setIdleMode(DRIVE_IDLE_TYPE);
 
-    // save config to memory
-    m_leftFrontDrive.burnFlash();
-    m_leftBackDrive.burnFlash();
-    m_rightFrontDrive.burnFlash();
-    m_rightBackDrive.burnFlash();
-
     m_roboDrive = new DifferentialDrive(m_leftDrive, m_rightDrive);
   }
 
   public void arcadeDrive(double moveSpeed, double rotateSpeed) {
     m_roboDrive.arcadeDrive(moveSpeed, rotateSpeed);
+  }
+
+  public void turbo() {
+    DRIVE_FACTOR = 1;
+  }
+
+  public void unturbo() {
+    DRIVE_FACTOR = .5;
+  }
+
+  public void reverseDirection() {
+    DRIVE_REVERSE *= -1;
+  }
+
+  public void normalDirection() {
+    DRIVE_REVERSE *= -1;
   }
 
   @Override

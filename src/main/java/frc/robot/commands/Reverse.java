@@ -5,28 +5,26 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Drivetrain;
 
-public class High extends CommandBase {
-  private Arm arm = null;
-  
+public class Reverse extends CommandBase {
+  private Drivetrain drivetrain = null;
+
   /** 
-   * Creates a new High command.
-   * Used to extend the arm to the high goal
+   * Creates a new Reverse command.
    * 
-   * @param arm Gets the Arm subsystem
+   * @param drivetrain Gets the Drivetrain subsystem
    */
-  public High(Arm arm) {
-    this.arm = arm;
+  public Reverse(Drivetrain drivetrain) {
+    this.drivetrain = drivetrain;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(arm);
+    addRequirements(drivetrain);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    arm.highLimit();
-    arm.extend();
+    drivetrain.reverseDirection();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -36,7 +34,7 @@ public class High extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    arm.stop();
+    drivetrain.normalDirection();
   }
 
   // Returns true when the command should end.

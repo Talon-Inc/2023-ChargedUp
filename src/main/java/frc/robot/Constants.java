@@ -30,17 +30,20 @@ public final class Constants {
     public static final IdleMode DRIVE_IDLE_TYPE = IdleMode.kBrake;
     public static final int DRIVE_CURRENT = 30;
     public static double DRIVE_FACTOR = .5; // changed for turbo
+    public static int DRIVE_REVERSE = -1; // change for Reverse
 
     // Arm motors
     public static final int ARM_MOTOR = 5;
     public static final MotorType ARM_MOTOR_TYPE = MotorType.kBrushless;
+    public static final IdleMode ARM_IDLE_TYPE = IdleMode.kBrake;
+    public static final double ARM_SPEED = .2;
 
     // Pnuematics
-    public static final int FORWARD_CHANNEL = 0;
-    public static final int REVERSE_CHANNEL = 1;
+    public static final int CLOSE_CHANNEL = 0;
+    public static final int OPEN_CHANNEL = 1;
     public static final PneumaticsModuleType PNEUMATICS_MODULE_TYPE = PneumaticsModuleType.valueOf("REVPH");
 
-    // Sensor things
+    // Sensor subsystem constants
     public static final int TALON_CHANNEL = 8;
 
     // Controller inputs
