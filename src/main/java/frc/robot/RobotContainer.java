@@ -34,7 +34,7 @@ public class RobotContainer {
   // Commands
   private final Balance balance = new Balance(driveTrain, sensor);
   private final Claw claw = new Claw(pneumatics);
-  private final Drive drive = new Drive(driveTrain, controller);
+  private final Drive drive = new Drive(driveTrain, controller.getLeftY(), controller.getLeftX());
   private final High highExtend = new High(arm);
   private final Middle middleExtend = new Middle(arm);
   private final Retract retract = new Retract(arm);

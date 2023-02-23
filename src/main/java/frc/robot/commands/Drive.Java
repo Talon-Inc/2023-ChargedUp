@@ -7,23 +7,23 @@ package frc.robot.commands;
 import static frc.robot.Constants.OperatorConstants.DRIVE_FACTOR;
 import static frc.robot.Constants.OperatorConstants.DRIVE_REVERSE;
 
-import frc.robot.subsystems.DriveTrain;
-
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.DriveTrain;
 
 public class Drive extends CommandBase {
   private DriveTrain driveTrain = null;
-  private XboxController controller = null;
+  private double mvSpeed = 0, rtSpeed = 0;
   /** 
    * Creates a new Drive command.
    * 
-   * @param driveTrain 
-   * @param controller 
+   * @param driveTrain Arcade drive based drivetrain
+   * @param mvSpeed Move speed: Left stick Y axis
+   * @param rtSpeed Rotate speed: Left stick X axis
    */
-  public Drive(DriveTrain driveTrain, XboxController controller) {
+  public Drive(DriveTrain driveTrain, double mvSpeed, double rtSpeed) {
     this.driveTrain = driveTrain;
-    this.controller = controller;
+    this.mvSpeed = mvSpeed;
+    this.rtSpeed = rtSpeed;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(driveTrain);
   }
@@ -35,8 +35,8 @@ public class Drive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double moveSpeed = DRIVE_REVERSE * DRIVE_FACTOR * controller.getLeftY();
-    double rotateSpeed = DRIVE_REVERSE * DRIVE_FACTOR * controller.getLeftX();
+    double moveSpeed = DRIVE_REVERSE * DRIVE_FACTOR * mvSpeed;
+    double rotateSpeed = DRIVE_REVERSE * DRIVE_FACTOR * rtSpeed;
     driveTrain.arcadeDrive(moveSpeed, rotateSpeed);
   }
 
