@@ -6,7 +6,6 @@ package frc.robot;
 
 import static frc.robot.Constants.OperatorConstants.CONTROLLER_PORT;
 
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -22,7 +21,10 @@ import frc.robot.subsystems.*;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
-  private XboxController controller = new XboxController(CONTROLLER_PORT);
+  // Replace with CommandPS4Controller or CommandJoystick if needed
+  private final CommandXboxController m_driverController =
+      new CommandXboxController(CONTROLLER_PORT);
+  
   // Subsystems
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Arm arm = new Arm();
@@ -34,19 +36,12 @@ public class RobotContainer {
   // Commands
   private final Balance balance = new Balance(driveTrain, sensor);
   private final Claw claw = new Claw(pneumatics);
-  private final Drive drive = new Drive(driveTrain, controller);
+  private final Drive drive = new Drive(driveTrain, m_driverController);
   private final High highExtend = new High(arm);
   private final Middle middleExtend = new Middle(arm);
   private final Retract retract = new Retract(arm);
   private final Reverse reverseDrive = new Reverse(driveTrain);
   private final Turbo turbo = new Turbo(driveTrain);
-
-  // private final Drive drive = new Drive();
-  
-  // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController m_driverController =
-      new CommandXboxController(CONTROLLER_PORT);
-
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {

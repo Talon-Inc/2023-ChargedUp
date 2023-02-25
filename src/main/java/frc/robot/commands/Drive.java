@@ -9,19 +9,19 @@ import static frc.robot.Constants.OperatorConstants.DRIVE_REVERSE;
 
 import frc.robot.subsystems.DriveTrain;
 
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class Drive extends CommandBase {
   private DriveTrain driveTrain = null;
-  private XboxController controller = null;
+  private CommandXboxController controller = null;
   /** 
    * Creates a new Drive command.
    * 
    * @param driveTrain 
    * @param controller 
    */
-  public Drive(DriveTrain driveTrain, XboxController controller) {
+  public Drive(DriveTrain driveTrain, CommandXboxController controller) {
     this.driveTrain = driveTrain;
     this.controller = controller;
     // Use addRequirements() here to declare subsystem dependencies.
