@@ -37,6 +37,7 @@ public class Drive extends CommandBase {
   public void execute() {
     double moveSpeed = DRIVE_REVERSE * DRIVE_FACTOR * mvSpeed;
     double rotateSpeed = DRIVE_REVERSE * DRIVE_FACTOR * rtSpeed;
+    System.out.println("Left: " + moveSpeed + "; Right: " + rotateSpeed);
     drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
   }
 
