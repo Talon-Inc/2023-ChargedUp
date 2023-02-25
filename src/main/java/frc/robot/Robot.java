@@ -77,13 +77,15 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-
+    System.out.println("In teleopInit");
     m_teleopDrive = m_robotContainer.getDrive();
-
+    System.out.println("After getDrive");
     // schedule the drive command
     if (m_teleopDrive != null) {
+      System.out.println("Schedule drive");
       m_teleopDrive.schedule();
     }
+    System.out.println("After drive schedule");
   }
 
   /** This function is called periodically during operator control. */

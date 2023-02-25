@@ -98,6 +98,7 @@ public class RobotContainer {
    * @return the drive command to run in teleop
    */
   public Command getDrive() {
+    System.out.println("In getDrive");
     return drive;
   }
 }
