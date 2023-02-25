@@ -18,7 +18,6 @@ public class Reverse extends CommandBase {
   public Reverse(Drivetrain drivetrain) {
     this.drivetrain = drivetrain;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(drivetrain);
   }
 
   // Called when the command is initially scheduled.
