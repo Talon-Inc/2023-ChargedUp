@@ -14,7 +14,6 @@ import frc.robot.subsystems.DriveTrain;
     public Reverse(DriveTrain driveTrain) {
       this.driveTrain = driveTrain;
       // Use addRequirements() here to declare subsystem dependencies.
-      addRequirements(driveTrain);
   }
 
   // Called when the command is initially scheduled.
