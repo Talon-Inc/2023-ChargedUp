@@ -22,7 +22,7 @@ import frc.robot.subsystems.*;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
-  private XboxController controller = new XboxController(CONTROLLER_PORT);
+  public XboxController controller = new XboxController(CONTROLLER_PORT);
 
   // Subsystems
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
@@ -98,7 +98,6 @@ public class RobotContainer {
    * @return the drive command to run in teleop
    */
   public Command getDrive() {
-    System.out.println("In getDrive");
     return drive;
   }
 }

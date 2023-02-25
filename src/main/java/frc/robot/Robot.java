@@ -77,20 +77,26 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    System.out.println("In teleopInit");
+
     m_teleopDrive = m_robotContainer.getDrive();
-    System.out.println("After getDrive");
+
     // schedule the drive command
     if (m_teleopDrive != null) {
-      System.out.println("Schedule drive");
       m_teleopDrive.schedule();
     }
-    System.out.println("After drive schedule");
   }
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    double y = m_robotContainer.controller.getLeftY();
+    double x = m_robotContainer.controller.getLeftX();
+    double lt = m_robotContainer.controller.getLeftTriggerAxis();
+    double rt = m_robotContainer.controller.getRightTriggerAxis();
+
+    System.out.println("Left: " + y + "; Right: " + x);
+    System.out.println("Left T: " + lt + "; Right T: " + rt);
+  }
 
   @Override
   public void testInit() {
