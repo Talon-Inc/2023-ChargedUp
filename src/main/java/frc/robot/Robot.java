@@ -94,7 +94,7 @@ public class Robot extends TimedRobot {
 
     System.out.println("Left Stick: " + y + "; Right stick: " + x);
     
-    m_teleopDrive.schedule();
+    // m_teleopDrive.schedule();
   }
 
   @Override
