@@ -71,11 +71,11 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void reverseDirection() {
-    DRIVE_REVERSE *= -1;
+    DRIVE_REVERSE = 1;
   }
 
   public void normalDirection() {
-    DRIVE_REVERSE *= -1;
+    DRIVE_REVERSE = -1;
   }
 
   @Override
