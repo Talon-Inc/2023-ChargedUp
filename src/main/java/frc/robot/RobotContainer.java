@@ -80,9 +80,9 @@ public class RobotContainer {
     m_driverController.x().whileTrue(middleExtend);
     m_driverController.y().whileTrue(highExtend);
     m_driverController.rightBumper().whileTrue(claw);
-    m_driverController.rightTrigger().whileTrue(turbo);
-    m_driverController.leftBumper().whileTrue(balance);
-    m_driverController.leftTrigger().whileTrue(reverseDrive);
+    // m_driverController.rightTrigger().whileTrue(turbo);
+    // m_driverController.leftBumper().whileTrue(balance);
+    // m_driverController.leftTrigger().whileTrue(reverseDrive);
   }
 
   /**
