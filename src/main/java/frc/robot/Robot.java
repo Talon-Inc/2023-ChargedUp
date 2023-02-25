@@ -89,10 +89,10 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    double y = m_robotContainer.controller.getLeftY();
-    double x = m_robotContainer.controller.getLeftX();
-    double lt = m_robotContainer.controller.getLeftTriggerAxis();
-    double rt = m_robotContainer.controller.getRightTriggerAxis();
+    double y = m_robotContainer.m_driverController.getLeftY();
+    double x = m_robotContainer.m_driverController.getLeftX();
+    double lt = m_robotContainer.m_driverController.getLeftTriggerAxis();
+    double rt = m_robotContainer.m_driverController.getRightTriggerAxis();
 
     System.out.println("Left: " + y + "; Right: " + x);
     System.out.println("Left T: " + lt + "; Right T: " + rt);
