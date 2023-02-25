@@ -26,7 +26,7 @@ public class Robot extends TimedRobot {
 
   // temp stuff
   private final XboxController controller = new XboxController(CONTROLLER_PORT);
-  private final DriveTrain driveTrain = new DriveTrain();
+  private final Drivetrain drivetrain = new Drivetrain();
   private final Sensor sensor = new Sensor();
   private final Limelight limelight = new Limelight();
 
@@ -99,7 +99,7 @@ public class Robot extends TimedRobot {
     if (controller.getRightBumper()) { DRIVE_FACTOR = 1; }
     else { DRIVE_FACTOR = 0.5; }
     
-    driveTrain.arcadeDrive(DRIVE_FACTOR*controller.getLeftY(), DRIVE_FACTOR*controller.getLeftX());
+    drivetrain.arcadeDrive(DRIVE_FACTOR*controller.getLeftY(), DRIVE_FACTOR*controller.getLeftX());
     
     if (controller.getBackButton()){
       pneumatics.openClaw();
@@ -150,13 +150,13 @@ public class Robot extends TimedRobot {
         move_speed = .35;
       }
       if (sensor.ypr_deg[2] < 2){
-        driveTrain.arcadeDrive((move_speed), 0);
+        drivetrain.arcadeDrive((move_speed), 0);
       }
       else if (-2 < sensor.ypr_deg[2]) {
-        driveTrain.arcadeDrive(-(move_speed), 0);
+        drivetrain.arcadeDrive(-(move_speed), 0);
       }
       else if ((-2 < sensor.ypr_deg[2]) || (sensor.ypr_deg[2] < 2)){
-        driveTrain.arcadeDrive(0, 0);
+        drivetrain.arcadeDrive(0, 0);
       }
       if (controller.getLeftBumperReleased()) {
         limelight.togglelight();
