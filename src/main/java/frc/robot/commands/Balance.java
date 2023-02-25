@@ -22,7 +22,7 @@ public class Balance extends CommandBase {
     this.drivetrain = drivetrain;
     this.sensor = sensor;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(drivetrain, sensor);
+    // addRequirements(drivetrain, sensor);
   }
 
   // Called when the command is initially scheduled.

@@ -25,7 +25,7 @@ public class Drive extends CommandBase {
     this.mvSpeed = mvSpeed;
     this.rtSpeed = rtSpeed;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(drivetrain);
+    // addRequirements(drivetrain);
   }
 
   // Called when the command is initially scheduled.
