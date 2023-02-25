@@ -93,6 +93,10 @@ public class Robot extends TimedRobot {
     double x = m_robotContainer.m_driverController.getLeftX();
 
     System.out.println("Left Stick: " + y + "; Right stick: " + x);
+
+    if (!m_teleopDrive.isScheduled()) {
+      m_teleopDrive.schedule();
+    }
   }
 
   @Override
