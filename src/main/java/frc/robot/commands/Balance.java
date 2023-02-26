@@ -13,10 +13,10 @@ public class Balance extends CommandBase {
   private Sensor sensor = null;
 
   /**
-   * Creates a new Balance.
+   * Creates a new Balance command.
    * 
-   * @param driveTrain Used to controller the drive train directly
-   * @param sensor Used to get sensor values
+   * @param drivetrain Gets the Drivetrain subsystem; Used to control the drivetrain directly
+   * @param sensor Gets the Sensor subsystem; Used to get sensor values
    */
   public Balance(DriveTrain driveTrain, Sensor sensor) {
     // Use addRequirements() here to declare subsystem dependencies.
