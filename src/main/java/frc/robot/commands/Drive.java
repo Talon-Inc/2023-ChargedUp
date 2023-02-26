@@ -7,23 +7,27 @@ package frc.robot.commands;
 import static frc.robot.Constants.OperatorConstants.DRIVE_FACTOR;
 import static frc.robot.Constants.OperatorConstants.DRIVE_REVERSE;
 
-import frc.robot.subsystems.DriveTrain;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.subsystems.DriveTrain;
 
 public class Drive extends CommandBase {
   private DriveTrain driveTrain = null;
   private CommandXboxController controller = null;
+  // private double mvSpeed = 0, rtSpeed = 0; // different
+  
   /** 
    * Creates a new Drive command.
    * 
-   * @param driveTrain 
-   * @param controller 
+   * @param drivetrain Gets Drivetrain subsystem; Arcade drive based drivetrain
+   * @param mvSpeed Move speed: Left stick Y axis
+   * @param rtSpeed Rotate speed: Left stick X axis
    */
   public Drive(DriveTrain driveTrain, CommandXboxController controller) {
     this.driveTrain = driveTrain;
     this.controller = controller;
+    // this.mvSpeed = mvSpeed; // different
+    // this.rtSpeed = rtSpeed; // different
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(driveTrain);
   }
@@ -37,6 +41,8 @@ public class Drive extends CommandBase {
   public void execute() {
     double moveSpeed = DRIVE_REVERSE * DRIVE_FACTOR * controller.getLeftY();
     double rotateSpeed = DRIVE_REVERSE * DRIVE_FACTOR * controller.getLeftX();
+    // double moveSpeed = DRIVE_REVERSE * DRIVE_FACTOR * mvSpeed; // different
+    // double rotateSpeed = DRIVE_REVERSE * DRIVE_FACTOR * rtSpeed; // different
     driveTrain.arcadeDrive(moveSpeed, rotateSpeed);
   }
 
