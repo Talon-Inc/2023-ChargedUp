@@ -39,11 +39,11 @@ public final class Constants {
     public static final double ARM_SPEED = .2;
 
     // Pnuematics
-    public static final int FORWARD_CHANNEL = 0;
-    public static final int REVERSE_CHANNEL = 1;
+    public static final int CLOSE_CHANNEL = 0;
+    public static final int OPEN_CHANNEL = 1;
     public static final PneumaticsModuleType PNEUMATICS_MODULE_TYPE = PneumaticsModuleType.valueOf("REVPH");
 
-    // Sensor things
+    // Sensor subsystem constants
     public static final int TALON_CHANNEL = 8;
 
     // Controller inputs
