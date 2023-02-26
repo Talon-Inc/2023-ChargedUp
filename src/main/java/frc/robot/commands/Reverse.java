@@ -7,13 +7,18 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
-  public class Reverse extends CommandBase {
-    private DriveTrain driveTrain = null;
+public class Reverse extends CommandBase {
+  private DriveTrain driveTrain = null;
 
-    /** Creates a new Reverse. */
-    public Reverse(DriveTrain driveTrain) {
-      this.driveTrain = driveTrain;
-      // Use addRequirements() here to declare subsystem dependencies.
+  /** 
+   * Creates a new Reverse command.
+   * 
+   * @param drivetrain Gets the Drivetrain subsystem
+   */
+  public Reverse(DriveTrain drivetrain) {
+    this.driveTrain = drivetrain;
+    // Use addRequirements() here to declare subsystem dependencies.
+    // addRequirements(driveTrain); // different
   }
 
   // Called when the command is initially scheduled.
