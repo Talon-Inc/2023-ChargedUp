@@ -15,11 +15,46 @@ public final class Autos {
     return Commands.sequence(subsystem.exampleMethodCommand(), new ExampleCommand(subsystem));
   }
 
-  public static CommandBase testAuto(Drivetrain drivetrain) {
-    return Commands.sequence(
+  public static CommandBase testAuto(Drivetrain drivetrain, double apriltagid) {
+    if(apriltagid == 1){
+      return Commands.sequence(
+
+      );
+    }
+    else if(apriltagid == 3){
+      return Commands.sequence(
+
+
+      );
+    }
+    else if(apriltagid == 5){
+        return Commands.sequence(
+  
+  
+        );
+    }
+    else if(apriltagid == 7){
+        return Commands.sequence(
+    
+    
+      );
+    }
+    else if(apriltagid == 8){
+      return Commands.sequence(
+
+
+      );
+    }
+    else{
+      return Commands.sequence(
       new DriveDistance(50, 50, drivetrain),
       new DriveDistance(-50, 50, drivetrain)
-    );
+      );
+    }
+    //return Commands.sequence(
+      //new DriveDistance(50, 50, drivetrain),
+      //new DriveDistance(-50, 50, drivetrain)
+    //);
   }
 
   private Autos() {
