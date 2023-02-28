@@ -21,21 +21,21 @@ import frc.robot.subsystems.*;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-
-  private XboxController controller = new XboxController(CONTROLLER_PORT);
-
+  private final CommandXboxController m_driverController =
+    new CommandXboxController(CONTROLLER_PORT);
+ 
   // Subsystems
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Arm arm = new Arm();
   private final Drivetrain drivetrain = new Drivetrain();
   private final Limelight limelight = new Limelight();
-  private final Pneumatics pneumatics = new Pneumatics();
-  private final Sensor sensor = new Sensor();
+  //private final Pneumatics pneumatics = new Pneumatics();
+  //private final Sensor sensor = new Sensor();
 
   // Commands
-  private final Balance balance = new Balance(drivetrain, sensor);
-  private final Claw claw = new Claw(pneumatics);
-  private final Drive drive = new Drive(drivetrain, controller.getLeftY(), controller.getLeftX());
+  //private final Balance balance = new Balance(drivetrain, sensor);
+  //private final Claw claw = new Claw(pneumatics);
+  private final Drive drive = new Drive(drivetrain, m_driverController);
   private final High highExtend = new High(arm);
   private final Middle middleExtend = new Middle(arm);
   private final Retract retract = new Retract(arm);
@@ -43,8 +43,6 @@ public class RobotContainer {
   private final Turbo turbo = new Turbo(drivetrain);
   
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController m_driverController =
-      new CommandXboxController(CONTROLLER_PORT);
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -73,10 +71,10 @@ public class RobotContainer {
     m_driverController.y().whileTrue(highExtend);
 
     // claw button
-    m_driverController.rightBumper().whileTrue(claw);
+    //m_driverController.rightBumper().whileTrue(claw);
     
     // drive modifier buttons
-    m_driverController.leftBumper().whileTrue(balance);
+    //m_driverController.leftBumper().whileTrue(balance);
     m_driverController.leftTrigger().whileTrue(reverseDrive);
     m_driverController.rightTrigger().whileTrue(turbo);
   }
