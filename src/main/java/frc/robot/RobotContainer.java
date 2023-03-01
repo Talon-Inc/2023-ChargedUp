@@ -85,7 +85,7 @@ public class RobotContainer {
    * Used to store the names of our Autonomous commands
    */
   enum Auto {
-    exampleAuto, leftSideAuto, centerAuto, rightSideAuto, limelightAuto
+    exampleAuto, driveStraight, leftSideAuto, centerAuto, rightSideAuto, limelightAuto
   }
 
   /**
@@ -97,11 +97,14 @@ public class RobotContainer {
     Command autoCommand = null;
     
     /** Change this to switch Autonomoous code */
-    Auto auto = Auto.exampleAuto;
+    Auto auto = Auto.driveStraight;
 
     switch (auto) {
       case exampleAuto:
         autoCommand = Autos.exampleAuto(m_exampleSubsystem);
+        break;
+      case driveStraight:
+        autoCommand = Autos.driveStraight(drivetrain);
         break;
       case leftSideAuto:
         autoCommand = Autos.leftSideAuto(drivetrain);

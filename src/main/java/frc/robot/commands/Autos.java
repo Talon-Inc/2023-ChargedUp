@@ -15,6 +15,10 @@ public final class Autos {
     return Commands.sequence(subsystem.exampleMethodCommand(), new ExampleCommand(subsystem));
   }
 
+  public static CommandBase driveStraight(Drivetrain drivetrain) {
+    return null;
+  }
+
   public static CommandBase leftSideAuto(Drivetrain drivetrain) {
     return Commands.sequence(new DriveDistance(-40, 10, drivetrain)); // temp numbers
   }
@@ -40,13 +44,13 @@ public final class Autos {
       );
     }
     else if (aprilTagID == 5){
-        return Commands.sequence(
-  
-  
-        );
+      return Commands.sequence(
+
+
+      );
     }
     else if (aprilTagID == 7){
-        return Commands.sequence(
+      return Commands.sequence(
     
     
       );
