@@ -29,18 +29,19 @@ public class RobotContainer {
   private final Arm arm = new Arm();
   private final Drivetrain drivetrain = new Drivetrain();
   private final Limelight limelight = new Limelight();
-  //private final Pneumatics pneumatics = new Pneumatics();
-  //private final Sensor sensor = new Sensor();
+  private final Pneumatics pneumatics = new Pneumatics();
+  private final Sensor sensor = new Sensor();
 
   // Commands
-  //private final Balance balance = new Balance(drivetrain, sensor);
-  //private final Claw claw = new Claw(pneumatics);
+  private final Balance balance = new Balance(drivetrain, sensor);
+  private final Claw claw = new Claw(pneumatics);
   private final Drive drive = new Drive(drivetrain, m_driverController);
   private final High highExtend = new High(arm);
   private final Middle middleExtend = new Middle(arm);
   private final Retract retract = new Retract(arm);
   private final Reverse reverseDrive = new Reverse(drivetrain);
   private final Turbo turbo = new Turbo(drivetrain);
+  public final RetractNolimit retractNolimit = new RetractNolimit(arm);
   
   // Replace with CommandPS4Controller or CommandJoystick if needed
 
@@ -67,6 +68,7 @@ public class RobotContainer {
 
     // Arm buttons
     m_driverController.a().whileTrue(retract);
+    m_driverController.start().whileTrue(retractNolimit);
     m_driverController.x().whileTrue(middleExtend);
     m_driverController.y().whileTrue(highExtend);
 
@@ -74,7 +76,7 @@ public class RobotContainer {
     //m_driverController.rightBumper().whileTrue(claw);
     
     // drive modifier buttons
-    //m_driverController.leftBumper().whileTrue(balance);
+    m_driverController.leftBumper().whileTrue(balance);
     m_driverController.leftTrigger().whileTrue(reverseDrive);
     m_driverController.rightTrigger().whileTrue(turbo);
   }

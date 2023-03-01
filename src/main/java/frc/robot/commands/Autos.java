@@ -17,8 +17,9 @@ public final class Autos {
 
   public static CommandBase testAuto(Drivetrain drivetrain) {
     return Commands.sequence(
-      new DriveDistance(50, 50, drivetrain),
+      new DriveDistance(2, 2, drivetrain),
       new DriveDistance(-50, 50, drivetrain)
+
     );
   }
 
