@@ -62,10 +62,15 @@ public final class Autos {
       );
     }
     else {
-      return Commands.sequence(
-        new DriveDistance(50, 50, drivetrain),
-        new DriveDistance(-50, 50, drivetrain)
-      );
+      /*
+       * You can call other commands/methods like this so you 
+       * don't have to write the same command in multiple places
+       */
+      return driveStraight(drivetrain);
+      // return Commands.sequence(
+      //   new DriveDistance(50, 50, drivetrain),
+      //   new DriveDistance(-50, 50, drivetrain)
+      // );
     }
     //return Commands.sequence(
       //new DriveDistance(50, 50, drivetrain),
