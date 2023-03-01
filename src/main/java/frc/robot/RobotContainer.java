@@ -73,7 +73,7 @@ public class RobotContainer {
     m_driverController.y().whileTrue(highExtend);
 
     // claw button
-    //m_driverController.rightBumper().whileTrue(claw);
+    m_driverController.rightBumper().whileTrue(claw);
     
     // drive modifier buttons
     m_driverController.leftBumper().whileTrue(balance);
