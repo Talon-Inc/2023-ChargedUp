@@ -15,40 +15,52 @@ public final class Autos {
     return Commands.sequence(subsystem.exampleMethodCommand(), new ExampleCommand(subsystem));
   }
 
-  public static CommandBase testAuto(Drivetrain drivetrain, double apriltagid) {
-    if(apriltagid == 1){
+  public static CommandBase leftSideAuto(Drivetrain drivetrain) {
+    return Commands.sequence(new DriveDistance(-40, 10, drivetrain)); // temp numbers
+  }
+
+  public static CommandBase centerAuto(Drivetrain drivetrain) {
+    return Commands.sequence(new DriveDistance(-40, -40, drivetrain)); // temp numbers
+  }
+
+  public static CommandBase rightSideAuto(Drivetrain drivetrain) {
+    return Commands.sequence(new DriveDistance(10, -40, drivetrain)); // temp numbers
+  }
+
+  public static CommandBase limelightAuto(Drivetrain drivetrain, double aprilTagID) {
+    if (aprilTagID == 1){
       return Commands.sequence(
 
       );
     }
-    else if(apriltagid == 3){
+    else if (aprilTagID == 3){
       return Commands.sequence(
 
 
       );
     }
-    else if(apriltagid == 5){
+    else if (aprilTagID == 5){
         return Commands.sequence(
   
   
         );
     }
-    else if(apriltagid == 7){
+    else if (aprilTagID == 7){
         return Commands.sequence(
     
     
       );
     }
-    else if(apriltagid == 8){
+    else if (aprilTagID == 8){
       return Commands.sequence(
 
 
       );
     }
-    else{
+    else {
       return Commands.sequence(
-      new DriveDistance(50, 50, drivetrain),
-      new DriveDistance(-50, 50, drivetrain)
+        new DriveDistance(50, 50, drivetrain),
+        new DriveDistance(-50, 50, drivetrain)
       );
     }
     //return Commands.sequence(

@@ -82,14 +82,44 @@ public class RobotContainer {
   }
 
   /**
+   * Used to store the names of our Autonomous commands
+   */
+  enum Auto {
+    exampleAuto, leftSideAuto, centerAuto, rightSideAuto, limelightAuto
+  }
+
+  /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An example command will be run in autonomous
-    // return Autos.exampleAuto(m_exampleSubsystem);
-    return Autos.testAuto(drivetrain, limelight.getID());
+    Command autoCommand = null;
+    
+    /** Change this to switch Autonomoous code */
+    Auto auto = Auto.exampleAuto;
+
+    switch (auto) {
+      case exampleAuto:
+        autoCommand = Autos.exampleAuto(m_exampleSubsystem);
+        break;
+      case leftSideAuto:
+        autoCommand = Autos.leftSideAuto(drivetrain);
+        break;
+      case centerAuto:
+        autoCommand = Autos.centerAuto(drivetrain);
+        break;
+      case rightSideAuto:
+        autoCommand = Autos.rightSideAuto(drivetrain);
+        break;
+      case limelightAuto:
+        autoCommand = Autos.limelightAuto(drivetrain, limelight.getID());
+        break;
+      default:
+        break;
+    }
+
+    return autoCommand;
   }
 
   /**
