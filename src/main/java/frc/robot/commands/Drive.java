@@ -9,10 +9,10 @@ import static frc.robot.Constants.OperatorConstants.DRIVE_REVERSE;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Drivetrain;
 
 public class Drive extends CommandBase {
-  private DriveTrain driveTrain = null;
+  private Drivetrain drivetrain = null;
   private CommandXboxController controller = null;
   // private double mvSpeed = 0, rtSpeed = 0; // different
   
@@ -23,13 +23,13 @@ public class Drive extends CommandBase {
    * @param mvSpeed Move speed: Left stick Y axis
    * @param rtSpeed Rotate speed: Left stick X axis
    */
-  public Drive(DriveTrain driveTrain, CommandXboxController controller) {
-    this.driveTrain = driveTrain;
+  public Drive(Drivetrain drivetrain, CommandXboxController controller) {
+    this.drivetrain = drivetrain;
     this.controller = controller;
     // this.mvSpeed = mvSpeed; // different
     // this.rtSpeed = rtSpeed; // different
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(driveTrain);
+    addRequirements(drivetrain);
   }
 
   // Called when the command is initially scheduled.
@@ -43,7 +43,7 @@ public class Drive extends CommandBase {
     double rotateSpeed = DRIVE_REVERSE * DRIVE_FACTOR * controller.getLeftX();
     // double moveSpeed = DRIVE_REVERSE * DRIVE_FACTOR * mvSpeed; // different
     // double rotateSpeed = DRIVE_REVERSE * DRIVE_FACTOR * rtSpeed; // different
-    driveTrain.arcadeDrive(moveSpeed, rotateSpeed);
+    drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
   }
 
   // Called once the command ends or is interrupted.

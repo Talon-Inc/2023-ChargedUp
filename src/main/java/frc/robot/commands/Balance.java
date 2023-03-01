@@ -5,11 +5,11 @@
 package frc.robot.commands;
 //THIS IS STILL DRIVE
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Sensor;
 
 public class Balance extends CommandBase { 
-  private DriveTrain driveTrain = null; 
+  private Drivetrain drivetrain = null; 
   private Sensor sensor = null;
 
   /**
@@ -18,11 +18,11 @@ public class Balance extends CommandBase {
    * @param drivetrain Gets the Drivetrain subsystem; Used to control the drivetrain directly
    * @param sensor Gets the Sensor subsystem; Used to get sensor values
    */
-  public Balance(DriveTrain driveTrain, Sensor sensor) {
+  public Balance(Drivetrain drivetrain, Sensor sensor) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.driveTrain = driveTrain;
+    this.drivetrain = drivetrain;
     this.sensor = sensor;
-    addRequirements(driveTrain, sensor);
+    addRequirements(drivetrain, sensor);
   }
 
   // Called when the command is initially scheduled.
@@ -52,13 +52,13 @@ public class Balance extends CommandBase {
     }
 
     if (sensor.ypr_deg[2] < 2){
-      driveTrain.arcadeDrive(moveSpeed, 0);
+      drivetrain.arcadeDrive(moveSpeed, 0);
     }
     else if (-2 < sensor.ypr_deg[2]) {
-      driveTrain.arcadeDrive(-moveSpeed, 0);
+      drivetrain.arcadeDrive(-moveSpeed, 0);
     }
     else {
-      driveTrain.arcadeDrive(0, 0);
+      drivetrain.arcadeDrive(0, 0);
     }
   }
 
