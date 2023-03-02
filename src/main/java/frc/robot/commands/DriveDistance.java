@@ -71,7 +71,8 @@ public class DriveDistance extends CommandBase {
 
     if (right) {
       if (endRightPosition > rightMove) {
-        drivetrain.moveRightMotors(speed);
+        drivetrain.moveRightMotors(-speed);
+        System.out.println("Right move forward");
       }
       else {
         drivetrain.moveRightMotors(0);
@@ -80,7 +81,8 @@ public class DriveDistance extends CommandBase {
     }
     else {
       if (endRightPosition < rightMove) {
-        drivetrain.moveRightMotors(-speed);
+        drivetrain.moveRightMotors(speed);
+        System.out.println("Right move backward");
       }
       else {
         drivetrain.moveRightMotors(0);

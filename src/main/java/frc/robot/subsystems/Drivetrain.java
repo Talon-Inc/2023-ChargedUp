@@ -63,7 +63,7 @@ public class Drivetrain extends SubsystemBase {
   }
   
   public double[] getDriveEncoder() {
-    double[] arr = {0, 0};
+    double[] arr = new double[2];
     arr[0] = m_leftFrontDrive.getEncoder().getPosition();
     arr[1] = m_rightFrontDrive.getEncoder().getPosition();
     return arr;

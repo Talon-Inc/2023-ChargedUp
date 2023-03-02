@@ -8,7 +8,6 @@ import static frc.robot.Constants.OperatorConstants.DRIVE_FACTOR;
 import static frc.robot.Constants.OperatorConstants.DRIVE_REVERSE;
 import static frc.robot.Constants.OperatorConstants.DRIVE_TURN;
 
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.subsystems.Drivetrain;

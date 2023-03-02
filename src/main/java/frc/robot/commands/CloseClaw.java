@@ -5,44 +5,37 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Arm;
-
-public class High extends CommandBase {
-  private Arm arm = null;
-  
-  /** 
-   * Creates a new High command.
-   * Used to extend the arm to the high goal
-   * 
-   * @param arm Gets the Arm subsystem
-   */
-  public High(Arm arm) {
-    this.arm = arm;
+import frc.robot.subsystems.Pneumatics;
+public class CloseClaw extends CommandBase {
+  private Pneumatics pneumatics = null;
+  /** Creates a new CloseClaw. */
+  public CloseClaw(Pneumatics pneumatics) {
+    this.pneumatics = pneumatics;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(arm);
+    addRequirements(pneumatics);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    arm.highLimit();
-    arm.extend();
+    pneumatics.closeClaw();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    return;
+  }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    arm.stop();
-    System.out.println("Arm Stopped");
+
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

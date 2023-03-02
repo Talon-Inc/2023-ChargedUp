@@ -22,7 +22,7 @@ public class Balance extends CommandBase {
     this.drivetrain = drivetrain;
     this.sensor = sensor;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(drivetrain, sensor);
+    addRequirements(sensor);
   }
 
   // Called when the command is initially scheduled.
@@ -44,9 +44,9 @@ public class Balance extends CommandBase {
     /* This code activates the auto-balance */
 
     // This eases the movespeed according to the pitch's magnitude
-    double moveSpeed = Math.abs(sensor.ypr_deg[2])/40;
+    double moveSpeed = Math.abs(sensor.ypr_deg[2])/47;
 
-    // Limits the speed of the auto-balance
+    // Limits the speed of the auto-balancea
     if (moveSpeed > .35){
       moveSpeed = .35;
     }
