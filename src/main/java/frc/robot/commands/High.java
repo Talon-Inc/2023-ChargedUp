@@ -7,9 +7,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Arm;
 
+
 public class High extends CommandBase {
   private Arm arm = null;
-  
   /** 
    * Creates a new High command.
    * Used to extend the arm to the high goal
@@ -37,7 +37,6 @@ public class High extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     arm.stop();
-    System.out.println("Arm Stopped");
   }
 
   // Returns true when the command should end.

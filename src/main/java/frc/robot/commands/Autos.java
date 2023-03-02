@@ -17,25 +17,26 @@ public final class Autos {
   }
 
   public static CommandBase testAuto(Drivetrain drivetrain, Pneumatics pneumatics, Arm arm, Sensor sensor) {
-    sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
-    if (sensor.ypr_deg[2] < 5 || sensor.ypr_deg[2] > -5){
+    //sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
+    //if (sensor.ypr_deg[2] < 5 || sensor.ypr_deg[2] > -5){
       return Commands.sequence(
         //new DriveDistance(2, 2, drivetrain),
-        //new CloseClaw(pneumatics),
-        new DriveDistance(-10.61, -10.61, drivetrain)
+        //new DriveDistance(10.61, -10.61, drivetrain),
         // Left: +, Right: - = Forward
         // Left: -, Right: + = Backward
         // Left: +, Right: + = Turn Right
         // Left: -, Right - = Turn Left
-
-        //new Middle(arm)
-        //new OpenClaw(pneumatics)
+        //new DriveDistance(2, -2, drivetrain)
+        new CloseClaw(pneumatics),
+        new AutoMiddle(arm),
+        new OpenClaw(pneumatics),
+        new DriveDistance(5, -5, drivetrain)
       );}
-    else {
-      return Commands.sequence(
-        new Balance(drivetrain, sensor)
-      );}
-    }
+    //else {
+     // return Commands.sequence(
+      //  new Balance(drivet%rain, sensor)
+      //);}
+    //}
 
   private Autos() {
     throw new UnsupportedOperationException("This is a utility class!");

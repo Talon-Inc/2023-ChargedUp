@@ -5,41 +5,48 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Pneumatics;
-
-public class Claw extends CommandBase {
-  private Pneumatics pneumatics = null;
-
-  /** 
-   * Creates a new Claw command.
-   * 
-   * @param pneumatics Gets the Pneumatics subsystem
-   */
-  public Claw(Pneumatics pneumatics) {
-    this.pneumatics = pneumatics;
+import frc.robot.subsystems.Arm;
+public class AutoMiddle extends CommandBase {
+  private Arm arm = null;
+  private boolean flag = false;
+  /** Creates a new AutoMiddle. */
+  public AutoMiddle(Arm arm) {
+    this.arm = arm;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(pneumatics);
+    addRequirements(arm);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    pneumatics.closeClaw();
+    arm.automiddleLimit();
+    arm.extend();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    initialize();
+    if (arm.m_armMotor.getAppliedOutput() == 0){
+      end(true);
+    }
+  }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    pneumatics.openClaw();
+    arm.stop();
+    flag = true;
+    System.out.println("Ended");
+    return;
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if (flag) {
+      return true;
+    }
     return false;
   }
 }
