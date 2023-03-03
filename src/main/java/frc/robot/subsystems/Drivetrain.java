@@ -19,7 +19,7 @@ public class Drivetrain extends SubsystemBase {
 
   private final CANSparkMax m_rightFrontDrive = new CANSparkMax(DRIVE_RIGHT_FRONT_MOTOR, DRIVE_MOTOR_TYPE);
   private final CANSparkMax m_rightBackDrive = new CANSparkMax(DRIVE_RIGHT_BACK_MOTOR, DRIVE_MOTOR_TYPE);
-  private final MotorControllerGroup m_rightDrive = new MotorControllerGroup(m_rightFrontDrive, m_rightBackDrive);
+  public final MotorControllerGroup m_rightDrive = new MotorControllerGroup(m_rightFrontDrive, m_rightBackDrive);
 
   private DifferentialDrive m_roboDrive = null;
 
@@ -65,7 +65,7 @@ public class Drivetrain extends SubsystemBase {
   public double[] getDriveEncoder() {
     double[] arr = new double[2];
     arr[0] = m_leftFrontDrive.getEncoder().getPosition();
-    arr[1] = m_rightFrontDrive.getEncoder().getPosition();
+    arr[1] = -m_rightFrontDrive.getEncoder().getPosition();
     return arr;
   }
 
@@ -74,6 +74,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void moveRightMotors(double speed) {
+    //m_rightDrive.setInverted(false);
     m_rightDrive.set(speed);
   }
 

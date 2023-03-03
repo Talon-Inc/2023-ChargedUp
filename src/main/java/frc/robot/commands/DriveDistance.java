@@ -47,12 +47,13 @@ public class DriveDistance extends CommandBase {
   public void execute() {
     double leftMove = drivetrain.getDriveEncoder()[0];
     double rightMove = drivetrain.getDriveEncoder()[1];
-    double speed = .1;
+    double leftspeed = .2;
+    double rightspeed = .22;
     System.out.println("Left: " + leftMove + "; Right: " + rightMove);
     
     if (left) {
       if (endLeftPosition > leftMove) {
-        drivetrain.moveLeftMotors(speed);
+        drivetrain.moveLeftMotors(leftspeed);
       }
       else {
         drivetrain.moveLeftMotors(0);
@@ -61,7 +62,7 @@ public class DriveDistance extends CommandBase {
     }
     else {
       if (endLeftPosition < leftMove) {
-        drivetrain.moveLeftMotors(-speed);
+        drivetrain.moveLeftMotors(-leftspeed);
       }
       else {
         drivetrain.moveLeftMotors(0);
@@ -71,8 +72,7 @@ public class DriveDistance extends CommandBase {
 
     if (right) {
       if (endRightPosition > rightMove) {
-        drivetrain.moveRightMotors(-speed);
-        System.out.println("Right move forward");
+        drivetrain.moveRightMotors(rightspeed);
       }
       else {
         drivetrain.moveRightMotors(0);
@@ -81,8 +81,7 @@ public class DriveDistance extends CommandBase {
     }
     else {
       if (endRightPosition < rightMove) {
-        drivetrain.moveRightMotors(speed);
-        System.out.println("Right move backward");
+        drivetrain.moveRightMotors(-rightspeed);
       }
       else {
         drivetrain.moveRightMotors(0);
@@ -95,6 +94,7 @@ public class DriveDistance extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     drivetrain.arcadeDrive(0,  0);
+    drivetrain.m_rightDrive.setInverted(true);
   }
 
   // Returns true when the command should end.

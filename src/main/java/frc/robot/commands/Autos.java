@@ -30,7 +30,7 @@ public final class Autos {
         new CloseClaw(pneumatics),
         new AutoMiddle(arm),
         new OpenClaw(pneumatics),
-        new DriveDistance(5, -5, drivetrain)
+        new DriveDistance(90.61, 90.61, drivetrain)
       );}
     //else {
      // return Commands.sequence(
