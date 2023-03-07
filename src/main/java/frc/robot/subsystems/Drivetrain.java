@@ -87,7 +87,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void unturbo() {
-    DRIVE_FACTOR = .5;
+    DRIVE_FACTOR = .6;
   }
 
   public void reverseDirection() {

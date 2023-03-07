@@ -38,7 +38,7 @@ public class Arm extends SubsystemBase {
 
     // default soft limits
     m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 50);
-    m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 10);
+    m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
   }
 
   // extend arm to middle height
@@ -59,7 +59,7 @@ public class Arm extends SubsystemBase {
   }
 
   public void autohighLimit() {
-    m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 40);
+    m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 50);
     m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
   }
 
@@ -87,6 +87,7 @@ public class Arm extends SubsystemBase {
   // stops the arm
   public void stop() {
     m_armMotor.set(0);
+    m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 50);
     m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
   }
 

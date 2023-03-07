@@ -6,12 +6,11 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Arm;
-
-public class AutoHigh extends CommandBase {
+public class AutoRetract extends CommandBase {
   private Arm arm = null;
   private boolean flag = false;
-  /** Creates a new AutoHigh. */
-  public AutoHigh(Arm arm) {
+  /** Creates a new AutoRetract. */
+  public AutoRetract(Arm arm) {
     this.arm = arm;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(arm);
@@ -20,8 +19,7 @@ public class AutoHigh extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    arm.autohighLimit();
-    arm.extend();
+    arm.retract();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

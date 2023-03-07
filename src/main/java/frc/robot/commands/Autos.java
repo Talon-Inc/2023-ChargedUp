@@ -6,6 +6,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -17,21 +19,29 @@ public final class Autos {
   }
 
   public static CommandBase testAuto(Drivetrain drivetrain, Pneumatics pneumatics, Arm arm, Sensor sensor) {
-    //sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
     //if (sensor.ypr_deg[2] < 5 || sensor.ypr_deg[2] > -5){
       return Commands.sequence(
         //new DriveDistance(2, 2, drivetrain),
         //new DriveDistance(10.61, -10.61, drivetrain),
         // Left: +, Right: - = Forward
-        // Left: -, Right: + = Backward
+        // Left: -, Right: + = Backwardj9 39eeeeeeeee
         // Left: +, Right: + = Turn Right
         // Left: -, Right - = Turn Left
         //new DriveDistance(2, -2, drivetrain)
         new CloseClaw(pneumatics),
         new AutoMiddle(arm),
         new OpenClaw(pneumatics),
-        new DriveDistance(90.61, 90.61, drivetrain)
-      );}
+        Commands.waitSeconds(1),
+        new CloseClaw(pneumatics),
+        new AutoRetract(arm),
+        Commands.waitSeconds(1),
+        //new DriveDistance(90.61, 90.61, drivetrain, sensor),
+        //new Balance(drivetrain, sensor)
+        //(sensor.ypr_deg[2] < -5 && sensor.ypr_deg[2] > 5)
+        new DriveDistance(89.61, 89.61, drivetrain, sensor).andThen(new Balance(drivetrain, sensor))
+      );
+        //new DriveDistance(90.61, 90.61, drivetrain, sensor)
+    }
     //else {
      // return Commands.sequence(
       //  new Balance(drivet%rain, sensor)

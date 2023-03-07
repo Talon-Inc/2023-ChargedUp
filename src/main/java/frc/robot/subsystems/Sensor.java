@@ -18,7 +18,7 @@ public class Sensor extends SubsystemBase {
 
   // Creates a double array with 3 spots.
   public double[] ypr_deg = new double[3];
-
+  
   /** 
    * Creates a new Sensor subsystem.
    * 

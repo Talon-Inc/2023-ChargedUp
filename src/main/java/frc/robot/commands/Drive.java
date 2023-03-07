@@ -7,6 +7,7 @@ package frc.robot.commands;
 import static frc.robot.Constants.OperatorConstants.DRIVE_FACTOR;
 import static frc.robot.Constants.OperatorConstants.DRIVE_REVERSE;
 import static frc.robot.Constants.OperatorConstants.DRIVE_TURN;
+import static frc.robot.Constants.OperatorConstants.TURN_FACTOR;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -40,7 +41,7 @@ public class Drive extends CommandBase {
   @Override
   public void execute() {
     double moveSpeed = DRIVE_REVERSE * DRIVE_FACTOR * controller.getLeftY();
-    double rotateSpeed = DRIVE_TURN * DRIVE_REVERSE * DRIVE_FACTOR * controller.getLeftX();
+    double rotateSpeed = DRIVE_TURN * DRIVE_REVERSE * TURN_FACTOR * controller.getLeftX();
     drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
     
   }
