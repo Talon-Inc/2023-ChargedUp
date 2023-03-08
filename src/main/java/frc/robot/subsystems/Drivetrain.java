@@ -51,9 +51,9 @@ public class Drivetrain extends SubsystemBase {
 
     // set idle behavior
     m_leftFrontDrive.setIdleMode(DRIVE_IDLE_TYPE);
-    m_leftBackDrive.setIdleMode(DRIVE_IDLE_TYPE1);
+    m_leftBackDrive.setIdleMode(DRIVE_IDLE_TYPE);
     m_rightFrontDrive.setIdleMode(DRIVE_IDLE_TYPE);
-    m_rightBackDrive.setIdleMode(DRIVE_IDLE_TYPE1);
+    m_rightBackDrive.setIdleMode(DRIVE_IDLE_TYPE);
 
     m_roboDrive = new DifferentialDrive(m_leftDrive, m_rightDrive);
   }
