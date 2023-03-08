@@ -6,7 +6,6 @@ package frc.robot.commands;
 
 import static frc.robot.Constants.OperatorConstants.DRIVE_FACTOR;
 import static frc.robot.Constants.OperatorConstants.DRIVE_REVERSE;
-import static frc.robot.Constants.OperatorConstants.DRIVE_TURN;
 import static frc.robot.Constants.OperatorConstants.TURN_FACTOR;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -40,10 +39,9 @@ public class Drive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double moveSpeed = DRIVE_REVERSE * DRIVE_FACTOR * controller.getLeftY();
-    double rotateSpeed = DRIVE_TURN * DRIVE_REVERSE * TURN_FACTOR * controller.getLeftX();
+    double moveSpeed = DRIVE_REVERSE * DRIVE_FACTOR * -controller.getLeftY();
+    double rotateSpeed = TURN_FACTOR * -controller.getLeftX();
     drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
-    
   }
 
   // Called once the command ends or is interrupted.

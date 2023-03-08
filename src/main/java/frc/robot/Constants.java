@@ -28,11 +28,11 @@ public final class Constants {
     public static final MotorType DRIVE_MOTOR_TYPE = MotorType.kBrushless;
     public static final double SPEED = .5;
     public static final IdleMode DRIVE_IDLE_TYPE = IdleMode.kBrake;
+    public static final IdleMode DRIVE_IDLE_TYPE1 = IdleMode.kCoast;
     public static final int DRIVE_CURRENT = 30;
     public static double DRIVE_FACTOR = .6; // changed for turbo
     public static double TURN_FACTOR = .9;
-    public static int DRIVE_REVERSE = -1; // change for Reverse
-    public static int DRIVE_TURN = 1;
+    public static int DRIVE_REVERSE = -1; // Default drive; 1 = Front is panel, -1 = Front is intake
 
     // Arm motors
     public static final int ARM_MOTOR = 5;

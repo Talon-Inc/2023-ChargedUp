@@ -18,7 +18,6 @@ public class Reverse extends CommandBase {
   public Reverse(Drivetrain drivetrain) {
     this.drivetrain = drivetrain;
     // Use addRequirements() here to declare subsystem dependencies.
-    //addRequirements(drivetrain);
   }
 
   // Called when the command is initially scheduled.
@@ -34,7 +33,7 @@ public class Reverse extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    drivetrain.normalDirection();
+    drivetrain.reverseDirection();
   }
 
   // Returns true when the command should end.
