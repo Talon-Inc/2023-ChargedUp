@@ -28,7 +28,6 @@ public final class Constants {
     public static final MotorType DRIVE_MOTOR_TYPE = MotorType.kBrushless;
     public static final double SPEED = .5;
     public static final IdleMode DRIVE_IDLE_TYPE = IdleMode.kBrake;
-    public static final IdleMode DRIVE_IDLE_TYPE1 = IdleMode.kCoast;
     public static final int DRIVE_CURRENT = 30;
     public static double DRIVE_FACTOR = .6; // changed for turbo
     public static double TURN_FACTOR = .9;
