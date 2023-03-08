@@ -80,16 +80,16 @@ public class Arm extends SubsystemBase {
     m_armMotor.set(-Math.abs(speed));
   }
 
+  public void retractNolimit() {
+    m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, -9999999);
+    retract();
+  }
+
   // stops the arm
   public void stop() {
     m_armMotor.set(0);
     m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 50);
     m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
-  }
-
-  public void retractNolimit() {
-    m_armMotor.set(-ARM_SPEED);
-    m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, -9999999);
   }
 
   @Override
