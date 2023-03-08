@@ -5,7 +5,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Sensor;
 
@@ -18,6 +17,7 @@ public class DriveDistance extends CommandBase {
   private Sensor sensor;
   //private Sensor sensor;
   // private final XboxController controller = new XboxController(CONTROLLER_PORT);
+
   /** Creates a new DriveDistance. */
   public DriveDistance(double leftRevs, double rightRevs, Drivetrain drivetrain, Sensor sensor, boolean toggle) {
     // Use addRequirements() here to declare subsystem dependencies.

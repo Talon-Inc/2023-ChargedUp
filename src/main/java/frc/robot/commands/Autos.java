@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.*;
-import frc.robot.commands.*;
+// import frc.robot.commands.*;
 import frc.robot.subsystems.ExampleSubsystem;
 
 public final class Autos {
@@ -30,15 +30,17 @@ public final class Autos {
         //new DriveDistance(2, -2, drivetrain)
         new CloseClaw(pneumatics),
         new AutoMiddle(arm),
+        new WaitCommand(.5),
         new OpenClaw(pneumatics),
-        Commands.waitSeconds(1),
+        new WaitCommand(1),
         new CloseClaw(pneumatics),
         new AutoRetract(arm),
-        Commands.waitSeconds(1),
+        new WaitCommand(1),
         //new DriveDistance(90.61, 90.61, drivetrain, sensor),
         //new Balance(drivetrain, sensor)
         //(sensor.ypr_deg[2] < -5 && sensor.ypr_deg[2] > 5)
-        new DriveDistance(89.61, 89.61, drivetrain, sensor, true).andThen(new Balance(drivetrain, sensor))
+        new DriveDistance(89.61, 89.61, drivetrain, sensor, true).andThen(new Balance(drivetrain, sensor)),
+        new OpenClaw(pneumatics)
       );
         //new DriveDistance(90.61, 90.61, drivetrain, sensor)
     }
