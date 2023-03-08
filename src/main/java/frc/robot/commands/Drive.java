@@ -9,14 +9,12 @@ import static frc.robot.Constants.OperatorConstants.DRIVE_REVERSE;
 import static frc.robot.Constants.OperatorConstants.TURN_FACTOR;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.subsystems.Drivetrain;
 
 public class Drive extends CommandBase {
   private Drivetrain drivetrain = null;
-  private double mvSpeed = 0;
-  private double rtSpeed = 0;
-  //private double mvSpeed = 0, rtSpeed = 0;
+  private double mvSpeed = 0, rtSpeed = 0;
+
   /** 
    * Creates a new Drive command.
    * 
