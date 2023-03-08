@@ -44,23 +44,19 @@ public class Arm extends SubsystemBase {
   // extend arm to middle height
   public void middleLimit() {
     m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 41); //25 for auto
-    m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
   }
 
   // extend arm to highest height
   public void highLimit() {
     m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 50);
-    m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
   }
 
   public void automiddleLimit() {
     m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 41);
-    m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
   }
 
   public void autohighLimit() {
     m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 50);
-    m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
   }
 
   // default extend speed

@@ -13,14 +13,13 @@ public class DriveDistance extends CommandBase {
   private double endLeftPosition;
   private double endRightPosition;
   private double leftRevs, rightRevs;
-  private double distance;
-  public boolean leftFlag, rightFlag, left, right, flag;
+  public boolean leftFlag, rightFlag, left, right, flag, toggle;
   private Drivetrain drivetrain;
   private Sensor sensor;
   //private Sensor sensor;
   // private final XboxController controller = new XboxController(CONTROLLER_PORT);
   /** Creates a new DriveDistance. */
-  public DriveDistance(double leftRevs, double rightRevs, Drivetrain drivetrain, Sensor sensor) {
+  public DriveDistance(double leftRevs, double rightRevs, Drivetrain drivetrain, Sensor sensor, boolean toggle) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.drivetrain = drivetrain;
     this.sensor = sensor;
@@ -60,9 +59,12 @@ public class DriveDistance extends CommandBase {
     //System.out.println("Left: " + leftMove + "; Right: " + rightMove);
     sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
     //System.out.println(sensor.ypr_deg[2]);
-    if (sensor.ypr_deg[2] < -13 || sensor.ypr_deg[2] > 13){
-      System.out.println("Activated");
-      flag = true;
+
+    if (toggle) {
+      if (sensor.ypr_deg[2] < -13 || sensor.ypr_deg[2] > 13){
+        System.out.println("Activated");
+        flag = true;
+      }
     }
 
     if (left) {

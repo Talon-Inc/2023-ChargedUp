@@ -38,7 +38,6 @@ public class AutoMiddle extends CommandBase {
     arm.stop();
     flag = true;
     System.out.println("Ended");
-    return;
   }
 
   // Returns true when the command should end.
