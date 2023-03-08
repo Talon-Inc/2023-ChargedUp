@@ -26,7 +26,7 @@ public class Drivetrain extends SubsystemBase {
   /** 
    * Creates a new Drivetrain subsystem.
    * 
-   * Arcade drive based drivetrain with REV SparkMax controllers.
+   * Arcade or Curvature drive based drivetrain with REV SparkMax controllers.
    */
   public Drivetrain() {
     m_leftFrontDrive.restoreFactoryDefaults();
