@@ -14,7 +14,8 @@ import frc.robot.subsystems.Drivetrain;
 
 public class Drive extends CommandBase {
   private Drivetrain drivetrain = null;
-  private CommandXboxController controller = null;
+  private double mvSpeed = 0;
+  private double rtSpeed = 0;
   //private double mvSpeed = 0, rtSpeed = 0;
   /** 
    * Creates a new Drive command.
@@ -23,11 +24,10 @@ public class Drive extends CommandBase {
    * @param mvSpeed Move speed: Left stick Y axis
    * @param rtSpeed Rotate speed: Left stick X axis
    */
-  public Drive(Drivetrain drivetrain, CommandXboxController controller) {
+  public Drive(Drivetrain drivetrain, double mvSpeed, double rtSpeed) {
     this.drivetrain = drivetrain;
-    this.controller = controller;
-    //this.mvSpeed = mvSpeed;
-    //this.rtSpeed = rtSpeed;
+    this.mvSpeed = mvSpeed;
+    this.rtSpeed = rtSpeed;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(drivetrain);
   }
@@ -39,8 +39,8 @@ public class Drive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double moveSpeed = DRIVE_REVERSE * DRIVE_FACTOR * -controller.getLeftY();
-    double rotateSpeed = TURN_FACTOR * -controller.getLeftX();
+    double moveSpeed = DRIVE_REVERSE * DRIVE_FACTOR * -mvSpeed;
+    double rotateSpeed = TURN_FACTOR * -rtSpeed;
     drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
   }
 
