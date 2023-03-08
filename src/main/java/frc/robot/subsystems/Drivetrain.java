@@ -61,6 +61,10 @@ public class Drivetrain extends SubsystemBase {
   public void arcadeDrive(double moveSpeed, double rotateSpeed) {
     m_roboDrive.arcadeDrive(moveSpeed, rotateSpeed);
   }
+
+  public void curvatureDrive(double moveSpeed, double rotateSpeed) {
+    m_roboDrive.curvatureDrive(moveSpeed, rotateSpeed, false);
+  }
   
   public double[] getDriveEncoder() {
     double[] arr = new double[2];
@@ -74,12 +78,12 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void moveRightMotors(double speed) {
-    //m_rightDrive.setInverted(false);
     m_rightDrive.set(speed);
   }
 
   public void stop() {
-    arcadeDrive(0, 0);
+    moveLeftMotors(0);
+    moveRightMotors(0);
   }
 
   public void turbo() {
