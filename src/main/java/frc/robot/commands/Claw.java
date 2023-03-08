@@ -24,7 +24,7 @@ public class Claw extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    pneumatics.openClaw();
+    pneumatics.closeClaw();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -34,7 +34,7 @@ public class Claw extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    pneumatics.closeClaw();
+    pneumatics.openClaw();
   }
 
   // Returns true when the command should end.
