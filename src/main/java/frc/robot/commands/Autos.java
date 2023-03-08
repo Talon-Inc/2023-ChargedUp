@@ -24,7 +24,7 @@ public final class Autos {
         //new DriveDistance(2, 2, drivetrain),
         //new DriveDistance(10.61, -10.61, drivetrain),
         // Left: +, Right: - = Forward
-        // Left: -, Right: + = Backwardj9 39eeeeeeeee
+        // Left: -, Right: + = Backward
         // Left: +, Right: + = Turn Right
         // Left: -, Right - = Turn Left
         //new DriveDistance(2, -2, drivetrain)
@@ -38,13 +38,13 @@ public final class Autos {
         //new DriveDistance(90.61, 90.61, drivetrain, sensor),
         //new Balance(drivetrain, sensor)
         //(sensor.ypr_deg[2] < -5 && sensor.ypr_deg[2] > 5)
-        new DriveDistance(89.61, 89.61, drivetrain, sensor).andThen(new Balance(drivetrain, sensor))
+        new DriveDistance(89.61, 89.61, drivetrain, sensor, true).andThen(new Balance(drivetrain, sensor))
       );
         //new DriveDistance(90.61, 90.61, drivetrain, sensor)
     }
     //else {
      // return Commands.sequence(
-      //  new Balance(drivet%rain, sensor)
+      //  new Balance(drivetrain, sensor)
       //);}
     //}
 
