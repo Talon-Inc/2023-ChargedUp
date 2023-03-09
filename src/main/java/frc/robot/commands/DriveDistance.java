@@ -15,6 +15,7 @@ public class DriveDistance extends CommandBase {
   public boolean leftFlag, rightFlag, left, right, flag, toggle;
   private Drivetrain drivetrain;
   private Sensor sensor;
+  
   //private Sensor sensor;
   // private final XboxController controller = new XboxController(CONTROLLER_PORT);
 
