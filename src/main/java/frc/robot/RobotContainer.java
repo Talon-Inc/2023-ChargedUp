@@ -20,6 +20,8 @@ import frc.robot.subsystems.*;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+
+  // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
     new CommandXboxController(CONTROLLER_PORT);
  
@@ -41,9 +43,6 @@ public class RobotContainer {
   private final Reverse reverseDrive = new Reverse(drivetrain);
   private final Turbo turbo = new Turbo(drivetrain);
   public final RetractNolimit retractNolimit = new RetractNolimit(arm);
-  
-  // Replace with CommandPS4Controller or CommandJoystick if needed
-
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -71,10 +70,10 @@ public class RobotContainer {
     m_driverController.x().whileTrue(middleExtend);
     m_driverController.y().whileTrue(highExtend);
 
-    // claw button
+    // Claw button
     m_driverController.rightBumper().whileTrue(claw);
     
-    // drive modifier buttons
+    // Drive modifier buttons
     m_driverController.leftBumper().whileTrue(balance);
     m_driverController.leftTrigger().whileTrue(reverseDrive);
     m_driverController.rightTrigger().whileTrue(turbo);
@@ -86,8 +85,8 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An example command will be run in autonomous
-    // return Autos.exampleAuto(m_exampleSubsystem);S
+    // Our auto command will be run in autonomous
+    // return Autos.exampleAuto(m_exampleSubsystem);
     return Autos.testAuto(drivetrain, pneumatics, arm, sensor);
   }
 
