@@ -33,6 +33,11 @@ public final class Constants {
     public static double TURN_FACTOR = .9;
     public static int DRIVE_REVERSE = -1; // Default drive; 1 = Front is panel, -1 = Front is intake
 
+    // Intake motor
+    
+    public static final MotorType INTAKE_MOTOR_TYPE = MotorType.kBrushed;
+
+
     // Arm motors
     public static final int ARM_MOTOR = 5;
     public static final MotorType ARM_MOTOR_TYPE = MotorType.kBrushless;
