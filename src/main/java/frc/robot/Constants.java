@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 public final class Constants {
   public static class OperatorConstants {    
     
-    // Drive motors
+    // Drive motors - SparkMax Controller
     public static final int DRIVE_LEFT_FRONT_MOTOR = 2;
     public static final int DRIVE_LEFT_BACK_MOTOR = 4;
     public static final int DRIVE_RIGHT_FRONT_MOTOR = 1;
@@ -33,16 +33,15 @@ public final class Constants {
     public static double TURN_FACTOR = .9;
     public static int DRIVE_REVERSE = -1; // Default drive; 1 = Front is panel, -1 = Front is intake
 
-    // Intake motor
-    
-    public static final MotorType INTAKE_MOTOR_TYPE = MotorType.kBrushed;
-
-
-    // Arm motors
+    // Arm motors - SparkMax Controller
     public static final int ARM_MOTOR = 5;
     public static final MotorType ARM_MOTOR_TYPE = MotorType.kBrushless;
     public static final IdleMode ARM_IDLE_TYPE = IdleMode.kBrake;
     public static final double ARM_SPEED = .2;
+
+    // Intake motor - SparkMaxController
+    public static final int INTAKE_MOTOR = 6;
+    public static final MotorType INTAKE_MOTOR_TYPE = MotorType.kBrushed;
 
     // Pnuematics
     public static final int CLOSE_CHANNEL = 0;
@@ -51,7 +50,7 @@ public final class Constants {
     public static final int DOWN_CHANNEL = 3;
     public static final PneumaticsModuleType PNEUMATICS_MODULE_TYPE = PneumaticsModuleType.valueOf("REVPH");
 
-    // Sensor subsystem constants
+    // Sensor
     public static final int TALON_CHANNEL = 8;
 
     // Controller inputs
