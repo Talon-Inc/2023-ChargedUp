@@ -8,8 +8,18 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
   /** Creates a new Intake. */
-  public Intake() {}
+  public Intake() {
+    
+  }
 
+  public void spin() {
+
+  }
+
+  public void stop() {
+
+  }
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
