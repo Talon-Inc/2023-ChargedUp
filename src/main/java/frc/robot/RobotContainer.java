@@ -37,7 +37,10 @@ public class RobotContainer {
   // Commands
   private final Balance balance = new Balance(drivetrain, sensor);
   private final Claw claw = new Claw(pneumatics);
-  private final Drive drive = new Drive(drivetrain, m_driverController.getLeftY(), m_driverController.getLeftX());
+  // private final Drive drive = new Drive(drivetrain, m_driverController.getLeftY(), m_driverController.getLeftX());
+  private final Drive drive = new Drive(drivetrain, m_driverController);
+  private final IntakeUp intakeUp = new IntakeUp(pneumatics);
+  private final IntakeDown intakeDown = new IntakeDown(pneumatics);
   private final Noodle noodle = new Noodle(intake);
   private final High highExtend = new High(arm);
   private final Middle middleExtend = new Middle(arm);
@@ -79,7 +82,9 @@ public class RobotContainer {
     m_driverController.leftBumper().whileTrue(balance);
     m_driverController.leftTrigger().whileTrue(noodle);
     m_driverController.rightTrigger().whileTrue(turbo);
-  }
+
+    // Intake buttons
+    m_driverController.start().whileTrue(intakeUp);  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

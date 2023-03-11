@@ -31,7 +31,7 @@ public final class Constants {
     public static final int DRIVE_CURRENT = 30;
     public static double DRIVE_FACTOR = .6; // changed for turbo
     public static double TURN_FACTOR = .9;
-    public static int DRIVE_REVERSE = -1; // Default drive; 1 = Front is panel, -1 = Front is intake
+    public static int DRIVE_REVERSE = 1; // Default drive; 1 = Front is panel, -1 = Front is intake
 
     // Arm motors - SparkMax Controller
     public static final int ARM_MOTOR = 5;
@@ -41,7 +41,7 @@ public final class Constants {
 
     // Intake motor - SparkMaxController
     public static final int INTAKE_MOTOR = 6;
-    public static final double INTAKE_SPEED = .5;
+    public static final double INTAKE_SPEED = -.5;
     public static final MotorType INTAKE_MOTOR_TYPE = MotorType.kBrushed;
 
     // Pnuematics
