@@ -29,9 +29,10 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Arm arm = new Arm();
   private final Drivetrain drivetrain = new Drivetrain();
+  private final Intake intake = new Intake();
   private final Limelight limelight = new Limelight();
   private final Pneumatics pneumatics = new Pneumatics();
-  private final Sensor sensor = new Sensor();
+  private final Sensor sensor = new Sensor(intake.talonMotor());
 
   // Commands
   private final Balance balance = new Balance(drivetrain, sensor);

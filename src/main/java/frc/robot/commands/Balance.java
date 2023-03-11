@@ -34,7 +34,7 @@ public class Balance extends CommandBase {
   public void execute() {
     
     // Retrieves current yaw, pitch, and roll in spots 0, 1, 2 respectively
-    sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
+    sensor.getYawPitchRoll();
     
     //* Notes about Pigeon YPR */
     // ypr_deg[0] is Yaw

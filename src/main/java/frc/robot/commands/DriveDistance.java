@@ -39,7 +39,6 @@ public class DriveDistance extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    this.sensor = new Sensor();
     endLeftPosition = drivetrain.getDriveEncoder()[0] + leftRevs;
     endRightPosition = drivetrain.getDriveEncoder()[1] + rightRevs;
     
@@ -58,7 +57,7 @@ public class DriveDistance extends CommandBase {
     double leftspeed = .34;
     double rightspeed = .36;
     //System.out.println("Left: " + leftMove + "; Right: " + rightMove);
-    sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
+    sensor.getYawPitchRoll();
     //System.out.println(sensor.ypr_deg[2]);
 
     if (toggle) {
