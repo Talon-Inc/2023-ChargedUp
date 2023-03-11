@@ -28,7 +28,7 @@ public class AutoHigh extends CommandBase {
   @Override
   public void execute() {
     initialize();
-    if (arm.m_armMotor.getAppliedOutput() == 0){
+    if (arm.output() == 0 ){
       end(true);
     }
   }

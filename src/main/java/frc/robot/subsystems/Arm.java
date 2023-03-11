@@ -15,7 +15,7 @@ import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Arm extends SubsystemBase {
-  public final CANSparkMax m_armMotor = new CANSparkMax(ARM_MOTOR, ARM_MOTOR_TYPE);
+  private final CANSparkMax m_armMotor = new CANSparkMax(ARM_MOTOR, ARM_MOTOR_TYPE);
 
   /** 
    * Creates a new Arm subsystem.
@@ -90,6 +90,10 @@ public class Arm extends SubsystemBase {
     m_armMotor.set(0);
     m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 50);
     m_armMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
+  }
+
+  public double output() {
+    return m_armMotor.getAppliedOutput();
   }
 
   @Override
