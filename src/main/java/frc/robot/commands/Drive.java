@@ -6,7 +6,7 @@ package frc.robot.commands;
 
 import static frc.robot.Constants.OperatorConstants.DRIVE_FACTOR;
 import static frc.robot.Constants.OperatorConstants.DRIVE_REVERSE;
-import static frc.robot.Constants.OperatorConstants.TURN_FACTOR;
+
 
 import java.lang.ModuleLayer.Controller;
 import java.util.ResourceBundle.Control;
