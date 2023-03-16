@@ -88,7 +88,9 @@ public class RobotContainer {
     m_driverController.rightTrigger().whileTrue(turbo);
 
     // Intake buttons
-    m_driverController.start().whileTrue(intakeUp);  }
+    //m_driverController.start().whileTrue(intakeUp); 
+    m_driverController.b().whileTrue(toggleIntake);  
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -109,4 +111,6 @@ public class RobotContainer {
   public Command getDrive() {
     return drive;
   }
+
+  
 }
