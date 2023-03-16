@@ -41,6 +41,9 @@ public class RobotContainer {
   private final Drive drive = new Drive(drivetrain, m_driverController);
   private final IntakeUp intakeUp = new IntakeUp(pneumatics);
   private final IntakeDown intakeDown = new IntakeDown(pneumatics);
+  private final IntakeMiddle intakeMiddle = new IntakeMiddle(pneumatics, arm);
+  private final IntakeHigh intakeHigh = new IntakeHigh(pneumatics, arm);
+  private final IntakeRetract intakeRetract = new IntakeRetract(pneumatics, arm);
   private final Noodle noodle = new Noodle(intake);
   private final High highExtend = new High(arm);
   private final Middle middleExtend = new Middle(arm);
@@ -70,10 +73,10 @@ public class RobotContainer {
         .onTrue(new ExampleCommand(m_exampleSubsystem));
 
     // Arm buttons
-    m_driverController.a().whileTrue(retract);
+    m_driverController.a().whileTrue(intakeRetract);
     //m_driverController.start().whileTrue(retractNolimit);
-    m_driverController.x().whileTrue(middleExtend);
-    m_driverController.y().whileTrue(highExtend);
+    m_driverController.x().whileTrue(intakeMiddle);
+    m_driverController.y().whileTrue(intakeHigh);
 
     // Claw button
     m_driverController.rightBumper().whileTrue(claw);
