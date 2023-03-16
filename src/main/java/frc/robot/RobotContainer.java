@@ -112,5 +112,7 @@ public class RobotContainer {
     return drive;
   }
 
-  
+  public Command getArmDrive() {
+    return armDrive;
+  }
 }
