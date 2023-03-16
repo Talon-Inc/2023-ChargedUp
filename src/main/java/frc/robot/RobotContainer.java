@@ -37,6 +37,7 @@ public class RobotContainer {
   // Commands
   private final Balance balance = new Balance(drivetrain, sensor);
   private final Claw claw = new Claw(pneumatics);
+  private final ArmDrive armDrive = new ArmDrive(arm, m_driverController);
   // private final Drive drive = new Drive(drivetrain, m_driverController.getLeftY(), m_driverController.getLeftX());
   private final Drive drive = new Drive(drivetrain, m_driverController);
   private final IntakeUp intakeUp = new IntakeUp(pneumatics);
