@@ -74,7 +74,7 @@ public class RobotContainer {
 
     // Arm buttons
     m_driverController.a().whileTrue(retract.andThen(intakeDown));
-    m_driverController.start().whileTrue(retractNolimit);
+    //m_driverController.start().whileTrue(retractNolimit);
     m_driverController.x().whileTrue(intakeMiddle);
     m_driverController.y().whileTrue(intakeUp.andThen(highExtend));
 
@@ -90,6 +90,9 @@ public class RobotContainer {
     // Intake buttons
     //m_driverController.start().whileTrue(intakeUp); 
     m_driverController.b().whileTrue(toggleIntake);  
+
+    m_driverController.start().whileTrue(intakeUp);
+    m_driverController.back().whileTrue(intakeDown);
   }
 
   /**

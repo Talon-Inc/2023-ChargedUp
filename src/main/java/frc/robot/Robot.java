@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private Command m_teleopDrive;
+  private Command m_armDrive;
   private RobotContainer m_robotContainer;
 
   /**
@@ -84,10 +85,15 @@ public class Robot extends TimedRobot {
     }
 
     m_teleopDrive = m_robotContainer.getDrive();
+    m_armDrive = m_robotContainer.getArmDrive();
 
     // schedule the drive command
     if (m_teleopDrive != null) {
       m_teleopDrive.schedule();
+    }
+
+    if (m_armDrive != null) {
+      m_armDrive.schedule();
     }
   }
 
