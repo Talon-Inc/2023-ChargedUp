@@ -25,9 +25,6 @@ public class Retract extends CommandBase {
   @Override
   public void initialize() {
     arm.retract();
-    if (arm.output() == 0){
-      end(true);
-    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
