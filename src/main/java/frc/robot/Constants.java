@@ -29,8 +29,8 @@ public final class Constants {
     public static final double SPEED = .5;
     public static final IdleMode DRIVE_IDLE_TYPE = IdleMode.kBrake;
     public static final int DRIVE_CURRENT = 30;
-    public static double DRIVE_FACTOR = .5; // changed for turbo
-    public static double ARM_FACTOR = .3;
+    public static double DRIVE_FACTOR = .6; // changed for turbo
+    public static double TURN_FACTOR = .9;
     public static int DRIVE_REVERSE = 1; // Default drive; 1 = Front is panel, -1 = Front is intake
 
     // Arm motors - SparkMax Controller

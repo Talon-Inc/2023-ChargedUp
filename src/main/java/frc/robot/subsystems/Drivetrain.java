@@ -43,6 +43,7 @@ public class Drivetrain extends SubsystemBase {
     m_leftBackDrive.setSmartCurrentLimit(DRIVE_CURRENT);
     m_rightFrontDrive.setSmartCurrentLimit(DRIVE_CURRENT);
     m_rightBackDrive.setSmartCurrentLimit(DRIVE_CURRENT);
+
     // m_leftFrontDrive.setSecondaryCurrentLimit(CURRENT);
     // m_leftBackDrive.setSecondaryCurrentLimit(CURRENT);
     // m_rightFrontDrive.setSecondaryCurrentLimit(CURRENT);
