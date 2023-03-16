@@ -45,8 +45,8 @@ public final class Constants {
     public static final MotorType INTAKE_MOTOR_TYPE = MotorType.kBrushed;
 
     // Pnuematics
-    public static final int CLOSE_CHANNEL = 0;
-    public static final int OPEN_CHANNEL = 1;
+    public static final int CLOSE_CHANNEL = 1;
+    public static final int OPEN_CHANNEL = 0;
     public static final int UP_CHANNEL = 2;
     public static final int DOWN_CHANNEL = 3;
     public static final PneumaticsModuleType PNEUMATICS_MODULE_TYPE = PneumaticsModuleType.valueOf("REVPH");

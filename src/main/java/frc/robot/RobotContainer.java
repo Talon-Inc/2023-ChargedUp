@@ -71,7 +71,7 @@ public class RobotContainer {
 
     // Arm buttons
     m_driverController.a().whileTrue(retract);
-    m_driverController.start().whileTrue(retractNolimit);
+    //m_driverController.start().whileTrue(retractNolimit);
     m_driverController.x().whileTrue(middleExtend);
     m_driverController.y().whileTrue(highExtend);
 
@@ -84,7 +84,10 @@ public class RobotContainer {
     m_driverController.rightTrigger().whileTrue(turbo);
 
     // Intake buttons
-    m_driverController.start().whileTrue(intakeUp);  }
+    m_driverController.start().whileTrue(intakeUp); 
+    m_driverController.back().whileTrue(intakeDown);
+  
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

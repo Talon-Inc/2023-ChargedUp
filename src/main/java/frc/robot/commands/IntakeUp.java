@@ -13,7 +13,7 @@ import frc.robot.subsystems.Pneumatics;
 public class IntakeUp extends InstantCommand {
   private Pneumatics pneumatics = null;
 
-  public IntakeUp(Pneumatics Pnuematics) {
+  public IntakeUp(Pneumatics pneumatics) {
     this.pneumatics = pneumatics;
     // Use addRequirements() here to declare subsystem dependencies.
   }
