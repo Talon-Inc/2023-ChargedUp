@@ -41,6 +41,7 @@ public class RobotContainer {
   private final Drive drive = new Drive(drivetrain, m_driverController);
   private final IntakeUp intakeUp = new IntakeUp(pneumatics);
   private final IntakeDown intakeDown = new IntakeDown(pneumatics);
+  private final ToggleIntake toggleIntake = new ToggleIntake(pneumatics);
   private final Noodle noodle = new Noodle(intake);
   private final High highExtend = new High(arm);
   private final Middle middleExtend = new Middle(arm);
