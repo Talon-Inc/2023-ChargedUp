@@ -4,12 +4,14 @@
 
 package frc.robot.subsystems;
 
+
 import static frc.robot.Constants.OperatorConstants.ARM_IDLE_TYPE;
 import static frc.robot.Constants.OperatorConstants.ARM_MOTOR;
 import static frc.robot.Constants.OperatorConstants.ARM_MOTOR_TYPE;
 import static frc.robot.Constants.OperatorConstants.ARM_SPEED;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -94,6 +96,15 @@ public class Arm extends SubsystemBase {
 
   public double output() {
     return m_armMotor.getAppliedOutput();
+  }
+
+  public double getEncoder() {
+    double pos = m_armMotor.getEncoder().getPosition();
+    return pos;
+  } 
+
+  public void moveArm(double endpos) {
+    m_armMotor.getEncoder().setPosition(endpos);
   }
 
   @Override
