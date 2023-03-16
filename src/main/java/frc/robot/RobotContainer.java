@@ -74,7 +74,7 @@ public class RobotContainer {
     // Arm buttons
     m_driverController.a().whileTrue(retract.andThen(intakeDown));
     m_driverController.start().whileTrue(retractNolimit);
-    m_driverController.x().whileTrue(middleExtend);
+    m_driverController.x().whileTrue(middleExtend.alongWith(intakeUp));
     m_driverController.y().whileTrue(highExtend);
 
     // Claw button
