@@ -72,7 +72,7 @@ public class RobotContainer {
         .onTrue(new ExampleCommand(m_exampleSubsystem));
 
     // Arm buttons
-    m_driverController.a().whileTrue(retract);
+    m_driverController.a().whileTrue(retract.andThen(intakeDown));
     m_driverController.start().whileTrue(retractNolimit);
     m_driverController.x().whileTrue(middleExtend);
     m_driverController.y().whileTrue(highExtend);
