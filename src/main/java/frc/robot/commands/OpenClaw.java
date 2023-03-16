@@ -17,7 +17,7 @@ public class OpenClaw extends InstantCommand {
   public OpenClaw(Pneumatics pneumatics) {
     this.pneumatics = pneumatics;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(pneumatics);
+    // addRequirements(pneumatics);
   }
 
   // Called when the command is initially scheduled.

@@ -7,6 +7,7 @@ package frc.robot;
 import static frc.robot.Constants.OperatorConstants.CONTROLLER_PORT;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.*;
@@ -39,6 +40,8 @@ public class RobotContainer {
   private final Claw claw = new Claw(pneumatics);
   // private final Drive drive = new Drive(drivetrain, m_driverController.getLeftY(), m_driverController.getLeftX());
   private final Drive drive = new Drive(drivetrain, m_driverController);
+  private final ArmDrive armDrive = new ArmDrive(arm, m_driverController);
+  private final ToggleIntake toggleintake = new ToggleIntake(pneumatics);
   private final IntakeUp intakeUp = new IntakeUp(pneumatics);
   private final IntakeDown intakeDown = new IntakeDown(pneumatics);
   private final Noodle noodle = new Noodle(intake);
@@ -70,21 +73,22 @@ public class RobotContainer {
         .onTrue(new ExampleCommand(m_exampleSubsystem));
 
     // Arm buttons
-    m_driverController.a().whileTrue(retract);
-    m_driverController.start().whileTrue(retractNolimit);
-    m_driverController.x().whileTrue(middleExtend);
-    m_driverController.y().whileTrue(highExtend);
+    m_driverController.a().whileTrue(retract.andThen(intakeDown));
+    //m_driverController.start().whileTrue(retractNolimit);
+    m_driverController.x().whileTrue(middleExtend.alongWith(intakeUp));
+    m_driverController.y().whileTrue(highExtend.alongWith(intakeUp));
 
     // Claw button
     m_driverController.rightBumper().whileTrue(claw);
-    
+  
     // Drive modifier buttons
     m_driverController.leftBumper().whileTrue(balance);
     m_driverController.leftTrigger().whileTrue(noodle);
     m_driverController.rightTrigger().whileTrue(turbo);
 
     // Intake buttons
-    m_driverController.start().whileTrue(intakeUp);  }
+    m_driverController.b().whileTrue(toggleintake);  
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -104,5 +108,9 @@ public class RobotContainer {
    */
   public Command getDrive() {
     return drive;
+  }
+
+  public Command getArmDrive() {
+    return armDrive;
   }
 }

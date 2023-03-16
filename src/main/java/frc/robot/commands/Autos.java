@@ -39,7 +39,7 @@ public final class Autos {
         //new DriveDistance(90.61, 90.61, drivetrain, sensor),
         //new Balance(drivetrain, sensor)
         //(sensor.ypr_deg[2] < -5 && sensor.ypr_deg[2] > 5)
-        new DriveDistance(89.61, 89.61, drivetrain, sensor, true).andThen(new Balance(drivetrain, sensor)),
+        //new DriveDistance(89.61, 89.61, drivetrain, sensor, true).andThen(new Balance(drivetrain, sensor)),
         new OpenClaw(pneumatics)
       );
         //new DriveDistance(90.61, 90.61, drivetrain, sensor)

@@ -83,7 +83,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
-    m_teleopDrive = m_robotContainer.getDrive();
+    m_teleopDrive = m_robotContainer.getDrive();//.alongWith(m_robotContainer.getArmDrive());
 
     // schedule the drive command
     if (m_teleopDrive != null) {

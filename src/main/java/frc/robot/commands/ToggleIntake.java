@@ -5,29 +5,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Pneumatics;
 
-public class Retract extends CommandBase {
-  private Arm arm = null;
-
-  /** 
-   * Creates a new Retract command.
-   * 
-   * @param arm Gets the Arm subsystem
-   */
-  public Retract(Arm arm) {
-    this.arm = arm;
+public class ToggleIntake extends CommandBase {
+  private Pneumatics pneumatics = null;
+  /** Creates a new Intake. */
+  public ToggleIntake(Pneumatics pneumatics) {
+    this.pneumatics = pneumatics;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(arm);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    arm.retract();
-    if (arm.output() == 0){
-      end(true);
-    }
+    pneumatics.toggle();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -36,9 +27,7 @@ public class Retract extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    arm.stop();
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
