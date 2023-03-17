@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Sensor extends SubsystemBase {
   // Sets up communication with TalonSRX which allows communication to PigeonIMU
   private WPI_PigeonIMU pigeonIMU = null;
-
   // Creates a double array with 3 spots.
   public double[] ypr_deg = new double[3];
   

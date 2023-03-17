@@ -33,13 +33,14 @@ public final class Autos {
         new WaitCommand(.5),
         new OpenClaw(pneumatics),
         new WaitCommand(1),
-        new CloseClaw(pneumatics),
         new AutoRetract(arm),
         new WaitCommand(1),
         //new DriveDistance(90.61, 90.61, drivetrain, sensor),
         //new Balance(drivetrain, sensor)
         //(sensor.ypr_deg[2] < -5 && sensor.ypr_deg[2] > 5)
-        new DriveDistance(89.61, 89.61, drivetrain, sensor, true).andThen(new Balance(drivetrain, sensor)),
+        new DriveDistance(89.61, 89.61, drivetrain, sensor, false),
+        new WaitCommand(1),
+        new DriveDistance(-89.61, -89.61, drivetrain, sensor, true).andThen(new Balance(drivetrain, sensor)),
         new OpenClaw(pneumatics)
       );
         //new DriveDistance(90.61, 90.61, drivetrain, sensor)

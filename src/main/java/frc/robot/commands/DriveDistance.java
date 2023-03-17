@@ -34,6 +34,7 @@ public class DriveDistance extends CommandBase {
     left = false;
     right = false;
     flag = false;
+    this.toggle = toggle;
   }
 
   // Called when the command is initially scheduled.
@@ -54,11 +55,10 @@ public class DriveDistance extends CommandBase {
   public void execute() {
     double leftMove = drivetrain.getDriveEncoder()[0];
     double rightMove = drivetrain.getDriveEncoder()[1];
-    double leftspeed = .34;
-    double rightspeed = .36;
+    double leftspeed = .24;
+    double rightspeed = .26;
     //System.out.println("Left: " + leftMove + "; Right: " + rightMove);
     sensor.getYawPitchRoll();
-    //System.out.println(sensor.ypr_deg[2]);
 
     if (toggle) {
       if (sensor.ypr_deg[2] < -13 || sensor.ypr_deg[2] > 13){

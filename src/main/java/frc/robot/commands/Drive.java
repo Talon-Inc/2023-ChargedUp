@@ -47,7 +47,7 @@ public class Drive extends CommandBase {
     // double moveSpeed = DRIVE_REVERSE * DRIVE_FACTOR * -mvSpeed;
     // double rotateSpeed = TURN_FACTOR * -rtSpeed;
     double moveSpeed = DRIVE_REVERSE * DRIVE_FACTOR * -controller.getLeftY();
-    double rotateSpeed = DRIVE_FACTOR * -controller.getLeftX();
+    double rotateSpeed = TURN_FACTOR * -controller.getLeftX();
     drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
   }
 

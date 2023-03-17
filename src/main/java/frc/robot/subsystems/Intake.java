@@ -21,6 +21,7 @@ public class Intake extends SubsystemBase {
 
   public void spin() {
     talon.set(INTAKE_SPEED);
+    System.out.println(talon.getMotorOutputVoltage());
   }
 
   public void stop() {
