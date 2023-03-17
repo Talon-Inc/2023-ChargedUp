@@ -29,7 +29,8 @@ public final class Autos {
         // Left: -, Right - = Turn Left
         //new DriveDistance(2, -2, drivetrain)
         new CloseClaw(pneumatics),
-        new AutoMiddle(arm),
+        //new AutoHigh(arm),
+        new AutoHigh(arm),
         new WaitCommand(.5),
         new OpenClaw(pneumatics),
         new WaitCommand(1),
@@ -38,9 +39,9 @@ public final class Autos {
         //new DriveDistance(90.61, 90.61, drivetrain, sensor),
         //new Balance(drivetrain, sensor)
         //(sensor.ypr_deg[2] < -5 && sensor.ypr_deg[2] > 5)
-        new DriveDistance(89.61, 89.61, drivetrain, sensor, false),
-        new WaitCommand(1),
-        new DriveDistance(-89.61, -89.61, drivetrain, sensor, true).andThen(new Balance(drivetrain, sensor)),
+        new DriveDistance(60.61, 60.61, drivetrain, sensor, true).andThen(new Balance(drivetrain, sensor)),
+        new WaitCommand(2),
+       // new DriveDistance(-60.61, -60.61, drivetrain, sensor, true).andThen(new Balance(drivetrain, sensor)),
         new OpenClaw(pneumatics)
       );
         //new DriveDistance(90.61, 90.61, drivetrain, sensor)

@@ -55,13 +55,12 @@ public class DriveDistance extends CommandBase {
   public void execute() {
     double leftMove = drivetrain.getDriveEncoder()[0];
     double rightMove = drivetrain.getDriveEncoder()[1];
-    double leftspeed = .24;
-    double rightspeed = .26;
+    double leftspeed = .44;
+    double rightspeed = .46;
     //System.out.println("Left: " + leftMove + "; Right: " + rightMove);
     sensor.getYawPitchRoll();
-
     if (toggle) {
-      if (sensor.ypr_deg[2] < -13 || sensor.ypr_deg[2] > 13){
+      if (sensor.ypr_deg[2] < -19.5 || sensor.ypr_deg[2] > 19.5) {
         System.out.println("Activated");
         flag = true;
       }

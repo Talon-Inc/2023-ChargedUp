@@ -51,6 +51,21 @@ public class Pneumatics extends SubsystemBase {
     noodle.set(DoubleSolenoid.Value.kReverse);
   }
   
+  public void toggle() {
+    noodle.toggle();
+  }
+
+  public void toggleclaw() {
+    
+    if (claw.get() == DoubleSolenoid.Value.kReverse){
+        closeClaw();
+    }
+    else{
+      openClaw();
+    }
+    //claw.toggle();
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

@@ -44,6 +44,7 @@ public class RobotContainer {
   private final IntakeMiddle intakeMiddle = new IntakeMiddle(pneumatics, arm);
   private final IntakeHigh intakeHigh = new IntakeHigh(pneumatics, arm);
   private final IntakeRetract intakeRetract = new IntakeRetract(pneumatics, arm);
+  private final ToggleIntake toggleIntake = new ToggleIntake(pneumatics);
   private final Noodle noodle = new Noodle(intake);
   private final High highExtend = new High(arm);
   private final Middle middleExtend = new Middle(arm);
@@ -87,8 +88,8 @@ public class RobotContainer {
     m_driverController.rightTrigger().whileTrue(turbo);
 
     // Intake buttons
-    m_driverController.start().whileTrue(intakeUp); 
-    m_driverController.back().whileTrue(intakeDown);
+    m_driverController.start().whileTrue(toggleIntake); 
+    //m_driverController.back().whileTrue(intakeDown);
   
   }
 

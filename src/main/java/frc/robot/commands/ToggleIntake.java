@@ -4,30 +4,21 @@
 
 package frc.robot.commands;
 
-import javax.swing.plaf.synth.SynthEditorPaneUI;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Pneumatics;
 
-public class Claw extends CommandBase {
+public class ToggleIntake extends CommandBase {
   private Pneumatics pneumatics = null;
-
-  /** 
-   * Creates a new Claw command.
-   * 
-   * @param pneumatics Gets the Pneumatics subsystem
-   */
-  public Claw(Pneumatics pneumatics) {
+  /** Creates a new Intake. */
+  public ToggleIntake(Pneumatics pneumatics) {
     this.pneumatics = pneumatics;
     // Use addRequirements() here to declare subsystem dependencies.
-    //addRequirements(pneumatics);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //pneumatics.closeClaw();
-    pneumatics.toggleclaw();
+    pneumatics.toggle();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -36,9 +27,7 @@ public class Claw extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    //pneumatics.openClaw();
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override

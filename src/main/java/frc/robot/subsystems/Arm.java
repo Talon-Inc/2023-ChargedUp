@@ -52,11 +52,11 @@ public class Arm extends SubsystemBase {
   }
 
   public void automiddleLimit() {
-    m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 41);
+    m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 39);
   }
 
   public void autohighLimit() {
-    m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 50);
+    m_armMotor.setSoftLimit(SoftLimitDirection.kForward, 49);
   }
 
   // default extend speed
