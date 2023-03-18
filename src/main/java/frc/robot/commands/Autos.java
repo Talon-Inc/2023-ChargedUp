@@ -18,7 +18,7 @@ public final class Autos {
     return Commands.sequence(subsystem.exampleMethodCommand(), new ExampleCommand(subsystem));
   }
 
-  public static CommandBase testAuto(Drivetrain drivetrain, Pneumatics pneumatics, Arm arm, Sensor sensor) {
+  public static CommandBase balanceAuto(Drivetrain drivetrain, Pneumatics pneumatics, Arm arm, Sensor sensor) {
     //if (sensor.ypr_deg[2] < 5 || sensor.ypr_deg[2] > -5){
       return Commands.sequence(
         //new DriveDistance(2, 2, drivetrain),
