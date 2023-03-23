@@ -53,6 +53,7 @@ public class RobotContainer {
   private final Turbo turbo = new Turbo(drivetrain);
   public final RetractNolimit retractNolimit = new RetractNolimit(arm);
   private final LEDGreen ledGreen = new LEDGreen(ledindicator);
+  private final LEDYellow ledYellow = new LEDYellow(ledindicator);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -80,6 +81,7 @@ public class RobotContainer {
     m_driverController.x().whileTrue(intakeMiddle);
     m_driverController.y().whileTrue(intakeHigh);
     m_driverController.b().whileTrue(ledGreen);
+    m_driverController.b().whileFalse(ledYellow);
     // Claw button
     m_driverController.rightBumper().whileTrue(claw);
     
