@@ -33,7 +33,7 @@ public class RobotContainer {
   private final Limelight limelight = new Limelight();
   private final Pneumatics pneumatics = new Pneumatics();
   private final Sensor sensor = new Sensor(intake.talonMotor());
-
+  private final LEDIndicator ledindicator = new LEDIndicator();
   // Commands
   private final Balance balance = new Balance(drivetrain, sensor);
   private final Claw claw = new Claw(pneumatics);
@@ -52,6 +52,7 @@ public class RobotContainer {
   private final Reverse reverseDrive = new Reverse(drivetrain);
   private final Turbo turbo = new Turbo(drivetrain);
   public final RetractNolimit retractNolimit = new RetractNolimit(arm);
+  private final LEDGreen ledGreen = new LEDGreen(ledindicator);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -78,7 +79,7 @@ public class RobotContainer {
     //m_driverController.start().whileTrue(retractNolimit);
     m_driverController.x().whileTrue(intakeMiddle);
     m_driverController.y().whileTrue(intakeHigh);
-
+    m_driverController.b().whileTrue(ledGreen);
     // Claw button
     m_driverController.rightBumper().whileTrue(claw);
     
@@ -101,7 +102,7 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // Our auto command will be run in autonomous
     // return Autos.exampleAuto(m_exampleSubsystem);
-    return Autos.balanceAuto(drivetrain, pneumatics, arm, sensor);
+    return Autos.balanceAuto(drivetrain, pneumatics, arm, sensor, ledindicator);
   }
 
   /**

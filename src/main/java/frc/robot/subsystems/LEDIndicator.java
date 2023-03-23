@@ -5,14 +5,24 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+
 import static frc.robot.Constants.OperatorConstants.LED_CHANNEL;
 
 public class LEDIndicator extends SubsystemBase {
-  private final AddressableLED indicator = new AddressableLED(LED_CHANNEL);
+  private final PWMSparkMax led = new PWMSparkMax(LED_CHANNEL); 
+
   /** Creates a new LEDIndicator. */
   public LEDIndicator() {
-    indicator.setLength();
+    
+  }
+
+  public void setGreen() {
+    led.set(0.77);
+  }
+
+  public void setYellow() {
+    led.set(0.69);
   }
 
   @Override
