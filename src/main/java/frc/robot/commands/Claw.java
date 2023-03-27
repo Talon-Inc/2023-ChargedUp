@@ -13,22 +13,26 @@ import frc.robot.subsystems.Pneumatics;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class Claw extends InstantCommand {
   private Pneumatics pneumatics = null;
-  private LEDIndicator ledIndicator = null;
+  // private LEDIndicator ledIndicator = null;
 
-  public Claw(Pneumatics pneumatics, LEDIndicator ledIndicator) {
+  public Claw (Pneumatics pneumatics) {
     this.pneumatics = pneumatics;
-    this.ledIndicator = ledIndicator;
-    // Use addRequirements() here to declare subsystem dependencies.
   }
+
+  // public Claw (Pneumatics pneumatics, LEDIndicator ledIndicator) {
+  //   this.pneumatics = pneumatics;
+  //   this.ledIndicator = ledIndicator;
+  //   // Use addRequirements() here to declare subsystem dependencies.
+  // }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize () {
     pneumatics.toggleclaw();
-    if (pneumatics.isOpenClaw()) {
-      ledIndicator.setBlack();
-    } else {
-      ledIndicator.setGreen();
-    }
+    // if (pneumatics.isOpenClaw()) {
+    //   ledIndicator.setBlack();
+    // } else {
+    //   ledIndicator.setGreen();
+    // }
   }
 }
