@@ -8,9 +8,6 @@ import static frc.robot.Constants.OperatorConstants.DRIVE_FACTOR;
 import static frc.robot.Constants.OperatorConstants.DRIVE_REVERSE;
 import static frc.robot.Constants.OperatorConstants.TURN_FACTOR;
 
-import java.lang.ModuleLayer.Controller;
-import java.util.ResourceBundle.Control;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.subsystems.Drivetrain;
@@ -18,7 +15,7 @@ import frc.robot.subsystems.Drivetrain;
 public class Drive extends CommandBase {
   private Drivetrain drivetrain = null;
   private CommandXboxController controller = null;
-  private double mvSpeed = 0, rtSpeed = 0;
+  // private double mvSpeed = 0, rtSpeed = 0;
 
   /** 
    * Creates a new Drive command.
