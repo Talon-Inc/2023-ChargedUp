@@ -11,6 +11,7 @@ import static frc.robot.Constants.OperatorConstants.LED_CHANNEL;
 
 public class LEDIndicator extends SubsystemBase {
   private final PWMSparkMax led = new PWMSparkMax(LED_CHANNEL); 
+  private double color = 0;
 
   /** Creates a new LEDIndicator. */
   public LEDIndicator() {
@@ -18,11 +19,17 @@ public class LEDIndicator extends SubsystemBase {
   }
 
   public void setGreen() {
-    led.set(0.77);
+    color = 0.77;
+    led.set(color);
   }
 
   public void setYellow() {
-    led.set(0.69);
+    color = 0.99;
+    led.set(color);
+  }
+
+  public double color() {
+    return color;
   }
 
   @Override

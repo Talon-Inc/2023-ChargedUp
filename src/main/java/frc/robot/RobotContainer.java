@@ -33,10 +33,10 @@ public class RobotContainer {
   private final Limelight limelight = new Limelight();
   private final Pneumatics pneumatics = new Pneumatics();
   private final Sensor sensor = new Sensor(intake.talonMotor());
-  private final LEDIndicator ledindicator = new LEDIndicator();
+  private final LEDIndicator ledIndicator = new LEDIndicator();
   // Commands
   private final Balance balance = new Balance(drivetrain, sensor);
-  private final Claw claw = new Claw(pneumatics);
+  private final Claw claw = new Claw(pneumatics, ledIndicator);
   // private final Drive drive = new Drive(drivetrain, m_driverController.getLeftY(), m_driverController.getLeftX());
   private final Drive drive = new Drive(drivetrain, m_driverController);
   private final IntakeUp intakeUp = new IntakeUp(pneumatics);
@@ -52,8 +52,6 @@ public class RobotContainer {
   private final Reverse reverseDrive = new Reverse(drivetrain);
   private final Turbo turbo = new Turbo(drivetrain);
   public final RetractNolimit retractNolimit = new RetractNolimit(arm);
-  private final LEDGreen ledGreen = new LEDGreen(ledindicator);
-  private final LEDYellow ledYellow = new LEDYellow(ledindicator);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -80,8 +78,8 @@ public class RobotContainer {
     //m_driverController.start().whileTrue(retractNolimit);
     m_driverController.x().whileTrue(intakeMiddle);
     m_driverController.y().whileTrue(intakeHigh);
-    m_driverController.b().whileTrue(ledGreen);
-    m_driverController.b().whileFalse(ledYellow);
+    //m_driverController.b().whileTrue(ledGreen);
+    //m_driverController.b().whileFalse(ledYellow);
     // Claw button
     m_driverController.rightBumper().whileTrue(claw);
     
@@ -104,7 +102,7 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // Our auto command will be run in autonomous
     // return Autos.exampleAuto(m_exampleSubsystem);
-    return Autos.balanceAuto(drivetrain, pneumatics, arm, sensor, ledindicator);
+    return Autos.balanceAuto(drivetrain, pneumatics, arm, sensor, ledIndicator);
   }
 
   /**

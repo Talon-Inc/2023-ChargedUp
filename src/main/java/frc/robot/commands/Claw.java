@@ -4,21 +4,23 @@
 
 package frc.robot.commands;
 
-import javax.swing.plaf.synth.SynthEditorPaneUI;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.LEDIndicator;
 import frc.robot.subsystems.Pneumatics;
 
 public class Claw extends CommandBase {
   private Pneumatics pneumatics = null;
+  private LEDIndicator ledIndicator = null;
+  private boolean flag = false;
 
   /** 
    * Creates a new Claw command.
    * 
    * @param pneumatics Gets the Pneumatics subsystem
    */
-  public Claw(Pneumatics pneumatics) {
+  public Claw(Pneumatics pneumatics, LEDIndicator ledIndicator) {
     this.pneumatics = pneumatics;
+    this.ledIndicator = ledIndicator;
     // Use addRequirements() here to declare subsystem dependencies.
     //addRequirements(pneumatics);
   }
@@ -28,6 +30,11 @@ public class Claw extends CommandBase {
   public void initialize() {
     //pneumatics.closeClaw();
     pneumatics.toggleclaw();
+    if (pneumatics.isOpenClaw()) {
+      ledIndicator.setYellow();
+    } else {
+      ledIndicator.setGreen();
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.

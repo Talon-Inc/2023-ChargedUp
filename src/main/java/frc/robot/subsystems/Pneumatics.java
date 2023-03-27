@@ -41,6 +41,20 @@ public class Pneumatics extends SubsystemBase {
     claw.set(DoubleSolenoid.Value.kReverse);
   }
 
+  public void toggleclaw() {
+    // claw.toggle();
+    if (claw.get() == DoubleSolenoid.Value.kReverse){
+      closeClaw();
+    }
+    else{
+      openClaw();
+    }
+  }
+
+  public boolean isOpenClaw() {
+    return (claw.get() == DoubleSolenoid.Value.kReverse);
+  }
+
   // Move the intake up
   public void upNoodle() {
     noodle.set(DoubleSolenoid.Value.kForward);
@@ -51,19 +65,8 @@ public class Pneumatics extends SubsystemBase {
     noodle.set(DoubleSolenoid.Value.kReverse);
   }
   
-  public void toggle() {
+  public void toggleNoodle() {
     noodle.toggle();
-  }
-
-  public void toggleclaw() {
-    
-    if (claw.get() == DoubleSolenoid.Value.kReverse){
-        closeClaw();
-    }
-    else{
-      openClaw();
-    }
-    //claw.toggle();
   }
 
   @Override
