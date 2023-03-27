@@ -17,7 +17,7 @@ public class Claw extends InstantCommand {
 
   public Claw(Pneumatics pneumatics, LEDIndicator ledIndicator) {
     this.pneumatics = pneumatics;
-
+    this.ledIndicator = ledIndicator;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -26,7 +26,7 @@ public class Claw extends InstantCommand {
   public void initialize () {
     pneumatics.toggleclaw();
     if (pneumatics.isOpenClaw()) {
-      ledIndicator.setYellow();
+      ledIndicator.setBlack();
     } else {
       ledIndicator.setGreen();
     }

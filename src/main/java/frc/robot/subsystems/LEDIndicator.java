@@ -23,7 +23,7 @@ public class LEDIndicator extends SubsystemBase {
     led.set(color);
   }
 
-  public void setYellow() {
+  public void setBlack() {
     color = 0.99;
     led.set(color);
   }
