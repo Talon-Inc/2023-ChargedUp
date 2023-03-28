@@ -26,7 +26,6 @@ public class RobotContainer {
     new CommandXboxController(CONTROLLER_PORT);
  
   // Subsystems
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Arm arm = new Arm();
   private final Drivetrain drivetrain = new Drivetrain();
   private final Intake intake = new Intake();
@@ -71,8 +70,8 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_exampleSubsystem));
+    // new Trigger(m_exampleSubsystem::exampleCondition)
+    //     .onTrue(new ExampleCommand(m_exampleSubsystem));
 
     new Trigger(pneumatics::isOpenClaw)
         .onTrue(new LEDBlack(ledIndicator));
