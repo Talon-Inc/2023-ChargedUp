@@ -42,7 +42,7 @@ public final class Constants {
     // Intake motor - SparkMaxController
     public static final int INTAKE_MOTOR = 6;
     public static final double INTAKE_SPEED = .5;
-    public static final MotorType INTAKE_MOTOR_TYPE = MotorType.kBrushed;
+    public static final MotorType INTAKE_MOTOR_TYPE = MotorType.kBrushless;
 
     // Pnuematics
     public static final int CLOSE_CHANNEL = 1;

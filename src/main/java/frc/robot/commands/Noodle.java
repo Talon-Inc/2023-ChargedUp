@@ -18,7 +18,7 @@ public class Noodle extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    intake.spin();
+    intake.pickUp();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
