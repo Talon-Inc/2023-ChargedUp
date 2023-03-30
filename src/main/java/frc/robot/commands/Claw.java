@@ -5,7 +5,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.subsystems.LEDIndicator;
 import frc.robot.subsystems.Pneumatics;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -13,17 +12,10 @@ import frc.robot.subsystems.Pneumatics;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class Claw extends InstantCommand {
   private Pneumatics pneumatics = null;
-  // private LEDIndicator ledIndicator = null;
 
   public Claw (Pneumatics pneumatics) {
     this.pneumatics = pneumatics;
   }
-
-  // public Claw (Pneumatics pneumatics, LEDIndicator ledIndicator) {
-  //   this.pneumatics = pneumatics;
-  //   this.ledIndicator = ledIndicator;
-  //   // Use addRequirements() here to declare subsystem dependencies.
-  // }
 
   // Called when the command is initially scheduled.
   @Override
