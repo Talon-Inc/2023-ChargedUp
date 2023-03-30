@@ -31,24 +31,16 @@ public class RobotContainer {
   private final Drivetrain drivetrain = new Drivetrain();
   private final Intake intake = new Intake();
   private final Limelight limelight = new Limelight();
-  private final Pneumatics pneumatics = new Pneumatics();
   private final Sensor sensor = new Sensor(intake.talonMotor());
   private final LEDIndicator ledIndicator = new LEDIndicator();
 
   // Commands
   private final Balance balance = new Balance(drivetrain, sensor);
-  private final Claw claw = new Claw(pneumatics);
   // private final Drive drive = new Drive(drivetrain, m_driverController.getLeftY(), m_driverController.getLeftX());
   private final Drive drive = new Drive(drivetrain, m_driverController);
-  private final IntakeUp intakeUp = new IntakeUp(pneumatics);
-  private final IntakeDown intakeDown = new IntakeDown(pneumatics);
-  private final IntakeMiddle intakeMiddle = new IntakeMiddle(pneumatics, arm);
-  private final IntakeHigh intakeHigh = new IntakeHigh(pneumatics, arm);
-  private final IntakeRetract intakeRetract = new IntakeRetract(pneumatics, arm);
-  private final ToggleIntake toggleIntake = new ToggleIntake(pneumatics);
   private final Noodle noodle = new Noodle(intake);
-  // private final High highExtend = new High(arm);
-  // private final Middle middleExtend = new Middle(arm);
+  private final High highExtend = new High(arm);
+  private final Middle middleExtend = new Middle(arm);
   private final Retract retract = new Retract(arm);
   // private final Reverse reverseDrive = new Reverse(drivetrain);
   private final Turbo turbo = new Turbo(drivetrain);
@@ -74,28 +66,24 @@ public class RobotContainer {
     new Trigger(m_exampleSubsystem::exampleCondition)
         .onTrue(new ExampleCommand(m_exampleSubsystem));
 
-    new Trigger(pneumatics::isOpenClaw)
-        .onTrue(new LEDBlack(ledIndicator));
+    // new Trigger(pneumatics::isOpenClaw)
+    //     .onTrue(new LEDBlack(ledIndicator));
 
-    new Trigger(pneumatics::isOpenClaw)
-        .onFalse(new LEDGreen(ledIndicator));
+    // new Trigger(pneumatics::isOpenClaw)
+    //     .onFalse(new LEDGreen(ledIndicator));
 
     // Arm buttons
     m_driverController.a().whileTrue(retract);
     m_driverController.start().whileTrue(retractNolimit);
-    m_driverController.x().whileTrue(intakeMiddle);
-    m_driverController.y().whileTrue(intakeHigh);
+    m_driverController.x().whileTrue(middleExtend);
+    m_driverController.y().whileTrue(highExtend);
 
-    // Claw button
-    m_driverController.rightBumper().whileTrue(claw);
+    // Intake button
+    // m_driverController.rightBumper().whileTrue(claw);
     
     // Drive modifier buttons
     m_driverController.leftBumper().whileTrue(balance);
-    m_driverController.leftTrigger().whileTrue(noodle);
     m_driverController.rightTrigger().whileTrue(turbo);
-
-    // Intake buttons
-    m_driverController.start().whileTrue(toggleIntake);   
   }
 
   /**
@@ -106,7 +94,7 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // Our auto command will be run in autonomous
     // return Autos.exampleAuto(m_exampleSubsystem);
-    return Autos.balanceAuto(drivetrain, pneumatics, arm, sensor, ledIndicator);
+    return Autos.balanceAuto(drivetrain, intake, arm, sensor, ledIndicator);
   }
 
   /**

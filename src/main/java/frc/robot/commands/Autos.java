@@ -18,39 +18,30 @@ public final class Autos {
     return Commands.sequence(subsystem.exampleMethodCommand(), new ExampleCommand(subsystem));
   }
 
-  public static CommandBase balanceAuto(Drivetrain drivetrain, Pneumatics pneumatics, Arm arm, Sensor sensor, LEDIndicator ledindicator) {
-    //if (sensor.ypr_deg[2] < 5 || sensor.ypr_deg[2] > -5){
-      return Commands.sequence( 
-        //new DriveDistance(2, 2, drivetrain),
-        //new DriveDistance(10.61, -10.61, drivetrain),
-        // Left: +, Right: - = Forward
-        // Left: -, Right: + = Backward
-        // Left: +, Right: + = Turn Right
-        // Left: -, Right - = Turn Left
-        //new DriveDistance(2, -2, drivetrain)
-        new CloseClaw(pneumatics),
-        //new AutoHigh(arm),
-        new AutoHigh(arm),
-        new WaitCommand(.5),
-        new OpenClaw(pneumatics),
-        new WaitCommand(1),
-        new AutoRetract(arm),
-        new WaitCommand(1),
-        //new DriveDistance(90.61, 90.61, drivetrain, sensor),
-        //new Balance(drivetrain, sensor)
-        //(sensor.ypr_deg[2] < -5 && sensor.ypr_deg[2] > 5)
-        new DriveDistance(60.61, 60.61, drivetrain, sensor, true).andThen(new Balance(drivetrain, sensor)),
-        new WaitCommand(2),
-       // new DriveDistance(-60.61, -60.61, drivetrain, sensor, true).andThen(new Balance(drivetrain, sensor)),
-        new OpenClaw(pneumatics)
-      );
-        //new DriveDistance(90.61, 90.61, drivetrain, sensor)
-    }
-    //else {
-     // return Commands.sequence(
-      //  new Balance(drivetrain, sensor)
-      //);}
-    //}
+  public static CommandBase balanceAuto(Drivetrain drivetrain, Intake intake, Arm arm, Sensor sensor, LEDIndicator ledindicator) {
+    return Commands.sequence(
+      // Left: +, Right: - = Forward
+      // Left: -, Right: + = Backward
+      // Left: +, Right: + = Turn Right
+      // Left: -, Right - = Turn Left
+      //new DriveDistance(2, -2, drivetrain)
+
+      // new CloseClaw(pneumatics),
+      new AutoHigh(arm),
+      new WaitCommand(.5),
+      // new OpenClaw(pneumatics),
+      new WaitCommand(1),
+      new AutoRetract(arm),
+      new WaitCommand(1),
+      //new DriveDistance(90.61, 90.61, drivetrain, sensor),
+      //new Balance(drivetrain, sensor)
+      //(sensor.ypr_deg[2] < -5 && sensor.ypr_deg[2] > 5)
+
+      new DriveDistance(60.61, 60.61, drivetrain, sensor, true).andThen(new Balance(drivetrain, sensor)),
+      new WaitCommand(2)
+      // new DriveDistance(-60.61, -60.61, drivetrain, sensor, true).andThen(new Balance(drivetrain, sensor)),
+    );
+  }
 
   private Autos() {
     throw new UnsupportedOperationException("This is a utility class!");
