@@ -5,42 +5,34 @@
 package frc.robot.subsystems;
 
 import static frc.robot.Constants.OperatorConstants.TALON_CHANNEL;
-import static frc.robot.Constants.OperatorConstants.INTAKE_SPEED;
-import static frc.robot.Constants.OperatorConstants.INTAKE_MOTOR_TYPE;
-
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import static frc.robot.Constants.OperatorConstants.ROLLER_SPEED;
+import static frc.robot.Constants.OperatorConstants.ROLLER_MOTOR_TYPE;
 
 import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Intake extends SubsystemBase {
-  private CANSparkMax neo550 = new CANSparkMax(TALON_CHANNEL, INTAKE_MOTOR_TYPE);
-  private WPI_TalonSRX talon = new WPI_TalonSRX(TALON_CHANNEL);
+public class Roller extends SubsystemBase {
+  private CANSparkMax neo550 = new CANSparkMax(TALON_CHANNEL, ROLLER_MOTOR_TYPE);
 
 
-  /** Creates a new Intake. */
-  public Intake() {
+  /** Creates a new Roller. */
+  public Roller() {
     neo550.restoreFactoryDefaults();
 
     neo550.setSmartCurrentLimit(20);
   }
 
   public void pickUp() {
-    neo550.set(INTAKE_SPEED);
-    System.out.println(talon.getMotorOutputVoltage());
+    neo550.set(ROLLER_SPEED);
   }
 
   public void place() {
-    neo550.set(-INTAKE_SPEED);
+    neo550.set(-ROLLER_SPEED);
   }
 
   public void stop() {
     neo550.set(0);
-  }
-
-  public WPI_TalonSRX talonMotor() {
-    return talon;
   }
 
   @Override

@@ -29,16 +29,17 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Arm arm = new Arm();
   private final Drivetrain drivetrain = new Drivetrain();
-  private final Intake intake = new Intake();
+  private final Roller roller = new Roller();
   private final Limelight limelight = new Limelight();
-  private final Sensor sensor = new Sensor(intake.talonMotor());
+  private final Sensor sensor = new Sensor();
   private final LEDIndicator ledIndicator = new LEDIndicator();
 
   // Commands
   private final Balance balance = new Balance(drivetrain, sensor);
   // private final Drive drive = new Drive(drivetrain, m_driverController.getLeftY(), m_driverController.getLeftX());
   private final Drive drive = new Drive(drivetrain, m_driverController);
-  private final Noodle noodle = new Noodle(intake);
+  private final RollerIn rollerIn = new RollerIn(roller);
+  private final RollerOut rollerOut = new RollerOut(roller);
   private final High highExtend = new High(arm);
   private final Middle middleExtend = new Middle(arm);
   private final Retract retract = new Retract(arm);
@@ -94,7 +95,7 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // Our auto command will be run in autonomous
     // return Autos.exampleAuto(m_exampleSubsystem);
-    return Autos.balanceAuto(drivetrain, intake, arm, sensor, ledIndicator);
+    return Autos.balanceAuto(drivetrain, roller, arm, sensor, ledIndicator);
   }
 
   /**

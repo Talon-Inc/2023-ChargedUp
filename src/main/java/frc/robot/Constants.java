@@ -39,17 +39,10 @@ public final class Constants {
     public static final IdleMode ARM_IDLE_TYPE = IdleMode.kBrake;
     public static final double ARM_SPEED = .375;
 
-    // Intake motor - SparkMaxController
-    public static final int INTAKE_MOTOR = 6;
-    public static final double INTAKE_SPEED = .5;
-    public static final MotorType INTAKE_MOTOR_TYPE = MotorType.kBrushless;
-
-    // Pnuematics
-    public static final int CLOSE_CHANNEL = 1;
-    public static final int OPEN_CHANNEL = 0;
-    public static final int UP_CHANNEL = 2;
-    public static final int DOWN_CHANNEL = 3;
-    public static final PneumaticsModuleType PNEUMATICS_MODULE_TYPE = PneumaticsModuleType.valueOf("REVPH");
+    // Roller motor - SparkMaxController
+    public static final int ROLLER_MOTOR = 6;
+    public static final double ROLLER_SPEED = .5;
+    public static final MotorType ROLLER_MOTOR_TYPE = MotorType.kBrushless;
 
     // Sensor
     public static final int TALON_CHANNEL = 8;

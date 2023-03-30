@@ -5,20 +5,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Roller;
 
-public class Noodle extends CommandBase {
-  private Intake intake = null;
+public class RollerIn extends CommandBase {
+  private Roller roller = null;
   /** Creates a new Noodle. */
-  public Noodle(Intake intake) {
-    this.intake = intake;
+  public RollerIn(Roller roller) {
+    this.roller = roller;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    intake.pickUp();
+    roller.pickUp();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -28,7 +28,7 @@ public class Noodle extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    intake.stop();
+    roller.stop();
   }
 
   // Returns true when the command should end.

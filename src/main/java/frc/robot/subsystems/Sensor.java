@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import static frc.robot.Constants.OperatorConstants.TALON_CHANNEL;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.sensors.WPI_PigeonIMU;
 
@@ -11,7 +13,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Sensor extends SubsystemBase {
   // Sets up communication with TalonSRX which allows communication to PigeonIMU
-  private WPI_PigeonIMU pigeonIMU = null;
+  private WPI_TalonSRX talon = new WPI_TalonSRX(TALON_CHANNEL);
+  private WPI_PigeonIMU pigeonIMU = new WPI_PigeonIMU(talon);
+
   // Creates a double array with 3 spots.
   public double[] ypr_deg = new double[3];
   
@@ -20,8 +24,7 @@ public class Sensor extends SubsystemBase {
    * 
    * Uses the PigeonIMU from CTRE
    */
-  public Sensor(WPI_TalonSRX talon) {
-    pigeonIMU = new WPI_PigeonIMU(talon);
+  public Sensor() {
     pigeonIMU.configFactoryDefault();
   }
 

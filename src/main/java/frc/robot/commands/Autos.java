@@ -18,7 +18,7 @@ public final class Autos {
     return Commands.sequence(subsystem.exampleMethodCommand(), new ExampleCommand(subsystem));
   }
 
-  public static CommandBase balanceAuto(Drivetrain drivetrain, Intake intake, Arm arm, Sensor sensor, LEDIndicator ledindicator) {
+  public static CommandBase balanceAuto(Drivetrain drivetrain, Roller intake, Arm arm, Sensor sensor, LEDIndicator ledindicator) {
     return Commands.sequence(
       // Left: +, Right: - = Forward
       // Left: -, Right: + = Backward
