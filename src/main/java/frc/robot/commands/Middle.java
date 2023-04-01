@@ -26,7 +26,6 @@ public class Middle extends CommandBase {
   @Override
   public void initialize() {
     arm.middleLimit();
-    arm.extend();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
