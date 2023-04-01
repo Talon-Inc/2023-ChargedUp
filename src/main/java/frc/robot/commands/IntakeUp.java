@@ -10,20 +10,17 @@ import frc.robot.subsystems.Pneumatics;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Claw extends InstantCommand {
+public class IntakeUp extends InstantCommand {
   private Pneumatics pneumatics = null;
 
-  /**
-   * 
-   * 
-   */
-  public Claw (Pneumatics pneumatics) {
+  public IntakeUp(Pneumatics pneumatics) {
     this.pneumatics = pneumatics;
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize () {
-    pneumatics.toggleclaw();
+  public void initialize() {
+    pneumatics.upNoodle();
   }
 }

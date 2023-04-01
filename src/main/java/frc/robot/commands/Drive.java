@@ -6,13 +6,17 @@ package frc.robot.commands;
 
 import static frc.robot.Constants.OperatorConstants.DRIVE_FACTOR;
 import static frc.robot.Constants.OperatorConstants.DRIVE_REVERSE;
+import static frc.robot.Constants.OperatorConstants.TURN_FACTOR;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.subsystems.Drivetrain;
 
 public class Drive extends CommandBase {
   private Drivetrain drivetrain = null;
-  private double mvSpeed = 0, rtSpeed = 0;
+  private CommandXboxController controller = null;
+  // private double mvSpeed = 0, rtSpeed = 0;
+
   /** 
    * Creates a new Drive command.
    * 
@@ -20,34 +24,33 @@ public class Drive extends CommandBase {
    * @param mvSpeed Move speed: Left stick Y axis
    * @param rtSpeed Rotate speed: Left stick X axis
    */
-  public Drive(Drivetrain drivetrain, double mvSpeed, double rtSpeed) {
+  public Drive(Drivetrain drivetrain, CommandXboxController controller) {
     this.drivetrain = drivetrain;
-    this.mvSpeed = mvSpeed;
-    this.rtSpeed = rtSpeed;
+    this.controller = controller;
+    // this.mvSpeed = mvSpeed;
+    // this.rtSpeed = rtSpeed;
     // Use addRequirements() here to declare subsystem dependencies.
-    // addRequirements(drivetrain);
+    addRequirements(drivetrain);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    System.out.println("Initalize Drive");
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double moveSpeed = DRIVE_REVERSE * DRIVE_FACTOR * mvSpeed;
-    double rotateSpeed = DRIVE_REVERSE * DRIVE_FACTOR * rtSpeed;
-    System.out.println("Move: " + moveSpeed + "; Rotate: " + rotateSpeed);
+    // System.out.println("MV: " + mvSpeed + "; RT: " + rtSpeed);
+    // double moveSpeed = DRIVE_REVERSE * DRIVE_FACTOR * -mvSpeed;
+    // double rotateSpeed = TURN_FACTOR * -rtSpeed;
+    double moveSpeed = DRIVE_REVERSE * DRIVE_FACTOR * -controller.getLeftY();
+    double rotateSpeed = TURN_FACTOR * -controller.getLeftX();
     drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    System.out.println("End Drive");
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override

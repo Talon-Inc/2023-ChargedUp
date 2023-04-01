@@ -5,40 +5,47 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Drivetrain;
-
-public class Reverse extends CommandBase {
-  private Drivetrain drivetrain = null;
-
-  /** 
-   * Creates a new Reverse command.
-   * 
-   * @param drivetrain Gets the Drivetrain subsystem
-   */
-  public Reverse(Drivetrain drivetrain) {
-    this.drivetrain = drivetrain;
+import frc.robot.subsystems.Arm;
+public class AutoMiddle extends CommandBase {
+  private Arm arm = null;
+  private boolean flag = false;
+  /** Creates a new AutoMiddle. */
+  public AutoMiddle(Arm arm) {
+    this.arm = arm;
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(arm);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    drivetrain.reverseDirection();
+    arm.automiddleLimit();
+    arm.extend();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    
+    if (arm.output() == 0){
+      end(true);
+    }
+  }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    drivetrain.reverseDirection();
+    arm.stop();
+    flag = true;
+    System.out.println("Ended");
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if (flag) {
+      return true;
+    }
     return false;
   }
 }

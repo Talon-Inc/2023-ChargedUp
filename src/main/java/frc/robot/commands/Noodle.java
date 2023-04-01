@@ -5,25 +5,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Intake;
 
-public class Reverse extends CommandBase {
-  private Drivetrain drivetrain = null;
-
-  /** 
-   * Creates a new Reverse command.
-   * 
-   * @param drivetrain Gets the Drivetrain subsystem
-   */
-  public Reverse(Drivetrain drivetrain) {
-    this.drivetrain = drivetrain;
+public class Noodle extends CommandBase {
+  private Intake intake = null;
+  /** Creates a new Noodle. */
+  public Noodle(Intake intake) {
+    this.intake = intake;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    drivetrain.reverseDirection();
+    intake.spin();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -33,7 +28,7 @@ public class Reverse extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    drivetrain.reverseDirection();
+    intake.stop();
   }
 
   // Returns true when the command should end.

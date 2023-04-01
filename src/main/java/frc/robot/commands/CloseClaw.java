@@ -7,23 +7,22 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Pneumatics;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
+// NOTE: Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Claw extends InstantCommand {
+public class CloseClaw extends InstantCommand {
   private Pneumatics pneumatics = null;
 
-  /**
-   * 
-   * 
-   */
-  public Claw (Pneumatics pneumatics) {
+  /** Creates a new CloseClaw */
+  public CloseClaw(Pneumatics pneumatics) {
     this.pneumatics = pneumatics;
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(pneumatics);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize () {
-    pneumatics.toggleclaw();
+  public void initialize() {
+    pneumatics.closeClaw();
   }
 }

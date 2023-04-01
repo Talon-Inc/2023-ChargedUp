@@ -22,26 +22,36 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  public final CommandXboxController m_driverController =
-      new CommandXboxController(CONTROLLER_PORT);
-
+  private final CommandXboxController m_driverController =
+    new CommandXboxController(CONTROLLER_PORT);
+    
   // Subsystems
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Arm arm = new Arm();
   private final Drivetrain drivetrain = new Drivetrain();
+  private final Intake intake = new Intake();
   private final Limelight limelight = new Limelight();
   private final Pneumatics pneumatics = new Pneumatics();
-  private final Sensor sensor = new Sensor();
+  private final Sensor sensor = new Sensor(intake.talonMotor());
+  private final LEDIndicator ledIndicator = new LEDIndicator();
 
   // Commands
   private final Balance balance = new Balance(drivetrain, sensor);
   private final Claw claw = new Claw(pneumatics);
-  private final Drive drive = new Drive(drivetrain, m_driverController.getLeftY(), m_driverController.getLeftX());
-  private final High highExtend = new High(arm);
-  private final Middle middleExtend = new Middle(arm);
+  // private final Drive drive = new Drive(drivetrain, m_driverController.getLeftY(), m_driverController.getLeftX());
+  private final Drive drive = new Drive(drivetrain, m_driverController);
+  private final IntakeUp intakeUp = new IntakeUp(pneumatics);
+  private final IntakeDown intakeDown = new IntakeDown(pneumatics);
+  private final IntakeMiddle intakeMiddle = new IntakeMiddle(pneumatics, arm);
+  private final IntakeHigh intakeHigh = new IntakeHigh(pneumatics, arm);
+  private final IntakeRetract intakeRetract = new IntakeRetract(pneumatics, arm);
+  private final ToggleIntake toggleIntake = new ToggleIntake(pneumatics);
+  private final Noodle noodle = new Noodle(intake);
+  // private final High highExtend = new High(arm);
+  // private final Middle middleExtend = new Middle(arm);
   private final Retract retract = new Retract(arm);
-  private final Reverse reverseDrive = new Reverse(drivetrain);
+  // private final Reverse reverseDrive = new Reverse(drivetrain);
   private final Turbo turbo = new Turbo(drivetrain);
+  public final RetractNolimit retractNolimit = new RetractNolimit(arm);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -60,29 +70,31 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_exampleSubsystem));
+    // new Trigger(m_exampleSubsystem::exampleCondition)
+    //     .onTrue(new ExampleCommand(m_exampleSubsystem));
+
+    new Trigger(pneumatics::isOpenClaw)
+        .onTrue(new LEDBlack(ledIndicator));
+
+    new Trigger(pneumatics::isOpenClaw)
+        .onFalse(new LEDGreen(ledIndicator));
 
     // Arm buttons
     m_driverController.a().whileTrue(retract);
-    m_driverController.x().whileTrue(middleExtend);
-    m_driverController.y().whileTrue(highExtend);
+    m_driverController.start().whileTrue(retractNolimit);
+    m_driverController.x().whileTrue(intakeMiddle);
+    m_driverController.y().whileTrue(intakeHigh);
 
-    // claw button
+    // Claw button
     m_driverController.rightBumper().whileTrue(claw);
     
-    // drive modifier buttons
+    // Drive modifier buttons
     m_driverController.leftBumper().whileTrue(balance);
-    m_driverController.leftTrigger().whileTrue(reverseDrive);
+    m_driverController.leftTrigger().whileTrue(noodle);
     m_driverController.rightTrigger().whileTrue(turbo);
 
-    // m_driverController.a().whileTrue(retract);
-    // m_driverController.x().whileTrue(middleExtend);
-    // m_driverController.y().whileTrue(highExtend);
-    // m_driverController.rightBumper().whileTrue(claw);
-    // m_driverController.rightTrigger().whileTrue(turbo);
-    // m_driverController.leftBumper().whileTrue(balance);
-    // m_driverController.leftTrigger().whileTrue(reverseDrive);
+    // Intake buttons
+    m_driverController.start().whileTrue(toggleIntake);   
   }
 
   /**
@@ -91,9 +103,9 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
-    // return Autos.testAuto(drivetrain);
+    // Our auto command will be run in autonomous
+    // return Autos.exampleAuto(m_exampleSubsystem);
+    return Autos.balanceAuto(drivetrain, pneumatics, arm, sensor, ledIndicator);
   }
 
   /**

@@ -4,26 +4,21 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.Pneumatics;
+import frc.robot.subsystems.Arm;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Claw extends InstantCommand {
-  private Pneumatics pneumatics = null;
-
-  /**
-   * 
-   * 
-   */
-  public Claw (Pneumatics pneumatics) {
-    this.pneumatics = pneumatics;
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize () {
-    pneumatics.toggleclaw();
+public class IntakeHigh extends SequentialCommandGroup {
+  /** Creates a new IntakeHigh. */
+  public IntakeHigh(Pneumatics pneumatics, Arm arm) {
+    // Add your commands in the addCommands() call, e.g.
+    // addCommands(new FooCommand(), new BarCommand());
+    addCommands(
+      new IntakeUp(pneumatics),
+      new High(arm)
+    );
   }
 }

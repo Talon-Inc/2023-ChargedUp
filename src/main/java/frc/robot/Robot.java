@@ -28,6 +28,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    //CameraServer.startAutomaticCapture();
   }
 
   /**
@@ -48,7 +49,10 @@ public class Robot extends TimedRobot {
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+    //CameraServer.removeCamera("USB Camera 0");
+    //CameraServer.removeServer("USB Camera 0");
+  }
 
   @Override
   public void disabledPeriodic() {}
@@ -88,14 +92,7 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {
-    double y = m_robotContainer.m_driverController.getLeftY();
-    double x = m_robotContainer.m_driverController.getLeftX();
-
-    System.out.println("Left Stick: " + y + "; Right stick: " + x);
-    System.out.println("Teleop Drive Scheduled: " + m_teleopDrive.isScheduled());
-    // m_teleopDrive.schedule();
-  }
+  public void teleopPeriodic() {}
 
   @Override
   public void testInit() {

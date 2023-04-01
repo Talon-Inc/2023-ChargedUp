@@ -13,7 +13,7 @@ public class Balance extends CommandBase {
   private Sensor sensor = null;
 
   /**
-   * Creates a new Balance.
+   * Creates a new Balance command.
    * 
    * @param drivetrain Gets the Drivetrain subsystem; Used to control the drivetrain directly
    * @param sensor Gets the Sensor subsystem; Used to get sensor values
@@ -22,7 +22,7 @@ public class Balance extends CommandBase {
     this.drivetrain = drivetrain;
     this.sensor = sensor;
     // Use addRequirements() here to declare subsystem dependencies.
-    // addRequirements(drivetrain, sensor);
+    addRequirements(sensor);
   }
 
   // Called when the command is initially scheduled.
@@ -34,7 +34,7 @@ public class Balance extends CommandBase {
   public void execute() {
     
     // Retrieves current yaw, pitch, and roll in spots 0, 1, 2 respectively
-    sensor.pigeonIMU.getYawPitchRoll(sensor.ypr_deg);
+    sensor.getYawPitchRoll();
     
     //* Notes about Pigeon YPR */
     // ypr_deg[0] is Yaw
@@ -42,13 +42,21 @@ public class Balance extends CommandBase {
     // ypr_deg[2] is Roll but for the robot it is our Pitch
 
     /* This code activates the auto-balance */
-
+    System.out.println(sensor.ypr_deg[0]);
     // This eases the movespeed according to the pitch's magnitude
     double moveSpeed = Math.abs(sensor.ypr_deg[2])/40;
+    double rotespeed = Math.abs(sensor.ypr_deg[0])/47;
 
-    // Limits the speed of the auto-balance
+    // Limits the speed of the auto-balancea
     if (moveSpeed > .35){
       moveSpeed = .35;
+    }
+
+    if (sensor.ypr_deg[0] > 1) {
+      drivetrain.arcadeDrive(0, -rotespeed);
+    }
+    else if (sensor.ypr_deg[0] < -1) {
+      drivetrain.arcadeDrive(0, rotespeed);
     }
 
     if (sensor.ypr_deg[2] < 2){
