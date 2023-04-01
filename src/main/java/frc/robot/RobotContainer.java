@@ -35,6 +35,7 @@ public class RobotContainer {
   private final LEDIndicator ledIndicator = new LEDIndicator();
 
   // Commands
+  private final ArmControl armControl = new ArmControl(arm, m_driverController);
   private final Balance balance = new Balance(drivetrain, sensor);
   private final Claw claw = new Claw(pneumatics);
   // private final Drive drive = new Drive(drivetrain, m_driverController.getLeftY(), m_driverController.getLeftX());
@@ -115,5 +116,9 @@ public class RobotContainer {
    */
   public Command getDrive() {
     return drive;
+  }
+
+  public Command getArmControl() {
+    return armControl;
   }
 }
