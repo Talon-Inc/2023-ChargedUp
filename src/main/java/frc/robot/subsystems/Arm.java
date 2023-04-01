@@ -85,6 +85,10 @@ public class Arm extends SubsystemBase {
     retract();
   }
 
+  public void move(double speed) {
+    m_armMotor.set(speed);
+  }
+
   // stops the arm
   public void stop() {
     m_armMotor.set(0);

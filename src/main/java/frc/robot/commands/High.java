@@ -26,7 +26,6 @@ public class High extends CommandBase {
   @Override
   public void initialize() {
     arm.highLimit();
-    arm.extend();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

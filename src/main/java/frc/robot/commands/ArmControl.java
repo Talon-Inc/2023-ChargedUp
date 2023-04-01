@@ -5,37 +5,32 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Drivetrain;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.subsystems.Arm;
 
-public class Turbo extends CommandBase {
-  private Drivetrain drivetrain = null;
-
-  /** 
-   * Creates a new Turbo command.
-   * 
-   * @param drivetrain Gets the Drivetrain subsystem
-   */
-  public Turbo(Drivetrain drivetrain) {
+public class ArmControl extends CommandBase {
+  private Arm arm = null;
+  private CommandXboxController controller = null;
+  /** Creates a new ArmControl. */
+  public ArmControl(Arm arm, CommandXboxController controller) {
+    this.arm = arm;
+    this.controller = controller;
     // Use addRequirements() here to declare subsystem dependencies.
-    this.drivetrain = drivetrain;
-    // addRequirements(drivetrain);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    drivetrain.turbo();
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    arm.move(controller.getRightY());
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    drivetrain.unturbo();
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
