@@ -86,6 +86,14 @@ public class Arm extends SubsystemBase {
   }
 
   public void move(double speed) {
+    if (Math.abs(speed) > ARM_SPEED) {
+      speed = ARM_SPEED;
+    }
+
+    if (speed < 0) {
+      speed *= -1;
+    }
+
     m_armMotor.set(speed);
   }
 
