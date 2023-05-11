@@ -4,16 +4,17 @@
 
 package frc.robot.subsystems;
 
-import static frc.robot.Constants.OperatorConstants.TALON_CHANNEL;
+import static frc.robot.Constants.OperatorConstants.ROLLER_MOTOR;
 import static frc.robot.Constants.OperatorConstants.ROLLER_SPEED;
 import static frc.robot.Constants.OperatorConstants.ROLLER_MOTOR_TYPE;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Roller extends SubsystemBase {
-  private CANSparkMax neo550 = new CANSparkMax(TALON_CHANNEL, ROLLER_MOTOR_TYPE);
+  private CANSparkMax neo550 = new CANSparkMax(ROLLER_MOTOR, ROLLER_MOTOR_TYPE);
 
 
   /** Creates a new Roller. */
@@ -21,6 +22,7 @@ public class Roller extends SubsystemBase {
     neo550.restoreFactoryDefaults();
 
     neo550.setSmartCurrentLimit(20);
+    neo550.setIdleMode(IdleMode.kCoast);
   }
 
   public void pickUp() {

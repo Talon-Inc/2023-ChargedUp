@@ -26,26 +26,26 @@ public class RobotContainer {
     new CommandXboxController(CONTROLLER_PORT);
  
   // Subsystems
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final Arm arm = new Arm();
-  private final Drivetrain drivetrain = new Drivetrain();
+  // private final ExampleKSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  // private final Arm arm = new Arm();
+  // private final Drivetrain drivetrain = new Drivetrain();
   private final Roller roller = new Roller();
-  private final Limelight limelight = new Limelight();
-  private final Sensor sensor = new Sensor();
-  private final LEDIndicator ledIndicator = new LEDIndicator();
+  // private final Limelight limelight = new Limelight();
+  // private final Sensor sensor = new Sensor();
+  // private final LEDIndicator ledIndicator = new LEDIndicator();
 
   // Commands
-  private final Balance balance = new Balance(drivetrain, sensor);
+  // private final Balance balance = new Balance(drivetrain, sensor);
   // private final Drive drive = new Drive(drivetrain, m_driverController.getLeftY(), m_driverController.getLeftX());
-  private final Drive drive = new Drive(drivetrain, m_driverController);
+  // private final Drive drive = new Drive(drivetrain, m_driverController);
   private final RollerIn rollerIn = new RollerIn(roller);
   private final RollerOut rollerOut = new RollerOut(roller);
-  private final High highExtend = new High(arm);
-  private final Middle middleExtend = new Middle(arm);
-  private final Retract retract = new Retract(arm);
-  // private final Reverse reverseDrive = new Reverse(drivetrain);
-  private final Turbo turbo = new Turbo(drivetrain);
-  public final RetractNolimit retractNolimit = new RetractNolimit(arm);
+  // private final High highExtend = new High(arm);
+  // private final Middle middleExtend = new Middle(arm);
+  // private final Retract retract = new Retract(arm);
+  // // private final Reverse reverseDrive = new Reverse(drivetrain);
+  // private final Turbo turbo = new Turbo(drivetrain);
+  // public final RetractNolimit retractNolimit = new RetractNolimit(arm);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -64,8 +64,8 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_exampleSubsystem));
+    // new Trigger(m_exampleSubsystem::exampleCondition)
+    //     .onTrue(new ExampleCommand(m_exampleSubsystem));
 
     // new Trigger(pneumatics::isOpenClaw)
     //     .onTrue(new LEDBlack(ledIndicator));
@@ -74,17 +74,20 @@ public class RobotContainer {
     //     .onFalse(new LEDGreen(ledIndicator));
 
     // Arm buttons
-    m_driverController.a().whileTrue(retract);
-    m_driverController.start().whileTrue(retractNolimit);
-    m_driverController.x().whileTrue(middleExtend);
-    m_driverController.y().whileTrue(highExtend);
+    // m_driverController.a().whileTrue(retract);
+    // m_driverController.start().whileTrue(retractNolimit);
+    // m_driverController.x().whileTrue(middleExtend);
+    // m_driverController.y().whileTrue(highExtend);
+
+    m_driverController.x().whileTrue(rollerIn);
+    m_driverController.y().whileTrue(rollerOut);
 
     // Intake button
     // m_driverController.rightBumper().whileTrue(claw);
     
     // Drive modifier buttons
-    m_driverController.leftBumper().whileTrue(balance);
-    m_driverController.rightTrigger().whileTrue(turbo);
+    // m_driverController.leftBumper().whileTrue(balance);
+    // m_driverController.rightTrigger().whileTrue(turbo);
   }
 
   /**
@@ -92,18 +95,18 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
+  // public Command getAutonomousCommand() {
     // Our auto command will be run in autonomous
     // return Autos.exampleAuto(m_exampleSubsystem);
-    return Autos.balanceAuto(drivetrain, roller, arm, sensor, ledIndicator);
-  }
+    // return Autos.balanceAuto(drivetrain, roller, arm, sensor, ledIndicator);
+  // }
 
   /**
    * Use this to pass the drive command to the main {@link Robot} class.
    *
    * @return the drive command to run in teleop
    */
-  public Command getDrive() {
-    return drive;
-  }
+  // public Command getDrive() {
+  //   return drive;
+  // }
 }
