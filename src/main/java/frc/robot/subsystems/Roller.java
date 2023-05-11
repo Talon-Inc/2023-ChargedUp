@@ -36,6 +36,19 @@ public class Roller extends SubsystemBase {
   public void stop() {
     neo550.set(0);
   }
+  
+  public boolean isObjectIn() {
+    return (neo550.getAppliedOutput() == 0);
+  }
+
+  public boolean isIntakeIn() {
+    return (neo550.get() == ROLLER_SPEED);
+  }
+  
+  public boolean isIntakeOut() {
+    return (neo550.getAppliedOutput() == -ROLLER_SPEED);
+  }
+
 
   @Override
   public void periodic() {

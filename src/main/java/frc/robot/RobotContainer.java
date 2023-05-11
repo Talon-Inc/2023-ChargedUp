@@ -67,11 +67,11 @@ public class RobotContainer {
     // new Trigger(m_exampleSubsystem::exampleCondition)
     //     .onTrue(new ExampleCommand(m_exampleSubsystem));
 
-    // new Trigger(pneumatics::isOpenClaw)
-    //     .onTrue(new LEDBlack(ledIndicator));
+    new Trigger(roller::isIntakeIn)
+        .onTrue(new LEDBlack(ledIndicator));
 
-    // new Trigger(pneumatics::isOpenClaw)
-    //     .onFalse(new LEDGreen(ledIndicator));
+    new Trigger(roller::isIntakeIn)
+        .onFalse(new LEDGreen(ledIndicator));
 
     // Arm buttons
     // m_driverController.a().whileTrue(retract);
