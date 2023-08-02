@@ -54,7 +54,7 @@ public final class Constants {
     // Sensor
     public static final int TALON_CHANNEL = 8;
 
-    //LED
+    // LED
     public static final int LED_CHANNEL = 0;
 
     // Controller inputs
